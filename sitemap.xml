@@ -6,6 +6,21 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://moamenah1995-code.github.io/mo/en.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/mo/pt.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/mo/fr.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://moamenah1995-code.github.io/mo/privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
