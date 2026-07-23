@@ -80,17 +80,28 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <h1>موقع السيارات العربي</h1>
-      <p class="subtitle">مرجع معرفي شامل لعالم السيارات بمصادر رسمية وموثوقة</p>
+      <div class="header-top">
+        <div>
+          <h1 data-i18n="site.title">موقع السيارات العربي</h1>
+          <p class="subtitle" data-i18n="site.subtitle">مرجع معرفي شامل لعالم السيارات بمصادر رسمية وموثوقة</p>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Select language">
+          <button class="lang-btn active" data-lang="ar" type="button">العربية</button>
+          <button class="lang-btn" data-lang="en" type="button">English</button>
+          <button class="lang-btn" data-lang="pt" type="button">Português</button>
+          <button class="lang-btn" data-lang="fr" type="button">Français</button>
+        </div>
+      </div>
       <nav class="main-nav" aria-label="التنقل الرئيسي">
-        <a href="#companies">🏎️ شركات السيارات</a>
-        <a href="#articles">📚 المقالات العلمية</a>
-        <a href="#privacy">🔒 الخصوصية والبيانات</a>
-        <a href="#about">👩‍🔧 من نحن</a>
-        <a href="#chat">💬 الدردشة</a>
-        <a href="privacy.html">📄 سياسة الخصوصية</a>
-        <a href="terms.html">📜 الشروط والأحكام</a>
-        <a href="contact.html">✉️ اتصل بنا</a>
+        <a href="#companies" data-i18n="nav.companies">🏎️ شركات السيارات</a>
+        <a href="#technology" data-i18n="nav.technology">🚗 التكنولوجيا والتحديثات</a>
+        <a href="#articles" data-i18n="nav.articles">📚 المقالات العلمية</a>
+        <a href="#privacy" data-i18n="nav.privacy">🔒 الخصوصية والبيانات</a>
+        <a href="#about" data-i18n="nav.about">👩‍🔧 من نحن</a>
+        <a href="#chat" data-i18n="nav.chat">💬 الدردشة</a>
+        <a href="privacy.html" data-i18n="nav.privacyPage">📄 سياسة الخصوصية</a>
+        <a href="terms.html" data-i18n="nav.terms">📜 الشروط والأحكام</a>
+        <a href="contact.html" data-i18n="nav.contact">✉️ اتصل بنا</a>
       </nav>
     </div>
   </header>
@@ -98,14 +109,14 @@
   <main class="container">
     <section class="hero card">
       <div class="hero-content">
-        <h2>اكتشف عالم السيارات بثقة</h2>
-        <p>
+        <h2 data-i18n="hero.title">اكتشف عالم السيارات بثقة</h2>
+        <p data-i18n="hero.desc">
           منصة عربية معرفية تجمع لك الشركات والموديلات والمقالات التحليلية والمصادر الرسمية
           في مكان واحد، لتسهيل القرار قبل الشراء أو المقارنة.
         </p>
         <div class="hero-actions">
-          <a href="#companies" class="hero-btn">ابدأ باستعراض الشركات</a>
-          <a href="#articles" class="hero-btn secondary">تصفح المقالات</a>
+          <a href="#companies" class="hero-btn" data-i18n="hero.btnCompanies">ابدأ باستعراض الشركات</a>
+          <a href="#articles" class="hero-btn secondary" data-i18n="hero.btnArticles">تصفح المقالات</a>
         </div>
       </div>
     </section>
@@ -113,17 +124,44 @@
     <section class="card">
       <div class="highlights-grid">
         <article class="highlight-card">
-          <h3>محتوى مرجعي موثوق</h3>
-          <p>نقدم معلومات عامة مبنية على مصادر رسمية ومراجع معتمدة مع توضيح حدودها.</p>
+          <h3 data-i18n="highlights.reliable.title">محتوى مرجعي موثوق</h3>
+          <p data-i18n="highlights.reliable.text">نقدم معلومات عامة مبنية على مصادر رسمية ومراجع معتمدة مع توضيح حدودها.</p>
         </article>
         <article class="highlight-card">
-          <h3>مقارنة سهلة</h3>
-          <p>تتيح لك الأداة التفاعلية مقارنة سيارتين بسرعة مع توضيح الفروقات الرئيسية.</p>
+          <h3 data-i18n="highlights.compare.title">مقارنة سهلة</h3>
+          <p data-i18n="highlights.compare.text">تتيح لك الأداة التفاعلية مقارنة سيارتين بسرعة مع توضيح الفروقات الرئيسية.</p>
         </article>
         <article class="highlight-card">
-          <h3>قوانين Google والخصوصية</h3>
-          <p>يحتوي الموقع على صفحات قانونية واضحة وامتثال مبادئ الخصوصية والإعلانات.</p>
+          <h3 data-i18n="highlights.privacy.title">قوانين Google والخصوصية</h3>
+          <p data-i18n="highlights.privacy.text">يحتوي الموقع على صفحات قانونية واضحة وامتثال مبادئ الخصوصية والإعلانات.</p>
         </article>
+      </div>
+    </section>
+
+    <section id="technology" class="card">
+      <h2 data-i18n="tech.title">🚗 تكنولوجيا السيارات والتحديثات</h2>
+      <p data-i18n="tech.desc">اكتشف أحدث التطورات التي تهم عشاق السيارات واحترافيي الصيانة، من الذكاء الاصطناعي إلى قطع السيارات والمستقبل الكهربائي.</p>
+      <div class="highlights-grid">
+        <article class="highlight-card">
+          <h3 data-i18n="tech.vehicles.title">تكنولوجيا السيارات</h3>
+          <p data-i18n="tech.vehicles.text">الذكاء الاصطناعي وأنظمة المساعدة على القيادة والشحن الذكي أصبحت جزءًا أساسيًا من سيارات اليوم.</p>
+        </article>
+        <article class="highlight-card">
+          <h3 data-i18n="tech.parts.title">قطع السيارات</h3>
+          <p data-i18n="tech.parts.text">القطع الأصلية والمكونات الذكية والبطاريات المتقدمة تؤثر بشكل مباشر على الأداء والصيانة.</p>
+        </article>
+        <article class="highlight-card">
+          <h3 data-i18n="tech.future.title">مستقبل السيارات</h3>
+          <p data-i18n="tech.future.text">السيارات الكهربائية والهجينة والذاتية القيادة تُعيد تشكيل السوق وتغيير توقعات المستخدمين.</p>
+        </article>
+      </div>
+      <div class="tech-updates">
+        <h3 data-i18n="tech.updates.title">أحدث التحديثات</h3>
+        <ul>
+          <li data-i18n="tech.updates.item1">أنظمة السلامة الذكية أصبحت أكثر تطورًا وتكاملًا مع تجربة القيادة اليومية.</li>
+          <li data-i18n="tech.updates.item2">القطع الإلكترونية والبطاريات المتقدمة تؤثر على كلفة الصيانة ومدى الاعتمادية.</li>
+          <li data-i18n="tech.updates.item3">المستقبل سيتركز على التنقل الكهربائي، التوصيل الذكي، والتقنيات الرقمية.</li>
+        </ul>
       </div>
     </section>
 
@@ -161,15 +199,15 @@
     </section>
 
     <section id="compare" class="card">
-      <h2>⚖️ مقارنة السيارات التفاعلية</h2>
-      <p>
+      <h2 data-i18n="compare.title">⚖️ مقارنة السيارات التفاعلية</h2>
+      <p data-i18n="compare.desc">
         اختر سيارتين للمقارنة السريعة بين البيانات المرجعية الأساسية مثل سنة الصنع، أنواع القطع، المميزات والعيوب والمصادر.
       </p>
 
       <div class="compare-controls">
         <div class="compare-col">
-          <h3>السيارة الأولى</h3>
-          <label for="compare-company-1">الشركة</label>
+          <h3 data-i18n="compare.firstCar">السيارة الأولى</h3>
+          <label for="compare-company-1" data-i18n="compare.company">الشركة</label>
           <select id="compare-company-1" aria-label="اختيار شركة السيارة الأولى">
             <option value="">اختر الشركة</option>
           </select>
@@ -180,8 +218,8 @@
         </div>
 
         <div class="compare-col">
-          <h3>السيارة الثانية</h3>
-          <label for="compare-company-2">الشركة</label>
+          <h3 data-i18n="compare.secondCar">السيارة الثانية</h3>
+          <label for="compare-company-2" data-i18n="compare.company">الشركة</label>
           <select id="compare-company-2" aria-label="اختيار شركة السيارة الثانية">
             <option value="">اختر الشركة</option>
           </select>
@@ -193,8 +231,8 @@
       </div>
 
       <div class="compare-actions">
-        <button id="compare-btn" type="button">إجراء المقارنة</button>
-        <button id="compare-reset-btn" type="button">مسح الاختيارات</button>
+        <button id="compare-btn" type="button" data-i18n="compare.run">إجراء المقارنة</button>
+        <button id="compare-reset-btn" type="button" data-i18n="compare.reset">مسح الاختيارات</button>
       </div>
 
       <article id="compare-result" class="muted-box">
@@ -257,8 +295,8 @@
       <div class="chat-box">
         <div id="chat-messages" class="chat-messages"></div>
         <div class="chat-input-row">
-          <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا..." aria-label="اكتب رسالتك في الدردشة" />
-          <button id="send-btn" type="button">إرسال</button>
+          <input id="chat-input" type="text" data-i18n-placeholder="chat.placeholder" placeholder="اكتب سؤالك هنا..." aria-label="اكتب رسالتك في الدردشة" />
+          <button id="send-btn" type="button" data-i18n="chat.send">إرسال</button>
         </div>
       </div>
     </section>
@@ -266,11 +304,11 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© موقع السيارات العربي - محتوى معرفي وتعليمي</p>
+      <p data-i18n="footer.copyright">© موقع السيارات العربي - محتوى معرفي وتعليمي</p>
       <p>
-        <a href="privacy.html">سياسة الخصوصية</a> |
-        <a href="terms.html">الشروط والأحكام</a> |
-        <a href="contact.html">اتصل بنا</a>
+        <a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a> |
+        <a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a> |
+        <a href="contact.html" data-i18n="footer.contact">اتصل بنا</a>
       </p>
     </div>
   </footer>

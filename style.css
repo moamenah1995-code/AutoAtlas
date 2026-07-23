@@ -91,6 +91,51 @@ body {
   transform: translateY(-1px);
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-top: 0.8rem;
+}
+
+.lang-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.lang-btn {
+  border: 1px solid #d3dff0;
+  background: #f8fbff;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.lang-btn.active {
+  background: linear-gradient(120deg, var(--primary) 0%, var(--primary-dark) 70%, var(--accent) 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.tech-updates {
+  margin-top: 1rem;
+  border-top: 1px solid #dbe6f2;
+  padding-top: 0.8rem;
+}
+
+.tech-updates ul {
+  margin: 0.4rem 0 0;
+  padding-right: 1.2rem;
+}
+
+.tech-updates li {
+  margin-bottom: 0.35rem;
+}
+
 main {
   padding: 1.15rem 0 2rem;
 }
@@ -537,6 +582,10 @@ button.active {
 
   .main-nav a {
     font-size: 0.88rem;
+  }
+
+  .header-top {
+    flex-direction: column;
   }
 }
 
