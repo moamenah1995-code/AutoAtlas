@@ -1,202 +1,3 @@
-const translations = {
-  ar: {
-    "site.title": "موقع السيارات العربي",
-    "site.subtitle": "مرجع معرفي شامل لعالم السيارات بمصادر رسمية وموثوقة",
-    "nav.companies": "🏎️ شركات السيارات",
-    "nav.technology": "🚗 التكنولوجيا والتحديثات",
-    "nav.articles": "📚 المقالات العلمية",
-    "nav.privacy": "🔒 الخصوصية والبيانات",
-    "nav.about": "👩‍🔧 من نحن",
-    "nav.chat": "💬 الدردشة",
-    "nav.privacyPage": "📄 سياسة الخصوصية",
-    "nav.terms": "📜 الشروط والأحكام",
-    "nav.contact": "✉️ اتصل بنا",
-    "hero.title": "اكتشف عالم السيارات بثقة",
-    "hero.desc": "منصة عربية معرفية تجمع لك الشركات والموديلات والمقالات التحليلية والمصادر الرسمية في مكان واحد، لتسهيل القرار قبل الشراء أو المقارنة.",
-    "hero.btnCompanies": "ابدأ باستعراض الشركات",
-    "hero.btnArticles": "تصفح المقالات",
-    "highlights.reliable.title": "محتوى مرجعي موثوق",
-    "highlights.reliable.text": "نقدم معلومات عامة مبنية على مصادر رسمية ومراجع معتمدة مع توضيح حدودها.",
-    "highlights.compare.title": "مقارنة سهلة",
-    "highlights.compare.text": "تتيح لك الأداة التفاعلية مقارنة سيارتين بسرعة مع توضيح الفروقات الرئيسية.",
-    "highlights.privacy.title": "قوانين Google والخصوصية",
-    "highlights.privacy.text": "يحتوي الموقع على صفحات قانونية واضحة وامتثال مبادئ الخصوصية والإعلانات.",
-    "tech.title": "🚗 تكنولوجيا السيارات والتحديثات",
-    "tech.desc": "اكتشف أحدث التطورات التي تهم عشاق السيارات واحترافيي الصيانة، من الذكاء الاصطناعي إلى قطع السيارات والمستقبل الكهربائي.",
-    "tech.vehicles.title": "تكنولوجيا السيارات",
-    "tech.vehicles.text": "الذكاء الاصطناعي وأنظمة المساعدة على القيادة والشحن الذكي أصبحت جزءًا أساسيًا من سيارات اليوم.",
-    "tech.parts.title": "قطع السيارات",
-    "tech.parts.text": "القطع الأصلية والمكونات الذكية والبطاريات المتقدمة تؤثر بشكل مباشر على الأداء والصيانة.",
-    "tech.future.title": "مستقبل السيارات",
-    "tech.future.text": "السيارات الكهربائية والهجينة والذاتية القيادة تُعيد تشكيل السوق وتغيير توقعات المستخدمين.",
-    "tech.updates.title": "أحدث التحديثات",
-    "tech.updates.item1": "أنظمة السلامة الذكية أصبحت أكثر تطورًا وتكاملًا مع تجربة القيادة اليومية.",
-    "tech.updates.item2": "القطع الإلكترونية والبطاريات المتقدمة تؤثر على كلفة الصيانة ومدى الاعتمادية.",
-    "tech.updates.item3": "المستقبل سيتركز على التنقل الكهربائي، التوصيل الذكي، والتقنيات الرقمية.",
-    "compare.title": "⚖️ مقارنة السيارات التفاعلية",
-    "compare.desc": "اختر سيارتين للمقارنة السريعة بين البيانات المرجعية الأساسية مثل سنة الصنع، أنواع القطع، المميزات والعيوب والمصادر.",
-    "compare.firstCar": "السيارة الأولى",
-    "compare.secondCar": "السيارة الثانية",
-    "compare.company": "الشركة",
-    "compare.run": "إجراء المقارنة",
-    "compare.reset": "مسح الاختيارات",
-    "chat.placeholder": "اكتب سؤالك هنا...",
-    "chat.send": "إرسال",
-    "chat.initial": "مرحباً بك 👋 هذه دردشة مباشرة بدون أي بيانات شخصية. يمكنك السؤال عن السيارات والمصادر الرسمية.",
-    "footer.copyright": "© موقع السيارات العربي - محتوى معرفي وتعليمي",
-    "footer.privacy": "سياسة الخصوصية",
-    "footer.terms": "الشروط والأحكام",
-    "footer.contact": "اتصل بنا"
-  },
-  en: {
-    "site.title": "Arab Car Guide",
-    "site.subtitle": "A trusted reference for the automotive world with official sources and reliable insights.",
-    "nav.companies": "🏎️ Car brands",
-    "nav.technology": "🚗 Technology & updates",
-    "nav.articles": "📚 Scientific articles",
-    "nav.privacy": "🔒 Privacy & data",
-    "nav.about": "👩‍🔧 About us",
-    "nav.chat": "💬 Chat",
-    "nav.privacyPage": "📄 Privacy policy",
-    "nav.terms": "📜 Terms & conditions",
-    "nav.contact": "✉️ Contact us",
-    "hero.title": "Discover the automotive world with confidence",
-    "hero.desc": "An Arabic knowledge platform that brings together brands, models, articles, and official sources in one place to support better decisions.",
-    "hero.btnCompanies": "Start exploring brands",
-    "hero.btnArticles": "Browse articles",
-    "highlights.reliable.title": "Reliable reference content",
-    "highlights.reliable.text": "We provide general information based on official sources and trusted references while clarifying limitations.",
-    "highlights.compare.title": "Easy comparison",
-    "highlights.compare.text": "You can compare two cars quickly and clearly with the main differences highlighted.",
-    "highlights.privacy.title": "Google and privacy standards",
-    "highlights.privacy.text": "The site offers clear legal pages and respect for privacy and advertising standards.",
-    "tech.title": "🚗 Automotive technology & updates",
-    "tech.desc": "Discover the latest developments that matter to car enthusiasts and technicians, from AI to parts and the electric future.",
-    "tech.vehicles.title": "Vehicle technology",
-    "tech.vehicles.text": "Artificial intelligence, driver assistance systems, and smart charging are now a core part of modern vehicles.",
-    "tech.parts.title": "Car parts",
-    "tech.parts.text": "Original parts, smart components, and advanced batteries directly influence performance and maintenance.",
-    "tech.future.title": "Future of cars",
-    "tech.future.text": "Electric, hybrid, and autonomous vehicles are reshaping the market and changing expectations.",
-    "tech.updates.title": "Latest updates",
-    "tech.updates.item1": "Smart safety systems are becoming more advanced and better integrated into daily driving.",
-    "tech.updates.item2": "Electronic parts and advanced batteries affect maintenance cost and reliability.",
-    "tech.updates.item3": "The future will focus on electrification, smart connectivity, and digital technologies.",
-    "compare.title": "⚖️ Interactive car comparison",
-    "compare.desc": "Choose two vehicles for a quick comparison of major reference data such as year, parts, advantages, disadvantages, and sources.",
-    "compare.firstCar": "First car",
-    "compare.secondCar": "Second car",
-    "compare.company": "Brand",
-    "compare.run": "Compare",
-    "compare.reset": "Clear selections",
-    "chat.placeholder": "Type your question here...",
-    "chat.send": "Send",
-    "chat.initial": "Welcome 👋 This is a direct chat without any personal data. You can ask about cars and official sources.",
-    "footer.copyright": "© Arab Car Guide - informative and educational content",
-    "footer.privacy": "Privacy policy",
-    "footer.terms": "Terms & conditions",
-    "footer.contact": "Contact us"
-  },
-  pt: {
-    "site.title": "Guia Automotivo Árabe",
-    "site.subtitle": "Uma referência confiável para o mundo automotivo com fontes oficiais e conteúdos sólidos.",
-    "nav.companies": "🏎️ Marcas",
-    "nav.technology": "🚗 Tecnologia e atualizações",
-    "nav.articles": "📚 Artigos científicos",
-    "nav.privacy": "🔒 Privacidade e dados",
-    "nav.about": "👩‍🔧 Sobre nós",
-    "nav.chat": "💬 Chat",
-    "nav.privacyPage": "📄 Política de privacidade",
-    "nav.terms": "📜 Termos e condições",
-    "nav.contact": "✉️ Fale conosco",
-    "hero.title": "Descubra o mundo automotivo com confiança",
-    "hero.desc": "Uma plataforma árabe de conhecimento que reúne marcas, modelos, artigos e fontes oficiais em um só lugar para apoiar decisões melhores.",
-    "hero.btnCompanies": "Começar a explorar marcas",
-    "hero.btnArticles": "Ver artigos",
-    "highlights.reliable.title": "Conteúdo de referência confiável",
-    "highlights.reliable.text": "Oferecemos informações gerais baseadas em fontes oficiais e referências confiáveis, esclarecendo limitações.",
-    "highlights.compare.title": "Comparação fácil",
-    "highlights.compare.text": "Você pode comparar dois carros rapidamente, com as principais diferenças destacadas.",
-    "highlights.privacy.title": "Padrões de Google e privacidade",
-    "highlights.privacy.text": "O site oferece páginas legais claras e respeito às normas de privacidade e publicidade.",
-    "tech.title": "🚗 Tecnologia automotiva e atualizações",
-    "tech.desc": "Descubra as últimas novidades que interessam a entusiastas e técnicos, desde IA até peças e o futuro elétrico.",
-    "tech.vehicles.title": "Tecnologia veicular",
-    "tech.vehicles.text": "Inteligência artificial, sistemas de assistência e carregamento inteligente passaram a ser parte essencial dos carros modernos.",
-    "tech.parts.title": "Peças automotivas",
-    "tech.parts.text": "Peças originais, componentes inteligentes e baterias avançadas influenciam diretamente o desempenho e a manutenção.",
-    "tech.future.title": "Futuro dos carros",
-    "tech.future.text": "Veículos elétricos, híbridos e autônomos estão redefinindo o mercado e as expectativas dos usuários.",
-    "tech.updates.title": "Últimas atualizações",
-    "tech.updates.item1": "Os sistemas inteligentes de segurança estão cada vez mais avançados e integrados à condução diária.",
-    "tech.updates.item2": "Peças eletrônicas e baterias avançadas influenciam o custo de manutenção e a confiabilidade.",
-    "tech.updates.item3": "O futuro vai se concentrar na eletrificação, conectividade inteligente e tecnologias digitais.",
-    "compare.title": "⚖️ Comparação interativa de carros",
-    "compare.desc": "Escolha dois veículos para uma comparação rápida de dados de referência, como ano, peças, vantagens, desvantagens e fontes.",
-    "compare.firstCar": "Primeiro carro",
-    "compare.secondCar": "Segundo carro",
-    "compare.company": "Marca",
-    "compare.run": "Comparar",
-    "compare.reset": "Limpar seleção",
-    "chat.placeholder": "Digite sua pergunta aqui...",
-    "chat.send": "Enviar",
-    "chat.initial": "Bem-vindo 👋 Este é um chat direto sem dados pessoais. Você pode perguntar sobre carros e fontes oficiais.",
-    "footer.copyright": "© Guia Automotivo Árabe - conteúdo informativo e educativo",
-    "footer.privacy": "Política de privacidade",
-    "footer.terms": "Termos e condições",
-    "footer.contact": "Fale conosco"
-  },
-  fr: {
-    "site.title": "Guide Automobile Arabe",
-    "site.subtitle": "Une référence fiable pour l’univers automobile avec des sources officielles et des contenus solides.",
-    "nav.companies": "🏎️ Marques",
-    "nav.technology": "🚗 Technologie et actualités",
-    "nav.articles": "📚 Articles scientifiques",
-    "nav.privacy": "🔒 Confidentialité et données",
-    "nav.about": "👩‍🔧 À propos",
-    "nav.chat": "💬 Chat",
-    "nav.privacyPage": "📄 Politique de confidentialité",
-    "nav.terms": "📜 Conditions générales",
-    "nav.contact": "✉️ Contactez-nous",
-    "hero.title": "Découvrez l’univers automobile avec confiance",
-    "hero.desc": "Une plateforme arabe de connaissances qui réunit marques, modèles, articles et sources officielles en un seul endroit pour aider à mieux décider.",
-    "hero.btnCompanies": "Commencer à explorer les marques",
-    "hero.btnArticles": "Parcourir les articles",
-    "highlights.reliable.title": "Contenu de référence fiable",
-    "highlights.reliable.text": "Nous fournissons des informations générales basées sur des sources officielles et des références fiables, en clarifiant les limites.",
-    "highlights.compare.title": "Comparaison simple",
-    "highlights.compare.text": "Vous pouvez comparer deux voitures rapidement avec les différences principales mises en évidence.",
-    "highlights.privacy.title": "Normes Google et confidentialité",
-    "highlights.privacy.text": "Le site propose des pages juridiques claires et respecte les normes de confidentialité et de publicité.",
-    "tech.title": "🚗 Technologie automobile et actualités",
-    "tech.desc": "Découvrez les dernières évolutions qui intéressent les passionnés et les techniciens, de l’IA aux pièces et à l’avenir électrique.",
-    "tech.vehicles.title": "Technologie automobile",
-    "tech.vehicles.text": "L’intelligence artificielle, les systèmes d’assistance et la recharge intelligente font désormais partie intégrante des véhicules modernes.",
-    "tech.parts.title": "Pièces automobiles",
-    "tech.parts.text": "Les pièces d’origine, les composants intelligents et les batteries avancées influencent directement la performance et l’entretien.",
-    "tech.future.title": "Avenir des voitures",
-    "tech.future.text": "Les véhicules électriques, hybrides et autonomes redéfinissent le marché et les attentes des utilisateurs.",
-    "tech.updates.title": "Dernières mises à jour",
-    "tech.updates.item1": "Les systèmes de sécurité intelligents deviennent de plus en plus avancés et intégrés à la conduite quotidienne.",
-    "tech.updates.item2": "Les pièces électroniques et les batteries avancées influencent le coût de maintenance et la fiabilité.",
-    "tech.updates.item3": "L’avenir sera axé sur l’électrification, la connectivité intelligente et les technologies numériques.",
-    "compare.title": "⚖️ Comparaison interactive des voitures",
-    "compare.desc": "Choisissez deux véhicules pour une comparaison rapide des données de référence, comme l’année, les pièces, les avantages, les inconvénients et les sources.",
-    "compare.firstCar": "Première voiture",
-    "compare.secondCar": "Seconde voiture",
-    "compare.company": "Marque",
-    "compare.run": "Comparer",
-    "compare.reset": "Effacer les sélections",
-    "chat.placeholder": "Écrivez votre question ici...",
-    "chat.send": "Envoyer",
-    "chat.initial": "Bienvenue 👋 C’est un chat direct sans données personnelles. Vous pouvez poser des questions sur les voitures et les sources officielles.",
-    "footer.copyright": "© Guide Automobile Arabe - contenu informatif et éducatif",
-    "footer.privacy": "Politique de confidentialité",
-    "footer.terms": "Conditions générales",
-    "footer.contact": "Contactez-nous"
-  }
-};
-
 const companiesData = {
   "تويوتا": ["Corolla", "Camry", "Land Cruiser", "Hilux", "Yaris"],
   "مرسيدس": ["C-Class", "E-Class", "S-Class", "GLC", "G-Class"],
@@ -374,40 +175,15 @@ const compareResult = document.getElementById("compare-result");
 const langButtons = document.querySelectorAll(".lang-btn");
 
 let activeCompanyBtn = null;
-let currentLanguage = "ar";
 
-function getNestedTranslation(strings, key) {
-  return key.split(".").reduce((obj, part) => obj?.[part], strings) || "";
-}
-
-function setLanguage(lang) {
-  if (!translations[lang]) lang = "ar";
-  currentLanguage = lang;
-  const strings = translations[lang];
-  document.documentElement.lang = lang === "ar" ? "ar" : lang === "en" ? "en" : lang === "pt" ? "pt" : "fr";
-
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const value = getNestedTranslation(strings, el.getAttribute("data-i18n"));
-    if (value) el.textContent = value;
-  });
-
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-    const value = getNestedTranslation(strings, el.getAttribute("data-i18n-placeholder"));
-    if (value) el.placeholder = value;
-  });
-
+function initLanguageLinks() {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
   langButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    const href = btn.getAttribute("href") || "";
+    btn.classList.toggle("active", href === currentPage);
   });
-
-  if (chatInput) chatInput.placeholder = getNestedTranslation(strings, "chat.placeholder");
-  if (sendBtn) sendBtn.textContent = getNestedTranslation(strings, "chat.send");
-  if (chatMessages && !chatMessages.children.length) {
-    addChatMessage(getNestedTranslation(strings, "chat.initial"), "bot");
-  }
 }
 
-let activeCompanyBtn = null;
 let activeCarBtn = null;
 let selectedCompany = null;
 
@@ -745,9 +521,7 @@ if (sendBtn && chatInput) {
   });
 }
 
-langButtons.forEach((btn) => {
-  btn.addEventListener("click", () => setLanguage(btn.getAttribute("data-lang") || "ar"));
-});
+initLanguageLinks();
 
 if (companySearchInput) {
   companySearchInput.addEventListener("input", () => {
@@ -778,4 +552,3 @@ renderCompanies();
 renderArticles();
 renderSources();
 initCompareFeature();
-setLanguage("ar");
