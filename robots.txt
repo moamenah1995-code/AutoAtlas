@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://moamenah1995-code.github.io/mo/sitemap.xml
+Sitemap: https://moamenah1995-code.github.io/autoatlas/sitemap.xml

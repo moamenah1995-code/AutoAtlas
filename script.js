@@ -196,6 +196,7 @@ function createButton(text, onClick) {
 }
 
 function renderCompanies(filterText = "") {
+  if (!companiesList) return;
   const normalizedFilter = filterText.trim().toLowerCase();
   companiesList.innerHTML = "";
 
@@ -229,9 +230,12 @@ function renderCompanies(filterText = "") {
 }
 
 function renderCars(companyName, filterText = "") {
+  if (!carsList) return;
   carsList.innerHTML = "";
-  carDetails.className = "car-details muted-box";
-  carDetails.textContent = "اختر سيارة لعرض التفاصيل الكاملة.";
+  if (carDetails) {
+    carDetails.className = "car-details muted-box";
+    carDetails.textContent = "اختر سيارة لعرض التفاصيل الكاملة.";
+  }
 
   const normalizedFilter = filterText.trim().toLowerCase();
 
@@ -257,6 +261,7 @@ function sourceItemHtml(source) {
 }
 
 function renderCarDetails(company, model) {
+  if (!carDetails) return;
   const details = carProfiles[company][model];
 
   carDetails.className = "car-details";
@@ -281,6 +286,7 @@ function renderCarDetails(company, model) {
 }
 
 function renderArticles(filterText = "") {
+  if (!articlesList) return;
   const normalizedFilter = filterText.trim().toLowerCase();
   articlesList.innerHTML = "";
 
@@ -322,17 +328,23 @@ function renderArticles(filterText = "") {
 }
 
 function renderSources() {
-  officialSources.forEach((source) => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`;
-    officialSourcesList.appendChild(li);
-  });
+  if (officialSourcesList) {
+    officialSourcesList.innerHTML = "";
+    officialSources.forEach((source) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`;
+      officialSourcesList.appendChild(li);
+    });
+  }
 
-  articlesSources.forEach((source) => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`;
-    articlesSourcesList.appendChild(li);
-  });
+  if (articlesSourcesList) {
+    articlesSourcesList.innerHTML = "";
+    articlesSources.forEach((source) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`;
+      articlesSourcesList.appendChild(li);
+    });
+  }
 }
 
 function addChatMessage(text, role = "user") {
@@ -548,7 +560,7 @@ if (backToTopBtn) {
   });
 }
 
-renderCompanies();
-renderArticles();
-renderSources();
+if (companiesList) renderCompanies();
+if (articlesList) renderArticles();
+if (officialSourcesList || articlesSourcesList) renderSources();
 initCompareFeature();

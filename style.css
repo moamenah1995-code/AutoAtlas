@@ -55,15 +55,23 @@ body {
 .site-header h1 {
   margin: 0;
   padding-top: 0.9rem;
-  font-size: clamp(1.35rem, 2.3vw, 1.9rem);
-  letter-spacing: 0.2px;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  letter-spacing: 0.3px;
+  font-weight: 900;
+  line-height: 1.1;
   color: #0b1220;
+  text-shadow: 0 2px 12px rgba(37, 99, 235, 0.1);
+  background: linear-gradient(90deg, #0f172a 0%, #1d4ed8 38%, #2563eb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   margin: 0.35rem 0 0.9rem;
   color: #334155;
-  font-size: 0.98rem;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .main-nav {
