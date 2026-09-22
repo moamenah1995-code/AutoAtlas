@@ -221,9 +221,12 @@ let activeCompanyBtn = null;
 
 function initLanguageLinks() {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const localizedPages = new Set(["index.html", "en.html", "pt.html", "fr.html"]);
+  const activePage = localizedPages.has(currentPage) ? currentPage : "index.html";
+
   langButtons.forEach((btn) => {
     const href = btn.getAttribute("href") || "";
-    btn.classList.toggle("active", href === currentPage);
+    btn.classList.toggle("active", href === activePage);
   });
 }
 
