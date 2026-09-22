@@ -221,12 +221,37 @@ let activeCompanyBtn = null;
 
 function initLanguageLinks() {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const localizedPages = new Set(["index.html", "en.html", "pt.html", "fr.html"]);
-  const activePage = localizedPages.has(currentPage) ? currentPage : "index.html";
+  const pageVariants = {
+    home: { ar: "index.html", en: "en.html", pt: "pt.html", fr: "fr.html" },
+    articles: { ar: "articles.html", en: "articles-en.html", pt: "articles-pt.html", fr: "articles-fr.html" },
+    privacy: { ar: "privacy.html", en: "privacy-en.html", pt: "privacy-pt.html", fr: "privacy-fr.html" },
+    terms: { ar: "terms.html", en: "terms-en.html", pt: "terms-pt.html", fr: "terms-fr.html" },
+    contact: { ar: "contact.html", en: "contact-en.html", pt: "contact-pt.html", fr: "contact-fr.html" },
+    carDetail: { ar: "car-detail.html", en: "car-detail-en.html", pt: "car-detail-pt.html", fr: "car-detail-fr.html" }
+  };
+  const languageLabels = { "العربية": "ar", English: "en", "Português": "pt", "Français": "fr" };
+  const currentGroup = Object.values(pageVariants).find((variants) => Object.values(variants).includes(currentPage)) || pageVariants.home;
+  const activeLanguage = Object.entries(currentGroup).find(([, page]) => page === currentPage)?.[0] || "ar";
 
   langButtons.forEach((btn) => {
-    const href = btn.getAttribute("href") || "";
-    btn.classList.toggle("active", href === activePage);
+    const language = languageLabels[btn.textContent.trim()];
+    if (!language) return;
+    btn.href = currentGroup[language];
+    btn.classList.toggle("active", language === activeLanguage);
+  });
+
+  const localizedNavigation = {
+    "articles.html": pageVariants.articles[activeLanguage],
+    "privacy.html": pageVariants.privacy[activeLanguage],
+    "terms.html": pageVariants.terms[activeLanguage],
+    "contact.html": pageVariants.contact[activeLanguage]
+  };
+  document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (localizedNavigation[href]) link.href = localizedNavigation[href];
+    if (href?.startsWith("index.html#")) {
+      link.href = `${pageVariants.home[activeLanguage]}${href.slice("index.html".length)}`;
+    }
   });
 }
 

@@ -26,7 +26,37 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/articles-en.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/articles-pt.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/articles-fr.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://moamenah1995-code.github.io/AutoAtlas/car-detail.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/car-detail-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/car-detail-pt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/car-detail-fr.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -36,12 +66,57 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/privacy-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/privacy-pt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/privacy-fr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://moamenah1995-code.github.io/AutoAtlas/terms.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/terms-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/terms-pt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/terms-fr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://moamenah1995-code.github.io/AutoAtlas/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/contact-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/contact-pt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/contact-fr.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
