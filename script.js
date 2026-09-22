@@ -533,6 +533,56 @@ if (sendBtn && chatInput) {
   });
 }
 
+history.scrollRestoration = 'manual';
+
+function resetScrollToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+}
+
+function handleAnchorNavigation(event) {
+  const link = event.currentTarget;
+  const targetId = link.getAttribute('href');
+
+  if (!targetId || targetId === '#') return;
+
+  const targetElement = document.querySelector(targetId);
+  if (!targetElement) return;
+
+  const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+
+  event.preventDefault();
+  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+  history.pushState(null, '', targetId);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    resetScrollToTop();
+
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+        window.scrollTo({ top, behavior: 'auto' });
+      }
+    }
+  });
+} else {
+  resetScrollToTop();
+}
+
+for (const btn of langButtons) {
+  btn.addEventListener('click', () => {
+    resetScrollToTop();
+  });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', handleAnchorNavigation);
+});
+
 initLanguageLinks();
 
 if (companySearchInput) {
