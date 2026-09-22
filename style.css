@@ -854,6 +854,13 @@ button.active {
   object-fit: cover;
 }
 
+.image-disclaimer {
+  max-width: 700px;
+  margin: -0.45rem 0 0.9rem;
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -894,6 +901,14 @@ button.active {
 
 .sources-box a:hover {
   text-decoration: underline;
+}
+
+.source-scope {
+  display: block;
+  margin-top: 0.08rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.45;
 }
 
 .articles-list {

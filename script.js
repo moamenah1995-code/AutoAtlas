@@ -30,6 +30,19 @@ const officialSources = [
   { name: "ACEA (European Market Data)", url: "https://www.acea.auto/" }
 ];
 
+const companySourceMap = {
+  "تويوتا": "https://global.toyota/en/",
+  "مرسيدس": "https://www.mercedes-benz.com/en/",
+  "بي إم دبليو": "https://www.bmw.com/en/all-models.html",
+  "فورد": "https://www.ford.com/",
+  "هيونداي": "https://www.hyundai.com/worldwide/en",
+  "كيا": "https://www.kia.com/worldwide/en/",
+  "هوندا": "https://global.honda/en/",
+  "نيسان": "https://www.nissan-global.com/EN/",
+  "أودي": "https://www.audi.com/en/models.html",
+  "فولكسفاغن": "https://www.volkswagen.com/en/models.html"
+};
+
 const articlesSources = [
   { name: "OICA", url: "https://www.oica.net/" },
   { name: "ACEA", url: "https://www.acea.auto/" },
@@ -40,10 +53,36 @@ const articlesSources = [
   { name: "Jordan Customs", url: "https://www.customs.gov.jo/" }
 ];
 
+const sourceScopes = {
+  "Toyota Global": "معلومات الشركة والمنتجات المنشورة من تويوتا",
+  "Toyota (Models)": "صفحات الطرازات والمواصفات في سوق تويوتا الأمريكي",
+  "Mercedes-Benz": "معلومات الشركة والتقنيات التي تعلنها مرسيدس",
+  BMW: "معلومات الشركة وصفحات الطرازات لدى BMW",
+  Ford: "معلومات الشركة وصفحات المنتجات لدى فورد",
+  "Hyundai Worldwide": "معلومات الشركة والطرازات حسب السوق لدى هيونداي",
+  "Kia Worldwide": "معلومات الشركة والطرازات حسب السوق لدى كيا",
+  "Honda Global": "معلومات الشركة والمنتجات لدى هوندا",
+  "Nissan Global": "معلومات الشركة والمنتجات لدى نيسان",
+  Audi: "معلومات الشركة وصفحات الطرازات لدى أودي",
+  Volkswagen: "معلومات الشركة وصفحات الطرازات لدى فولكسفاغن",
+  "Euro NCAP": "نتائج اختبارات السلامة الأوروبية لطراز وسنة محددين",
+  IIHS: "نتائج اختبارات السلامة الأمريكية لطراز وسنة وتجهيز محددين",
+  NHTSA: "تقييمات السلامة والاستدعاءات والبيانات التنظيمية الأمريكية",
+  OICA: "إحصاءات إنتاج السيارات بحسب الدولة أو المصنعين والتقرير المحدد",
+  "OICA (Production Data)": "إحصاءات إنتاج السيارات بحسب الدولة أو المصنعين والتقرير المحدد",
+  ACEA: "تقارير صناعة وسوق السيارات الأوروبية",
+  "ACEA (European Market Data)": "تقارير صناعة وسوق السيارات الأوروبية",
+  "IEA - Global EV Outlook": "اتجاهات الطاقة والسيارات الكهربائية والبنية التحتية",
+  "World Bank Data": "مؤشرات اقتصادية وتنموية عامة، وليست مبيعات طرازات بعينها",
+  "GCC-STAT": "إحصاءات خليجية منشورة بحسب الدولة والمؤشر والسنة",
+  "Jordan Department of Statistics": "إحصاءات الأردن الرسمية بحسب المؤشر والسنة",
+  "Jordan Customs": "إجراءات وبيانات الاستيراد والرسوم الجمركية في الأردن"
+};
+
 const articles = [
   { title: "المنافسة بين شركات السيارات العالمية", summary: "تحليل المنافسة بناءً على الإنتاج العالمي وحصص السوق من مصادر مثل OICA وتقارير الشركات الرسمية.", sources: ["OICA", "ACEA"] },
   { title: "أفضل التصاميم في تاريخ السيارات", summary: "مراجعة معايير التصميم الصناعي وعلاقتها بالديناميكا الهوائية والسلامة وفق نشرات الشركات.", sources: ["Euro NCAP", "IIHS"] },
-  { title: "السيارات الأكثر مبيعاً في العالم العربي", summary: "عرض اتجاهات المبيعات الإقليمية بالاعتماد على تقارير السوق الرسمية المتاحة.", sources: ["GCC-STAT", "Jordan Department of Statistics"] },
+  { title: "كيف نقرأ مبيعات السيارات في العالم العربي؟", summary: "منهجية لقراءة أرقام التسجيلات والمبيعات حسب الدولة والسنة، مع التنبيه إلى أن البيانات الإقليمية ليست جدولاً موحداً دائماً.", sources: ["GCC-STAT", "Jordan Department of Statistics"] },
   { title: "مقارنة السيارات القديمة بالحديثة", summary: "تطور السلامة والكفاءة والانبعاثات عبر العقود وفق معايير تنظيمية وتقارير مصنّعين.", sources: ["NHTSA", "IIHS"] },
   { title: "ظهور السيارات الصينية", summary: "قراءة موضوعية لمزايا الانتشار والتسعير مقابل تحديات إعادة البيع والخدمة.", sources: ["OICA", "World Bank Data"] },
   { title: "سياسة صناعة السيارات", summary: "تأثير الضرائب والمواصفات والاستيراد على توافر المركبات في المنطقة العربية.", sources: ["Jordan Customs", "ACEA"] },
@@ -124,27 +163,31 @@ const modelImageMap = {
   Jetta: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80"
 };
 
-const defaultCarImage = "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+function createModelPlaceholder(company, model) {
+  const label = `${company} - ${model}`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><rect width="1200" height="675" fill="#dbe7f4"/><path d="M220 430h760l-80-150H390z" fill="#2563eb" opacity=".85"/><circle cx="400" cy="455" r="58" fill="#102a43"/><circle cx="800" cy="455" r="58" fill="#102a43"/><text x="600" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#102a43">${label}</text><text x="600" y="590" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#334e68">صورة توضيحية حتى تتوفر صورة موثقة للطراز</text></svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
 
 const carProfiles = {};
 Object.keys(companiesData).forEach((company) => {
   carProfiles[company] = {};
   companiesData[company].forEach((model) => {
     carProfiles[company][model] = {
-      image: modelImageMap[model] || defaultCarImage,
+      image: modelImageMap[model] || createModelPlaceholder(company, model),
       history: `معلومة مرجعية عن ${model} من ${company}: يرجى مراجعة صفحة الطراز الرسمية في موقع الشركة الأم.`,
       report: `التقرير الرسمي: يعتمد على نشرات الشركة المصنّعة الخاصة بالطراز ${model} وتجهيزاته لكل سوق.`,
-      pros: ["المواصفات تختلف حسب الفئة والسوق", "يفضّل مراجعة الوكيل المحلي", "الاعتمادية مرتبطة بالصيانة الدورية"],
-      cons: ["اختلاف التجهيزات بين الأسواق", "السعر يتغير حسب العرض والطلب", "تكاليف التشغيل تختلف حسب الاستخدام"],
-      modifications: "يتم تحديث الطرازات عبر الأجيال حسب خطط الشركة المصنّعة الرسمية.",
-      priceJordanArab: "لا يتم عرض رقم ثابت لتجنب أي معلومة غير دقيقة؛ السعر يُراجع لدى الوكيل والمنصات المحلية المعتمدة.",
-      yearRange: "متوفر ضمن نطاق العرض بالموقع من 1990 إلى 2026 (وفق توفر الطراز فعلياً في السوق).",
+      pros: ["تختلف المواصفات والتجهيزات حسب الفئة والسوق", "يجب فحص سجل الصيانة والتجهيز الفعلي قبل الشراء", "الاعتمادية لا تُستنتج من اسم العلامة وحده"],
+      cons: ["اختلاف التجهيزات ووسائل الأمان بين الأسواق", "السعر يتغير حسب السنة والحالة والضرائب والعرض", "تكاليف التشغيل تعتمد على الاستخدام وتوفر القطع"],
+      modifications: "لا يُثبت التغيير بين الأجيال من دون تحديد سنة الصنع والسوق؛ راجع أرشيف الشركة المصنّعة للطراز.",
+      priceJordanArab: "لا يوجد رقم عام دقيق صالح لكل الأسواق. يجب مقارنة عرض الوكيل المحلي مع سنة الصنع والفئة والضرائب وحالة السيارة.",
+      yearRange: "سنة الصنع غير محددة هنا لأن الاسم نفسه قد يغطي أجيالاً وفئات وأسواقاً مختلفة.",
       parts: ["قطع وكالة أصلية", "قطع OEM معتمدة", "بدائل تجارية حسب السوق"],
       sources: [
-        { name: `الموقع الرسمي لشركة ${company}`, url: officialSources.find(s => s.name.includes(company.split(" ")[0]))?.url || officialSources[0].url },
-        { name: "تقييمات السلامة Euro NCAP", url: "https://www.euroncap.com/" },
-        { name: "تقييمات السلامة IIHS", url: "https://www.iihs.org/" },
-        { name: "تقييمات السلامة NHTSA", url: "https://www.nhtsa.gov/ratings" }
+        { name: `الموقع الرسمي لشركة ${company}`, url: companySourceMap[company] },
+        { name: "قاعدة Euro NCAP للتحقق من اختبارات السلامة", url: "https://www.euroncap.com/en/ratings-rewards/latest-safety-ratings/" },
+        { name: "قاعدة IIHS للتحقق من اختبارات السلامة", url: "https://www.iihs.org/ratings" },
+        { name: "قاعدة NHTSA للتحقق من التقييمات", url: "https://www.nhtsa.gov/ratings" }
       ]
     };
   });
@@ -257,7 +300,8 @@ function renderCars(companyName, filterText = "") {
 }
 
 function sourceItemHtml(source) {
-  return `<li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a></li>`;
+  const scope = sourceScopes[source.name] || "مرجع عام؛ لا يثبت وحده مواصفات طراز أو رقماً لمبيعاته";
+  return `<li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a><small class="source-scope">${scope}</small></li>`;
 }
 
 function renderCarDetails(company, model) {
@@ -267,12 +311,13 @@ function renderCarDetails(company, model) {
   carDetails.className = "car-details";
   carDetails.innerHTML = `
     <h3>${company} - ${model}</h3>
-    <img src="${details.image}" alt="صورة مرجعية للطراز ${model}" loading="lazy" />
+    <img src="${details.image}" alt="صورة توضيحية للطراز ${model} من ${company}" loading="lazy" />
+    <p class="image-disclaimer">الصورة توضيحية للمساعدة على التعرف البصري، وليست مصدراً للمواصفات أو الفئة أو سنة الصنع.</p>
     <div class="detail-grid">
       <div class="detail-box"><h4>تاريخ السيارة</h4><p>${details.history}</p></div>
       <div class="detail-box"><h4>تقارير الشركة الرسمية</h4><p>${details.report}</p></div>
-      <div class="detail-box"><h4>تقييمات المستخدمين - المميزات</h4><ul>${details.pros.map((p) => `<li>${p}</li>`).join("")}</ul></div>
-      <div class="detail-box"><h4>تقييمات المستخدمين - العيوب</h4><ul>${details.cons.map((c) => `<li>${c}</li>`).join("")}</ul></div>
+      <div class="detail-box"><h4>نقاط فحص محتملة</h4><ul>${details.pros.map((p) => `<li>${p}</li>`).join("")}</ul></div>
+      <div class="detail-box"><h4>قيود المقارنة</h4><ul>${details.cons.map((c) => `<li>${c}</li>`).join("")}</ul></div>
       <div class="detail-box"><h4>هل تم تعديلها عبر السنوات؟</h4><p>${details.modifications}</p></div>
       <div class="detail-box"><h4>السعر المتوقع عند الشراء</h4><p>${details.priceJordanArab}</p></div>
       <div class="detail-box"><h4>سنة الصنع</h4><p>${details.yearRange}</p></div>
@@ -283,6 +328,14 @@ function renderCarDetails(company, model) {
       <ul>${details.sources.map(sourceItemHtml).join("")}</ul>
     </section>
   `;
+
+  const detailImage = carDetails.querySelector("img");
+  if (detailImage) {
+    detailImage.addEventListener("error", () => {
+      detailImage.src = createModelPlaceholder(company, model);
+      detailImage.alt = `صورة توضيحية بديلة للطراز ${model} من ${company}`;
+    }, { once: true });
+  }
 }
 
 function renderArticles(filterText = "") {
@@ -307,7 +360,8 @@ function renderArticles(filterText = "") {
       .map((sourceName) => {
         const sourceObj = [...articlesSources, ...officialSources].find((s) => s.name === sourceName);
         if (!sourceObj) return `<li>${sourceName}</li>`;
-        return `<li><a href="${sourceObj.url}" target="_blank" rel="noopener noreferrer">${sourceObj.name}</a></li>`;
+        const scope = sourceScopes[sourceObj.name] || "مرجع عام؛ يجب مطابقة الادعاء مع التقرير أو الصفحة الأصلية";
+        return `<li><a href="${sourceObj.url}" target="_blank" rel="noopener noreferrer">${sourceObj.name}</a><small class="source-scope">${scope}</small></li>`;
       })
       .join("");
 
