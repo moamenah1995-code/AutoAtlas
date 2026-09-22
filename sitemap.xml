@@ -21,6 +21,16 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/articles.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/car-detail.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://moamenah1995-code.github.io/AutoAtlas/privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
