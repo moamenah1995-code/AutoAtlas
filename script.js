@@ -291,6 +291,7 @@ const localizedUi = {
   }
 };
 const ui = localizedUi[locale] || localizedUi.ar;
+const AI_CHAT_ENDPOINT = "";
 const vehicleCategoryLabels = {
   ar: { all: "كل السيارات", petrol: "بنزين", diesel: "ديزل", hybrid: "هجينة", electric: "كهربائية", suv: "SUV", luxury: "فاخرة" },
   en: { all: "All vehicles", petrol: "Petrol", diesel: "Diesel", hybrid: "Hybrid", electric: "Electric", suv: "SUV", luxury: "Luxury" },
@@ -733,6 +734,21 @@ function getBotReply(message) {
   return localizedText("Thanks. I can provide general information, and you can send the question to the owner for a personalised answer using the links below.", "Merci. Je peux fournir une information generale; vous pouvez envoyer la question au proprietaire pour une reponse personnalisee avec les liens ci-dessous.", "Obrigado. Posso fornecer informacoes gerais; envie a pergunta ao responsavel pelos links abaixo para uma resposta personalizada.", "شكرًا لسؤالك. أقدم معلومات عامة ويمكنك إرسال السؤال إلى صاحب الموقع عبر الروابط أدناه.");
 }
 
+async function getAiReply(message) {
+  if (AI_CHAT_ENDPOINT) {
+    const response = await fetch(AI_CHAT_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, locale, site: "AutoAtlas" })
+    });
+    if (!response.ok) throw new Error(`AI request failed: ${response.status}`);
+    const data = await response.json();
+    if (!data.reply) throw new Error("AI response did not contain a reply");
+    return data.reply;
+  }
+  return getBotReply(message);
+}
+
 function setSelectOptions(selectEl, values, placeholder) {
   if (!selectEl) return;
   selectEl.innerHTML = "";
@@ -885,12 +901,29 @@ function initCompareFeature() {
   compareResetBtn.addEventListener("click", resetCompare);
 }
 
-function sendMessage() {
+async function sendMessage() {
   const message = chatInput.value.trim();
   if (!message) return;
   addChatMessage(message, "user");
   chatInput.value = "";
-  setTimeout(() => addChatMessage(getBotReply(message), "bot"), 300);
+  sendBtn.disabled = true;
+  sendBtn.setAttribute("aria-busy", "true");
+  const waiting = localizedText("Thinking...", "Reflexion...", "Pensando...", "جارٍ التفكير...");
+  const error = localizedText("The assistant is temporarily unavailable. Please use the email or WhatsApp links below.", "L'assistant est temporairement indisponible. Utilisez les liens e-mail ou WhatsApp ci-dessous.", "O assistente esta temporariamente indisponivel. Use os links de e-mail ou WhatsApp abaixo.", "المساعد غير متاح مؤقتًا. استخدم رابط البريد أو واتساب أدناه.");
+  const pending = document.createElement("div");
+  pending.className = "msg bot pending";
+  pending.textContent = waiting;
+  chatMessages.appendChild(pending);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  try {
+    pending.textContent = await getAiReply(message);
+  } catch (requestError) {
+    pending.textContent = `${error} ${requestError.message ? "" : ""}`;
+  } finally {
+    pending.classList.remove("pending");
+    sendBtn.disabled = false;
+    sendBtn.removeAttribute("aria-busy");
+  }
 }
 
 if (sendBtn && chatInput) {
