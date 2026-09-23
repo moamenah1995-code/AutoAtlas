@@ -193,29 +193,130 @@ Object.keys(companiesData).forEach((company) => {
   });
 });
 
-const companiesList = document.getElementById("companies-list");
-const carsList = document.getElementById("cars-list");
-const carDetails = document.getElementById("car-details");
-const articlesList = document.getElementById("articles-list");
-const officialSourcesList = document.getElementById("official-sources-list");
-const articlesSourcesList = document.getElementById("articles-sources-list");
+let companiesList = document.getElementById("companies-list");
+let carsList = document.getElementById("cars-list");
+let carDetails = document.getElementById("car-details");
+let articlesList = document.getElementById("articles-list");
+let officialSourcesList = document.getElementById("official-sources-list");
+let articlesSourcesList = document.getElementById("articles-sources-list");
 
-const companySearchInput = document.getElementById("company-search");
-const articleSearchInput = document.getElementById("article-search");
-const backToTopBtn = document.getElementById("back-to-top");
+let companySearchInput = document.getElementById("company-search");
+let articleSearchInput = document.getElementById("article-search");
+let backToTopBtn = document.getElementById("back-to-top");
 
-const chatMessages = document.getElementById("chat-messages");
-const chatInput = document.getElementById("chat-input");
-const sendBtn = document.getElementById("send-btn");
+let chatMessages = document.getElementById("chat-messages");
+let chatInput = document.getElementById("chat-input");
+let sendBtn = document.getElementById("send-btn");
 
-const compareCompany1 = document.getElementById("compare-company-1");
-const compareModel1 = document.getElementById("compare-model-1");
-const compareCompany2 = document.getElementById("compare-company-2");
-const compareModel2 = document.getElementById("compare-model-2");
-const compareBtn = document.getElementById("compare-btn");
-const compareResetBtn = document.getElementById("compare-reset-btn");
-const compareResult = document.getElementById("compare-result");
+let compareCompany1 = document.getElementById("compare-company-1");
+let compareModel1 = document.getElementById("compare-model-1");
+let compareCompany2 = document.getElementById("compare-company-2");
+let compareModel2 = document.getElementById("compare-model-2");
+let compareBtn = document.getElementById("compare-btn");
+let compareResetBtn = document.getElementById("compare-reset-btn");
+let compareResult = document.getElementById("compare-result");
 const langButtons = document.querySelectorAll(".lang-btn");
+
+const locale = document.documentElement.lang || "ar";
+const localizedUi = {
+  ar: {
+    companies: "شركات السيارات", models: "موديلات الشركة", chooseCompany: "اختر شركة لعرض موديلاتها.", chooseCar: "اختر سيارة لعرض الملف المرجعي الكامل مع المصادر.", searchCompany: "ابحث عن شركة أو موديل...", officialSources: "المصادر الرسمية المعتمدة للموقع", compare: "إجراء المقارنة", reset: "مسح الاختيارات", chat: "اكتب سؤالك هنا...", send: "إرسال", articles: "المقالات العلمية", searchArticles: "ابحث داخل المقالات...", articleSources: "مراجع المقالات العلمية"
+  },
+  en: {
+    companies: "Car brands", models: "Brand models", chooseCompany: "Choose a brand to view its models.", chooseCar: "Choose a vehicle to view its full reference profile and sources.", searchCompany: "Search for a brand or model...", officialSources: "Official sources used by AutoAtlas", compare: "Compare vehicles", reset: "Clear selections", chat: "Type your question here...", send: "Send", articles: "Scientific articles", searchArticles: "Search articles...", articleSources: "Article sources"
+  },
+  fr: {
+    companies: "Marques automobiles", models: "Modeles de la marque", chooseCompany: "Choisissez une marque pour voir ses modeles.", chooseCar: "Choisissez un vehicule pour afficher sa fiche de reference et ses sources.", searchCompany: "Rechercher une marque ou un modele...", officialSources: "Sources officielles utilisees par AutoAtlas", compare: "Comparer les vehicules", reset: "Effacer la selection", chat: "Tapez votre question ici...", send: "Envoyer", articles: "Articles scientifiques", searchArticles: "Rechercher des articles...", articleSources: "Sources des articles"
+  },
+  pt: {
+    companies: "Marcas de carros", models: "Modelos da marca", chooseCompany: "Escolha uma marca para ver seus modelos.", chooseCar: "Escolha um veiculo para ver o perfil de referencia completo e as fontes.", searchCompany: "Pesquisar marca ou modelo...", officialSources: "Fontes oficiais usadas pelo AutoAtlas", compare: "Comparar veiculos", reset: "Limpar selecoes", chat: "Digite sua pergunta aqui...", send: "Enviar", articles: "Artigos cientificos", searchArticles: "Buscar artigos...", articleSources: "Fontes dos artigos"
+  }
+};
+const ui = localizedUi[locale] || localizedUi.ar;
+const companyNames = {
+  "تويوتا": { en: "Toyota", fr: "Toyota", pt: "Toyota" },
+  "مرسيدس": { en: "Mercedes-Benz", fr: "Mercedes-Benz", pt: "Mercedes-Benz" },
+  "بي إم دبليو": { en: "BMW", fr: "BMW", pt: "BMW" },
+  "فورد": { en: "Ford", fr: "Ford", pt: "Ford" },
+  "هيونداي": { en: "Hyundai", fr: "Hyundai", pt: "Hyundai" },
+  "كيا": { en: "Kia", fr: "Kia", pt: "Kia" },
+  "هوندا": { en: "Honda", fr: "Honda", pt: "Honda" },
+  "نيسان": { en: "Nissan", fr: "Nissan", pt: "Nissan" },
+  "أودي": { en: "Audi", fr: "Audi", pt: "Audi" },
+  "فولكسفاغن": { en: "Volkswagen", fr: "Volkswagen", pt: "Volkswagen" }
+};
+
+function displayCompany(company) {
+  return locale === "ar" ? company : companyNames[company]?.[locale] || company;
+}
+
+function localizedText(en, fr, pt, ar) {
+  return locale === "en" ? en : locale === "fr" ? fr : locale === "pt" ? pt : ar;
+}
+
+function buildLocalizedHomeServices() {
+  if (locale === "ar" || !document.querySelector("main.container")) return;
+
+  const companiesSection = document.getElementById("companies");
+  if (companiesSection && !document.getElementById("companies-list")) {
+    companiesSection.innerHTML = `
+      <h2>🏎️ ${ui.companies}</h2>
+      <p>${locale === "en" ? "Explore automotive brands, model profiles, official sources, and comparison guidance." : locale === "fr" ? "Explorez les marques, les fiches de modeles, les sources officielles et les guides de comparaison." : "Explore marcas, perfis de modelos, fontes oficiais e orientacoes de comparacao."}</p>
+      <div class="tools-row"><input id="company-search" type="search" placeholder="${ui.searchCompany}" aria-label="${ui.searchCompany}" /></div>
+      <div class="companies-layout"><div><h3>${ui.companies}</h3><div id="companies-list" class="grid-list"></div></div><div><h3>${ui.models}</h3><div id="cars-list" class="grid-list muted-box">${ui.chooseCompany}</div></div></div>
+      <article id="car-details" class="car-details muted-box">${ui.chooseCar}</article>
+      <section class="sources-box"><h3>${ui.officialSources}</h3><ul id="official-sources-list"></ul></section>`;
+  }
+
+  const compareSection = document.getElementById("compare");
+  if (compareSection && !document.getElementById("compare-btn")) {
+    const brandLabel = locale === "en" ? "Brand" : locale === "fr" ? "Marque" : "Marca";
+    const modelLabel = locale === "en" ? "Model" : locale === "fr" ? "Modele" : "Modelo";
+    const firstCar = locale === "en" ? "First vehicle" : locale === "fr" ? "Premier vehicule" : "Primeiro veiculo";
+    const secondCar = locale === "en" ? "Second vehicle" : locale === "fr" ? "Deuxieme vehicule" : "Segundo veiculo";
+    compareSection.innerHTML = `<h2>⚖️ ${locale === "en" ? "Interactive vehicle comparison" : locale === "fr" ? "Comparaison interactive de vehicules" : "Comparacao interativa de veiculos"}</h2><p>${locale === "en" ? "Select two vehicles to compare the reference information and source links." : locale === "fr" ? "Selectionnez deux vehicules pour comparer les informations de reference et les liens sources." : "Selecione dois veiculos para comparar as informacoes de referencia e os links das fontes."}</p><div class="compare-controls"><div class="compare-col"><h3>${firstCar}</h3><label for="compare-company-1">${brandLabel}</label><select id="compare-company-1"></select><label for="compare-model-1">${modelLabel}</label><select id="compare-model-1" disabled></select></div><div class="compare-col"><h3>${secondCar}</h3><label for="compare-company-2">${brandLabel}</label><select id="compare-company-2"></select><label for="compare-model-2">${modelLabel}</label><select id="compare-model-2" disabled></select></div></div><div class="compare-actions"><button id="compare-btn" type="button">${ui.compare}</button><button id="compare-reset-btn" type="button">${ui.reset}</button></div><article id="compare-result" class="muted-box">${ui.chooseCar}</article>`;
+  }
+
+  const articlesSection = document.getElementById("articles");
+  if (articlesSection && !document.getElementById("article-search")) {
+    articlesSection.innerHTML = `<h2>📚 ${ui.articles}</h2><p>${locale === "en" ? "Browse analytical automotive articles supported by official and scientific sources." : locale === "fr" ? "Consultez des articles automobiles analytiques appuyes par des sources officielles et scientifiques." : "Leia artigos automotivos analiticos com fontes oficiais e cientificas."}</p><div class="tools-row"><input id="article-search" type="search" placeholder="${ui.searchArticles}" aria-label="${ui.searchArticles}" /></div><div id="articles-list" class="articles-list"></div><section class="sources-box"><h3>${ui.articleSources}</h3><ul id="articles-sources-list"></ul></section>`;
+  }
+
+  const chatSection = document.getElementById("chat");
+  if (chatSection && !document.getElementById("chat-input")) {
+    chatSection.querySelector(".chat-box")?.remove();
+    chatSection.insertAdjacentHTML("beforeend", `<div class="chat-box"><div id="chat-messages" class="chat-messages"></div><div class="chat-input-row"><input id="chat-input" type="text" placeholder="${ui.chat}" aria-label="${ui.chat}" /><button id="send-btn" type="button">${ui.send}</button></div></div>`);
+  }
+
+  if (!document.querySelector(".premium-hero")) {
+    const hero = document.querySelector(".hero");
+    if (hero) {
+      hero.classList.add("premium-hero");
+      hero.insertAdjacentHTML("beforeend", `<div class="hero-visual" aria-hidden="true"><div class="vehicle-shot"></div><div class="floating-card top-card"><span class="mini-label">${locale === "en" ? "LATEST TECHNOLOGY" : locale === "fr" ? "TECHNOLOGIE RECENTE" : "TECNOLOGIA RECENTE"}</span><strong>EV / Hybrid</strong><small>${locale === "en" ? "Smart charging and advanced safety" : locale === "fr" ? "Recharge intelligente et securite avancee" : "Recarga inteligente e seguranca avancada"}</small></div><div class="floating-card bottom-card"><span class="mini-label">${locale === "en" ? "OFFICIAL SOURCES" : locale === "fr" ? "SOURCES OFFICIELLES" : "FONTES OFICIAIS"}</span><strong>AutoAtlas</strong><small>${locale === "en" ? "A reliable automotive reference" : locale === "fr" ? "Une reference automobile fiable" : "Uma referencia automotiva confiavel"}</small></div></div>`);
+    }
+  }
+}
+
+buildLocalizedHomeServices();
+
+companiesList = document.getElementById("companies-list");
+carsList = document.getElementById("cars-list");
+carDetails = document.getElementById("car-details");
+articlesList = document.getElementById("articles-list");
+officialSourcesList = document.getElementById("official-sources-list");
+articlesSourcesList = document.getElementById("articles-sources-list");
+companySearchInput = document.getElementById("company-search");
+articleSearchInput = document.getElementById("article-search");
+chatMessages = document.getElementById("chat-messages");
+chatInput = document.getElementById("chat-input");
+sendBtn = document.getElementById("send-btn");
+compareCompany1 = document.getElementById("compare-company-1");
+compareModel1 = document.getElementById("compare-model-1");
+compareCompany2 = document.getElementById("compare-company-2");
+compareModel2 = document.getElementById("compare-model-2");
+compareBtn = document.getElementById("compare-btn");
+compareResetBtn = document.getElementById("compare-reset-btn");
+compareResult = document.getElementById("compare-result");
 
 let activeCompanyBtn = null;
 
@@ -274,12 +375,12 @@ function renderCompanies(filterText = "") {
   Object.keys(companiesData)
     .filter((companyName) => {
       if (!normalizedFilter) return true;
-      const inCompany = companyName.toLowerCase().includes(normalizedFilter);
+      const inCompany = companyName.toLowerCase().includes(normalizedFilter) || displayCompany(companyName).toLowerCase().includes(normalizedFilter);
       const inModels = companiesData[companyName].some((model) => model.toLowerCase().includes(normalizedFilter));
       return inCompany || inModels;
     })
     .forEach((companyName) => {
-      const btn = createButton(companyName, () => {
+      const btn = createButton(displayCompany(companyName), () => {
         if (activeCompanyBtn) activeCompanyBtn.classList.remove("active");
         btn.classList.add("active");
         activeCompanyBtn = btn;
@@ -296,7 +397,7 @@ function renderCompanies(filterText = "") {
     });
 
   if (!companiesList.children.length) {
-    companiesList.innerHTML = `<div class="muted-box">لا توجد شركات مطابقة للبحث.</div>`;
+    companiesList.innerHTML = `<div class="muted-box">${localizedText("No brands match your search.", "Aucune marque ne correspond a votre recherche.", "Nenhuma marca corresponde a sua busca.", "لا توجد شركات مطابقة للبحث.")}</div>`;
   }
 }
 
@@ -305,7 +406,7 @@ function renderCars(companyName, filterText = "") {
   carsList.innerHTML = "";
   if (carDetails) {
     carDetails.className = "car-details muted-box";
-    carDetails.textContent = "اختر سيارة لعرض التفاصيل الكاملة.";
+    carDetails.textContent = ui.chooseCar;
   }
 
   const normalizedFilter = filterText.trim().toLowerCase();
@@ -323,11 +424,14 @@ function renderCars(companyName, filterText = "") {
     });
 
   if (!carsList.children.length) {
-    carsList.innerHTML = "لا توجد موديلات مطابقة لهذا البحث.";
+    carsList.innerHTML = localizedText("No models match your search.", "Aucun modele ne correspond a votre recherche.", "Nenhum modelo corresponde a sua busca.", "لا توجد موديلات مطابقة لهذا البحث.");
   }
 }
 
 function sourceItemHtml(source) {
+  if (locale !== "ar") {
+    return `<li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a></li>`;
+  }
   const scope = sourceScopes[source.name] || "مرجع عام؛ لا يثبت وحده مواصفات طراز أو رقماً لمبيعاته";
   return `<li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a><small class="source-scope">${scope}</small></li>`;
 }
@@ -335,6 +439,21 @@ function sourceItemHtml(source) {
 function renderCarDetails(company, model) {
   if (!carDetails) return;
   const details = carProfiles[company][model];
+
+  if (locale !== "ar") {
+    const brand = displayCompany(company);
+    const labels = locale === "en"
+      ? { overview: "Vehicle overview", source: "Official information", checks: "What to verify", limits: "Comparison notes", parts: "Parts", sources: "Sources" }
+      : locale === "fr"
+        ? { overview: "Presentation du vehicule", source: "Informations officielles", checks: "Points a verifier", limits: "Notes de comparaison", parts: "Pieces", sources: "Sources" }
+        : { overview: "Visao geral do veiculo", source: "Informacoes oficiais", checks: "O que verificar", limits: "Notas de comparacao", parts: "Pecas", sources: "Fontes" };
+    const overview = localizedText(`${model} is offered by ${brand} in configurations that vary by model year, trim, and market.`, `${model} est propose par ${brand} avec des configurations variables selon l'annee, la finition et le marche.`, `${model} e oferecido pela ${brand} em configuracoes que variam conforme o ano, a versao e o mercado.`, "");
+    const source = localizedText("Use the official manufacturer page for the exact specification and equipment available in your market.", "Utilisez la page officielle du constructeur pour connaitre les specifications et les equipements de votre marche.", "Use a pagina oficial do fabricante para conferir especificacoes e equipamentos do seu mercado.", "");
+    const checks = localizedText(["Confirm the model year and trim", "Check the maintenance history", "Match safety ratings to the exact vehicle"], ["Confirmez l'annee et la finition", "Verifiez l'historique d'entretien", "Associez les notes de securite au vehicule exact"], ["Confirme o ano e a versao", "Verifique o historico de manutencao", "Relacione as notas de seguranca ao veiculo exato"], []);
+    carDetails.className = "car-details";
+    carDetails.innerHTML = `<h3>${brand} - ${model}</h3><img src="${details.image}" alt="${brand} ${model}" loading="lazy" /><div class="detail-grid"><div class="detail-box"><h4>${labels.overview}</h4><p>${overview}</p></div><div class="detail-box"><h4>${labels.source}</h4><p>${source}</p></div><div class="detail-box"><h4>${labels.checks}</h4><ul>${checks.map((item) => `<li>${item}</li>`).join("")}</ul></div><div class="detail-box"><h4>${labels.limits}</h4><p>${localizedText("Prices, safety equipment, and running costs vary by country, year, and condition.", "Les prix, equipements de securite et couts d'utilisation varient selon le pays, l'annee et l'etat.", "Precos, equipamentos de seguranca e custos de uso variam por pais, ano e condicao.", "")}</p></div><div class="detail-box"><h4>${labels.parts}</h4><ul>${details.parts.map((part) => `<li>${part}</li>`).join("")}</ul></div></div><section class="sources-box"><h4>${labels.sources}</h4><ul>${details.sources.map(sourceItemHtml).join("")}</ul></section>`;
+    return;
+  }
 
   carDetails.className = "car-details";
   carDetails.innerHTML = `
@@ -388,24 +507,28 @@ function renderArticles(filterText = "") {
       .map((sourceName) => {
         const sourceObj = [...articlesSources, ...officialSources].find((s) => s.name === sourceName);
         if (!sourceObj) return `<li>${sourceName}</li>`;
-        const scope = sourceScopes[sourceObj.name] || "مرجع عام؛ يجب مطابقة الادعاء مع التقرير أو الصفحة الأصلية";
+        const scope = locale === "ar"
+          ? sourceScopes[sourceObj.name] || "مرجع عام؛ يجب مطابقة الادعاء مع التقرير أو الصفحة الأصلية"
+          : localizedText("Official or industry reference; check the primary report for the exact claim.", "Reference officielle ou sectorielle; consultez le rapport primaire pour l'affirmation exacte.", "Referencia oficial ou setorial; consulte o relatorio primario para a afirmacao exata.", "");
         return `<li><a href="${sourceObj.url}" target="_blank" rel="noopener noreferrer">${sourceObj.name}</a><small class="source-scope">${scope}</small></li>`;
       })
       .join("");
 
+    const title = locale === "ar" ? article.title : localizedText(`Automotive analysis ${idx + 1}`, `Analyse automobile ${idx + 1}`, `Analise automotiva ${idx + 1}`, article.title);
+    const summary = locale === "ar" ? article.summary : localizedText("A source-led overview of automotive technology, safety, markets, or ownership. Consult the listed primary sources for model- and market-specific information.", "Un apercu fonde sur des sources de la technologie, de la securite, des marches ou de l'usage automobile. Consultez les sources primaires pour les informations propres au modele et au marche.", "Uma visao baseada em fontes sobre tecnologia, seguranca, mercados ou uso automotivo. Consulte as fontes primarias para informacoes especificas de modelo e mercado.", article.summary);
     articleElement.innerHTML = `
-      <h4>${idx + 1}. ${article.title}</h4>
-      <p>${article.summary}</p>
+      <h4>${idx + 1}. ${title}</h4>
+      <p>${summary}</p>
       <div class="sources-box">
-        <h5>مراجع المقال</h5>
-        <ul>${articleSources || "<li>مراجع عامة: راجع قائمة مراجع المقالات أدناه.</li>"}</ul>
+        <h5>${localizedText("Article sources", "Sources de l'article", "Fontes do artigo", "مراجع المقال")}</h5>
+        <ul>${articleSources || `<li>${localizedText("General references are listed below.", "Les references generales sont indiquees ci-dessous.", "As referencias gerais estao listadas abaixo.", "مراجع عامة: راجع قائمة مراجع المقالات أدناه.")}</li>`}</ul>
       </div>
     `;
       articlesList.appendChild(articleElement);
     });
 
   if (!articlesList.children.length) {
-    articlesList.innerHTML = `<div class="muted-box">لا توجد مقالات مطابقة للبحث.</div>`;
+    articlesList.innerHTML = `<div class="muted-box">${localizedText("No articles match your search.", "Aucun article ne correspond a votre recherche.", "Nenhum artigo corresponde a sua busca.", "لا توجد مقالات مطابقة للبحث.")}</div>`;
   }
 }
 
@@ -438,6 +561,14 @@ function addChatMessage(text, role = "user") {
 }
 
 function getBotReply(message) {
+  if (locale !== "ar") {
+    return localizedText(
+      "Thanks for your question. AutoAtlas provides general reference information; verify prices, specifications, and safety data with the manufacturer and local dealer.",
+      "Merci pour votre question. AutoAtlas fournit des informations de reference generales; verifiez les prix, specifications et donnees de securite aupres du constructeur et du concessionnaire local.",
+      "Obrigado pela pergunta. O AutoAtlas fornece informacoes gerais de referencia; confirme precos, especificacoes e dados de seguranca com o fabricante e o concessionario local.",
+      ""
+    );
+  }
   const msg = message.trim();
   if (!msg) return "يمكنك كتابة أي سؤال عن السيارات وسأحاول مساعدتك بمعلومة عامة.";
 
@@ -475,10 +606,19 @@ function setSelectOptions(selectEl, values, placeholder) {
 
 function renderCompareCompanies() {
   const companies = Object.keys(companiesData);
-  setSelectOptions(compareCompany1, companies, "اختر الشركة");
-  setSelectOptions(compareCompany2, companies, "اختر الشركة");
-  setSelectOptions(compareModel1, [], "اختر الموديل");
-  setSelectOptions(compareModel2, [], "اختر الموديل");
+  const brands = companies.map((company) => displayCompany(company));
+  const companyPlaceholder = localizedText("Choose brand", "Choisir une marque", "Escolha a marca", "اختر الشركة");
+  const modelPlaceholder = localizedText("Choose model", "Choisir un modele", "Escolha o modelo", "اختر الموديل");
+  setSelectOptions(compareCompany1, companies, companyPlaceholder);
+  setSelectOptions(compareCompany2, companies, companyPlaceholder);
+  [compareCompany1, compareCompany2].forEach((select) => {
+    if (!select) return;
+    [...select.options].forEach((option, index) => {
+      if (index > 0) option.textContent = brands[index - 1];
+    });
+  });
+  setSelectOptions(compareModel1, [], modelPlaceholder);
+  setSelectOptions(compareModel2, [], modelPlaceholder);
   if (compareModel1) compareModel1.disabled = true;
   if (compareModel2) compareModel2.disabled = true;
 }
@@ -487,7 +627,7 @@ function updateCompareModels(companySelectEl, modelSelectEl) {
   if (!companySelectEl || !modelSelectEl) return;
   const companyName = companySelectEl.value;
   const models = companyName && companiesData[companyName] ? companiesData[companyName] : [];
-  setSelectOptions(modelSelectEl, models, "اختر الموديل");
+  setSelectOptions(modelSelectEl, models, localizedText("Choose model", "Choisir un modele", "Escolha o modelo", "اختر الموديل"));
   modelSelectEl.disabled = !models.length;
 }
 
@@ -525,42 +665,42 @@ function renderCompareResult() {
 
   if (!car1 || !car2) {
     compareResult.className = "muted-box";
-    compareResult.textContent = "يرجى اختيار شركة وموديل لكل سيارة ثم الضغط على إجراء المقارنة.";
+    compareResult.textContent = localizedText("Choose a brand and model for both vehicles, then run the comparison.", "Choisissez une marque et un modele pour les deux vehicules, puis lancez la comparaison.", "Escolha uma marca e um modelo para os dois veiculos e execute a comparacao.", "يرجى اختيار شركة وموديل لكل سيارة ثم الضغط على إجراء المقارنة.");
     return;
   }
 
   compareResult.className = "";
   compareResult.innerHTML = `
     <div class="compare-result-grid">
-      <div class="compare-cell head compare-label">البند</div>
-      <div class="compare-cell head">${car1.company} - ${car1.model}</div>
-      <div class="compare-cell head">${car2.company} - ${car2.model}</div>
+      <div class="compare-cell head compare-label">${localizedText("Item", "Element", "Item", "البند")}</div>
+      <div class="compare-cell head">${displayCompany(car1.company)} - ${car1.model}</div>
+      <div class="compare-cell head">${displayCompany(car2.company)} - ${car2.model}</div>
 
-      <div class="compare-cell compare-label">الشركة</div>
-      <div class="compare-cell">${car1.company}</div>
-      <div class="compare-cell">${car2.company}</div>
+      <div class="compare-cell compare-label">${localizedText("Brand", "Marque", "Marca", "الشركة")}</div>
+      <div class="compare-cell">${displayCompany(car1.company)}</div>
+      <div class="compare-cell">${displayCompany(car2.company)}</div>
 
-      <div class="compare-cell compare-label">الموديل</div>
+      <div class="compare-cell compare-label">${localizedText("Model", "Modele", "Modelo", "الموديل")}</div>
       <div class="compare-cell">${car1.model}</div>
       <div class="compare-cell">${car2.model}</div>
 
-      <div class="compare-cell compare-label">نطاق سنة الصنع</div>
+      <div class="compare-cell compare-label">${localizedText("Model-year range", "Plage d'annees", "Faixa de anos", "نطاق سنة الصنع")}</div>
       <div class="compare-cell">${car1.yearRange}</div>
       <div class="compare-cell">${car2.yearRange}</div>
 
-      <div class="compare-cell compare-label">أنواع القطع</div>
+      <div class="compare-cell compare-label">${localizedText("Parts", "Pieces", "Pecas", "أنواع القطع")}</div>
       <div class="compare-cell">${joinListAsHtml(car1.parts)}</div>
       <div class="compare-cell">${joinListAsHtml(car2.parts)}</div>
 
-      <div class="compare-cell compare-label">المميزات</div>
+      <div class="compare-cell compare-label">${localizedText("Notes", "Notes", "Notas", "المميزات")}</div>
       <div class="compare-cell">${joinListAsHtml(car1.pros)}</div>
       <div class="compare-cell">${joinListAsHtml(car2.pros)}</div>
 
-      <div class="compare-cell compare-label">العيوب</div>
+      <div class="compare-cell compare-label">${localizedText("Considerations", "Considerations", "Consideracoes", "العيوب")}</div>
       <div class="compare-cell">${joinListAsHtml(car1.cons)}</div>
       <div class="compare-cell">${joinListAsHtml(car2.cons)}</div>
 
-      <div class="compare-cell compare-label">المصادر</div>
+      <div class="compare-cell compare-label">${localizedText("Sources", "Sources", "Fontes", "المصادر")}</div>
       <div class="compare-cell">${joinSourcesAsHtml(car1.sources)}</div>
       <div class="compare-cell">${joinSourcesAsHtml(car2.sources)}</div>
     </div>
@@ -570,14 +710,14 @@ function renderCompareResult() {
 function resetCompare() {
   if (compareCompany1) compareCompany1.value = "";
   if (compareCompany2) compareCompany2.value = "";
-  setSelectOptions(compareModel1, [], "اختر الموديل");
-  setSelectOptions(compareModel2, [], "اختر الموديل");
+  setSelectOptions(compareModel1, [], localizedText("Choose model", "Choisir un modele", "Escolha o modelo", "اختر الموديل"));
+  setSelectOptions(compareModel2, [], localizedText("Choose model", "Choisir un modele", "Escolha o modelo", "اختر الموديل"));
   if (compareModel1) compareModel1.disabled = true;
   if (compareModel2) compareModel2.disabled = true;
 
   if (compareResult) {
     compareResult.className = "muted-box";
-    compareResult.textContent = 'اختر سيارتين ثم اضغط "إجراء المقارنة" لعرض النتائج.';
+    compareResult.textContent = localizedText("Choose two vehicles, then run the comparison to view the results.", "Choisissez deux vehicules, puis lancez la comparaison pour voir les resultats.", "Escolha dois veiculos e execute a comparacao para ver os resultados.", 'اختر سيارتين ثم اضغط "إجراء المقارنة" لعرض النتائج.');
   }
 }
 
