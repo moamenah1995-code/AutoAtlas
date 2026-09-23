@@ -128,7 +128,44 @@ const articles = [
   { title: "السيارات الفرنسية والإيطالية: فن التصميم", summary: "مقاربة تصميمية تبرز اختلاف مدارس التصميم الأوروبية.", sources: ["ACEA", "OICA"] },
   { title: "أثر التسويق على نجاح السيارات", summary: "كيف يؤثر التموضع والعرض التسويقي في قرارات الشراء.", sources: ["World Bank Data", "ACEA"] },
   { title: "السيارات متعددة الاستخدامات (SUV)", summary: "أسباب الانتشار الواسع لهذه الفئة في المنطقة العربية.", sources: ["GCC-STAT", "Jordan Department of Statistics"] },
-  { title: "مستقبل صناعة السيارات في العالم العربي", summary: "اتجاهات محتملة مرتبطة بالطاقة، البنية التحتية، والتشريعات.", sources: ["IEA - Global EV Outlook", "GCC-STAT", "Jordan Customs"] }
+  { title: "مستقبل صناعة السيارات في العالم العربي", summary: "اتجاهات محتملة مرتبطة بالطاقة، البنية التحتية، والتشريعات.", sources: ["IEA - Global EV Outlook", "GCC-STAT", "Jordan Customs"] },
+  { title: "إدارة البطارية في السيارات الكهربائية", summary: "كيف تراقب أنظمة إدارة البطارية الجهد والحرارة والتوازن، ولماذا يجب فصل العمر المتوقع عن الوعود التسويقية.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "الشحن السريع وتأثيره على الاستخدام اليومي", summary: "قراءة هندسية لمفاهيم القدرة والطاقة ووقت الشحن، مع التمييز بين قدرة الشاحن وحدود السيارة والبطارية.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "الفرملة المتجددة بين الكفاءة والراحة", summary: "دور استعادة الطاقة في تقليل الفاقد، وحدودها عند امتلاء البطارية أو انخفاض التماسك أو اختلاف معايرة الدواسة.", sources: ["NHTSA", "Euro NCAP"] },
+  { title: "الهجين التقليدي والهجين القابل للشحن", summary: "مقارنة بنيوية بين النظامين من حيث حجم البطارية، نمط الاستخدام، الشحن الخارجي، والصيانة المحتملة.", sources: ["IEA - Global EV Outlook", "Toyota Global"] },
+  { title: "محركات الاحتراق والانبعاثات الواقعية", summary: "لماذا تختلف نتائج المختبر عن الطريق، وكيف تقرأ معايير الاختبار دون تحويل نتيجة واحدة إلى حكم شامل على كل المركبات.", sources: ["NHTSA", "ACEA"] },
+  { title: "الوقود الاصطناعي ومستقبل المحركات", summary: "حدود الوقود الاصطناعي وكلفة الطاقة والبنية التحتية مقارنة بالكهرباء والهيدروجين، دون افتراض حل واحد لكل القطاعات.", sources: ["IEA - Global EV Outlook", "ACEA"] },
+  { title: "الهيدروجين في النقل الخفيف والثقيل", summary: "تحليل الفرق بين خلية الوقود والهيدروجين كوقود احتراق، ومتى قد تكون الكثافة والسرعة التشغيلية عوامل حاسمة.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "أنظمة مساعدة السائق وحدود القيادة الذاتية", summary: "تصنيف عملي لمستويات المساعدة، مع التركيز على مسؤولية السائق وحدود المستشعرات والطرق والطقس.", sources: ["NHTSA", "IIHS"] },
+  { title: "الرؤية الحاسوبية والرادار في السيارة", summary: "كيف تتكامل الكاميرات والرادارات، ولماذا لا يعني وجود المستشعر أن النظام يفهم كل موقف قيادة.", sources: ["NHTSA", "Euro NCAP"] },
+  { title: "تحديثات البرمجيات عبر الهواء", summary: "فوائد ومخاطر تحديث البرمجيات عن بعد، وإدارة الإصدارات والاسترجاع والأمن السيبراني في المركبات المتصلة.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "الأمن السيبراني للمركبات المتصلة", summary: "مبادئ تقليل سطح الهجوم وحماية الاتصالات والهوية وسجل التحديثات في المركبات الحديثة.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "إصلاح البطاريات وإعادة تدويرها", summary: "الفارق بين إصلاح وحدة أو استبدال حزمة كاملة، وأهمية التشخيص والعزل والسلامة قبل التعامل مع الجهد العالي.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "المواد الخام لسلاسل بطاريات السيارات", summary: "كيف تؤثر المعادن والتكرير وإعادة التدوير وتنويع الكيميائيات في استدامة سلسلة التوريد.", sources: ["IEA - Global EV Outlook", "World Bank Data"] },
+  { title: "كيميائيات بطاريات الليثيوم", summary: "مقارنة مفاهيمية بين اختلافات الكثافة والطاقة الحرارية والعمر دون اختزال الاختيار في اسم كيميائي واحد.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "ديناميكا الهواء واستهلاك الطاقة", summary: "لماذا تؤثر مساحة الواجهة والإطارات والارتفاع والسرعة في مدى السيارة، وكيف تراجع الادعاءات وفق ظروف الاختبار.", sources: ["NHTSA", "Euro NCAP"] },
+  { title: "الإطارات الذكية وكفاءة المركبة", summary: "أثر ضغط الإطارات والمركب والنقشة على الكفاءة والتماسك والضجيج، مع أولوية توصية الصانع والسلامة.", sources: ["NHTSA", "IIHS"] },
+  { title: "منصة السيارة والمعمارية الكهربائية", summary: "كيف تؤثر المنصة في توزيع الكتلة، المساحة، التبريد، قابلية التوسع، وكلفة تطوير الطرازات.", sources: ["ACEA", "OICA"] },
+  { title: "التصنيع المرن والمصانع الذكية", summary: "دور الأتمتة والتوأم الرقمي ومراقبة الجودة في المصنع، وما لا يمكن استنتاجه من مصطلح مصنع ذكي وحده.", sources: ["OICA", "ACEA"] },
+  { title: "إعادة تعريف المقصورة بالبرمجيات", summary: "انتقال وظائف المقصورة من أزرار ثابتة إلى منصات برمجية، وموازنة الراحة وقابلية الاستخدام والسلامة.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "البيانات التليماتية وخصوصية السائق", summary: "ما الذي قد تجمعه المركبة المتصلة، وكيف تميّز بين بيانات الصيانة والتشغيل والبيانات الشخصية الحساسة.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "تقييم دورة حياة السيارة الكهربائية", summary: "قراءة دورة الحياة من التصنيع إلى التشغيل وإعادة التدوير، مع تجنب المقارنات التي تهمل مصدر الكهرباء أو عمر المركبة.", sources: ["IEA - Global EV Outlook", "World Bank Data"] },
+  { title: "البنية التحتية للشحن في المدن", summary: "تخطيط الشحن المنزلي والعام والعمل، والتوازن بين قدرة الشبكة وسلوك الاستخدام وتوزيع المحطات.", sources: ["IEA - Global EV Outlook", "World Bank Data"] },
+  { title: "الشحن ثنائي الاتجاه والشبكة الكهربائية", summary: "إمكانات V2G وV2H وحدودها المرتبطة بالتوافق، التعرفة، الضمان، وإدارة الطلب على الشبكة.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "السيارات في المناخ الحار", summary: "تأثير الحرارة على التبريد والبطارية والإطارات والراحة، وما يجب قياسه بدل الاعتماد على انطباعات عامة.", sources: ["NHTSA", "IEA - Global EV Outlook"] },
+  { title: "الماء والغبار في المركبات الكهربائية", summary: "دور درجات الحماية والعزل وإجراءات الطوارئ، ولماذا لا تعني مقاومة الماء صلاحية القيادة في كل ظرف.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "سلامة المشاة والدراجات", summary: "كيف تغيّر أنظمة التحذير والكبح وتصميم مقدمة السيارة من حماية مستخدمي الطريق الأضعف.", sources: ["Euro NCAP", "IIHS"] },
+  { title: "اختبارات التصادم وكيف تقرأها", summary: "الفرق بين درجات الاختبار ومعدلات الحوادث الواقعية، وأهمية الفئة والسنة والتجهيز والسوق.", sources: ["Euro NCAP", "IIHS", "NHTSA"] },
+  { title: "أنظمة حماية الأطفال في السيارات", summary: "اختيار التثبيت المناسب وفهم الفروق بين الاختبارات والمقاعد والاستخدام اليومي دون تقديم نصيحة بديلة عن كتيب المركبة.", sources: ["NHTSA", "Euro NCAP"] },
+  { title: "اقتصاد التملك لا سعر الشراء فقط", summary: "منهج حساب يجمع الطاقة والصيانة والتأمين والإطارات والاستهلاك والقيمة المتبقية مع اختلاف السوق.", sources: ["World Bank Data", "NHTSA"] },
+  { title: "الصيانة الوقائية للمركبات الحديثة", summary: "ما الذي يبقى مهمًا في السيارات المبرمجة والكهربائية: السوائل، الإطارات، الفرامل، العزل، والتشخيص.", sources: ["Toyota Global", "NHTSA"] },
+  { title: "تشخيص أعطال الجهد العالي", summary: "مبادئ السلامة والعزل والتشخيص المهني، ولماذا لا يجوز تنفيذ إصلاحات حزمة البطارية دون تدريب وتجهيز معتمد.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "مستقبل سوق السيارات المستعملة", summary: "كيف ستتغير قراءة سجل البطارية والبرمجيات والشحن والضمان عند تقييم سيارة كهربائية مستعملة.", sources: ["IEA - Global EV Outlook", "NHTSA"] },
+  { title: "الروبوتاكسي ومستقبل التنقل", summary: "شروط التوسع من خرائط ومجالات تشغيل محددة إلى خدمة أوسع، مع فصل العرض التجريبي عن الاعتماد التجاري.", sources: ["NHTSA", "UNECE Vehicle Regulations"] },
+  { title: "المدن القابلة للمشي والسيارة", summary: "كيف تؤثر كثافة المدينة والنقل العام ومواقف السيارات والشحن في نوع السيارة المطلوبة وليس في تقنيتها فقط.", sources: ["World Bank Data", "IEA - Global EV Outlook"] },
+  { title: "هل ستختفي ملكية السيارة؟", summary: "مقارنة واقعية بين الملكية والاشتراك والمشاركة حسب المسافة والدخل والبنية التحتية والخصوصية.", sources: ["World Bank Data", "OICA"] },
+  { title: "الذكاء الاصطناعي في هندسة المركبات", summary: "استخدام النماذج في التصميم والمحاكاة والتنبؤ بالصيانة، مع بقاء التحقق الهندسي والاختبار الميداني شرطًا.", sources: ["NHTSA", "ACEA"] },
+  { title: "توقعات السيارات حتى 2035", summary: "سيناريوهات مشروطة للطاقة والبطاريات والبرمجيات والتنظيم، لا وعود زمنية أو أرقامًا غير مثبتة.", sources: ["IEA - Global EV Outlook", "OICA", "UNECE Vehicle Regulations"] }
 ];
 
 const modelImageMap = {
@@ -217,7 +254,7 @@ Object.keys(companiesData).forEach((company) => {
 let companiesList = document.getElementById("companies-list");
 let carsList = document.getElementById("cars-list");
 let carDetails = document.getElementById("car-details");
-let articlesList = document.getElementById("articles-list");
+let articlesList = document.getElementById("articles-list") || document.querySelector(".articles-list");
 let officialSourcesList = document.getElementById("official-sources-list");
 let articlesSourcesList = document.getElementById("articles-sources-list");
 
@@ -405,7 +442,7 @@ initVehicleCategories();
 companiesList = document.getElementById("companies-list");
 carsList = document.getElementById("cars-list");
 carDetails = document.getElementById("car-details");
-articlesList = document.getElementById("articles-list");
+articlesList = document.getElementById("articles-list") || document.querySelector(".articles-list");
 officialSourcesList = document.getElementById("official-sources-list");
 articlesSourcesList = document.getElementById("articles-sources-list");
 companySearchInput = document.getElementById("company-search");
