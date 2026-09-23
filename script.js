@@ -8,7 +8,24 @@ const companiesData = {
   "هوندا": ["Civic", "Accord", "CR-V", "Pilot", "City"],
   "نيسان": ["Sunny", "Altima", "Patrol", "X-Trail", "Maxima"],
   "أودي": ["A3", "A4", "A6", "Q5", "Q7"],
-  "فولكسفاغن": ["Golf", "Passat", "Tiguan", "Touareg", "Jetta"]
+  "فولكسفاغن": ["Golf", "Passat", "Tiguan", "Touareg", "Jetta"],
+  "بي واي دي": ["Seal", "Dolphin", "Atto 3", "Han", "Tang"],
+  "تسلا": ["Model 3", "Model Y", "Model S", "Model X"]
+};
+
+const modelFuelTypes = {
+  Corolla: ["petrol", "hybrid"], Camry: ["petrol", "hybrid"], "Land Cruiser": ["petrol"], Hilux: ["diesel"], Yaris: ["petrol", "hybrid"],
+  "C-Class": ["petrol", "hybrid"], "E-Class": ["petrol", "hybrid"], "S-Class": ["petrol", "hybrid"], GLC: ["petrol", "hybrid"], "G-Class": ["petrol"],
+  "3 Series": ["petrol", "hybrid"], "5 Series": ["petrol", "hybrid"], "7 Series": ["petrol", "hybrid"], X5: ["petrol", "hybrid"], X3: ["petrol", "hybrid"],
+  Focus: ["petrol"], Mustang: ["petrol"], Explorer: ["petrol", "hybrid"], "F-150": ["petrol", "hybrid"], Edge: ["petrol"],
+  Elantra: ["petrol", "hybrid"], Sonata: ["petrol", "hybrid"], Tucson: ["petrol", "hybrid"], "Santa Fe": ["petrol", "hybrid"], Accent: ["petrol"],
+  Cerato: ["petrol"], Sportage: ["petrol", "hybrid"], Sorento: ["petrol", "hybrid"], Rio: ["petrol"], K5: ["petrol", "hybrid"],
+  Civic: ["petrol", "hybrid"], Accord: ["petrol", "hybrid"], "CR-V": ["petrol", "hybrid"], Pilot: ["petrol"], City: ["petrol"],
+  Sunny: ["petrol"], Altima: ["petrol"], Patrol: ["petrol"], "X-Trail": ["petrol", "hybrid"], Maxima: ["petrol"],
+  A3: ["petrol", "hybrid"], A4: ["petrol", "hybrid"], A6: ["petrol", "hybrid"], Q5: ["petrol", "hybrid"], Q7: ["petrol", "hybrid"],
+  Golf: ["petrol", "hybrid"], Passat: ["petrol", "hybrid"], Tiguan: ["petrol", "hybrid"], Touareg: ["petrol", "hybrid"], Jetta: ["petrol"],
+  Seal: ["electric"], Dolphin: ["electric"], "Atto 3": ["electric", "suv"], Han: ["electric"], Tang: ["electric", "suv"],
+  "Model 3": ["electric"], "Model Y": ["electric", "suv"], "Model S": ["electric", "luxury"], "Model X": ["electric", "suv", "luxury"]
 };
 
 const officialSources = [
@@ -23,6 +40,8 @@ const officialSources = [
   { name: "Nissan Global", url: "https://www.nissan-global.com/EN/" },
   { name: "Audi", url: "https://www.audi.com/en/models.html" },
   { name: "Volkswagen", url: "https://www.volkswagen.com/en/models.html" },
+  { name: "BYD", url: "https://www.byd.com/" },
+  { name: "Tesla", url: "https://www.tesla.com/" },
   { name: "Euro NCAP", url: "https://www.euroncap.com/" },
   { name: "IIHS", url: "https://www.iihs.org/" },
   { name: "NHTSA", url: "https://www.nhtsa.gov/ratings" },
@@ -40,7 +59,9 @@ const companySourceMap = {
   "هوندا": "https://global.honda/en/",
   "نيسان": "https://www.nissan-global.com/EN/",
   "أودي": "https://www.audi.com/en/models.html",
-  "فولكسفاغن": "https://www.volkswagen.com/en/models.html"
+  "فولكسفاغن": "https://www.volkswagen.com/en/models.html",
+  "بي واي دي": "https://www.byd.com/",
+  "تسلا": "https://www.tesla.com/"
 };
 
 const articlesSources = [
@@ -233,6 +254,21 @@ const localizedUi = {
   }
 };
 const ui = localizedUi[locale] || localizedUi.ar;
+const vehicleCategoryLabels = {
+  ar: { all: "كل السيارات", petrol: "بنزين", diesel: "ديزل", hybrid: "هجينة", electric: "كهربائية", suv: "SUV", luxury: "فاخرة" },
+  en: { all: "All vehicles", petrol: "Petrol", diesel: "Diesel", hybrid: "Hybrid", electric: "Electric", suv: "SUV", luxury: "Luxury" },
+  fr: { all: "Tous les vehicules", petrol: "Essence", diesel: "Diesel", hybrid: "Hybride", electric: "Electrique", suv: "SUV", luxury: "Luxe" },
+  pt: { all: "Todos os veiculos", petrol: "Gasolina", diesel: "Diesel", hybrid: "Hibrido", electric: "Eletrico", suv: "SUV", luxury: "Luxo" }
+};
+let selectedVehicleCategory = "all";
+const categoryLabels = vehicleCategoryLabels[locale] || vehicleCategoryLabels.ar;
+
+function getModelCategories(model) {
+  const categories = modelFuelTypes[model] || ["petrol"];
+  if (["Land Cruiser", "Hilux", "Explorer", "F-150", "GLC", "G-Class", "X5", "X3", "Tucson", "Santa Fe", "Sportage", "Sorento", "Pilot", "Patrol", "X-Trail", "Q5", "Q7", "Tiguan", "Touareg", "Model Y"].includes(model)) categories.push("suv");
+  if (["S-Class", "7 Series", "A6", "Q7", "G-Class"].includes(model)) categories.push("luxury");
+  return [...new Set(categories)];
+}
 const companyNames = {
   "تويوتا": { en: "Toyota", fr: "Toyota", pt: "Toyota" },
   "مرسيدس": { en: "Mercedes-Benz", fr: "Mercedes-Benz", pt: "Mercedes-Benz" },
@@ -243,7 +279,9 @@ const companyNames = {
   "هوندا": { en: "Honda", fr: "Honda", pt: "Honda" },
   "نيسان": { en: "Nissan", fr: "Nissan", pt: "Nissan" },
   "أودي": { en: "Audi", fr: "Audi", pt: "Audi" },
-  "فولكسفاغن": { en: "Volkswagen", fr: "Volkswagen", pt: "Volkswagen" }
+  "فولكسفاغن": { en: "Volkswagen", fr: "Volkswagen", pt: "Volkswagen" },
+  "بي واي دي": { en: "BYD", fr: "BYD", pt: "BYD" },
+  "تسلا": { en: "Tesla", fr: "Tesla", pt: "Tesla" }
 };
 
 function displayCompany(company) {
@@ -309,6 +347,13 @@ function buildLocalizedHomeServices() {
     document.querySelector("main.container")?.insertBefore(showcase, document.getElementById("technology"));
   }
 
+  if (!document.querySelector(".types-grid")) {
+    const categorySection = document.createElement("section");
+    categorySection.className = "card type-section localized-category-section";
+    categorySection.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${locale === "en" ? "Filter by powertrain" : locale === "fr" ? "Filtrer par motorisation" : "Filtrar por motorizacao"}</span><h2>🚘 ${locale === "en" ? "Choose a vehicle type" : locale === "fr" ? "Choisissez un type de vehicule" : "Escolha um tipo de veiculo"}</h2></div></div><div class="types-grid"></div>`;
+    document.querySelector("main.container")?.insertBefore(categorySection, document.getElementById("articles"));
+  }
+
   document.querySelectorAll(".localized-model-showcase img").forEach((image) => {
     image.addEventListener("error", () => {
       image.src = createModelPlaceholder("AutoAtlas", image.alt);
@@ -316,7 +361,46 @@ function buildLocalizedHomeServices() {
   });
 }
 
+function initVehicleCategories() {
+  const grid = document.querySelector(".types-grid");
+  if (!grid) return;
+  const categories = ["all", "petrol", "diesel", "hybrid", "electric", "suv", "luxury"];
+  const icons = { all: "🚘", petrol: "⛽", diesel: "🛢️", hybrid: "🔋", electric: "⚡", suv: "🛻", luxury: "✨" };
+  const descriptions = {
+    ar: { all: "عرض جميع السيارات", petrol: "محركات الاحتراق التقليدية", diesel: "محركات الديزل والاستخدام الشاق", hybrid: "محرك احتراق مع دعم كهربائي", electric: "قيادة كهربائية وبطارية عالية الجهد", suv: "مركبات مرتفعة متعددة الاستخدامات", luxury: "تجهيزات وراحة من الفئة العليا" },
+    en: { all: "Show every vehicle", petrol: "Conventional combustion engines", diesel: "Diesel power for demanding use", hybrid: "Combustion engine with electric support", electric: "Battery-electric driving", suv: "Raised multi-purpose vehicles", luxury: "Premium equipment and comfort" },
+    fr: { all: "Afficher tous les vehicules", petrol: "Moteurs thermiques classiques", diesel: "Diesel pour les usages exigeants", hybrid: "Moteur thermique avec assistance electrique", electric: "Conduite electrique sur batterie", suv: "Vehicules polyvalents sur eleves", luxury: "Equipements et confort premium" },
+    pt: { all: "Mostrar todos os veiculos", petrol: "Motores a combustao", diesel: "Diesel para uso exigente", hybrid: "Motor a combustao com apoio eletrico", electric: "Conducao eletrica por bateria", suv: "Veiculos altos e versateis", luxury: "Equipamentos e conforto premium" }
+  };
+  const copy = descriptions[locale] || descriptions.ar;
+  grid.innerHTML = "";
+  categories.forEach((category) => {
+    const card = document.createElement("article");
+    card.className = `type-card ${category === "all" ? "active" : category}`;
+    card.dataset.category = category;
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-pressed", category === selectedVehicleCategory ? "true" : "false");
+    card.innerHTML = `<div class="type-icon" aria-hidden="true">${icons[category]}</div><h3>${categoryLabels[category]}</h3><p>${copy[category]}</p>`;
+    const activate = () => {
+      selectedVehicleCategory = category;
+      grid.querySelectorAll(".type-card").forEach((item) => {
+        const active = item.dataset.category === category;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      renderCompanies(companySearchInput?.value || "");
+    };
+    card.addEventListener("click", activate);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); activate(); }
+    });
+    grid.appendChild(card);
+  });
+}
+
 buildLocalizedHomeServices();
+initVehicleCategories();
 
 companiesList = document.getElementById("companies-list");
 carsList = document.getElementById("cars-list");
@@ -393,10 +477,10 @@ function renderCompanies(filterText = "") {
 
   Object.keys(companiesData)
     .filter((companyName) => {
-      if (!normalizedFilter) return true;
       const inCompany = companyName.toLowerCase().includes(normalizedFilter) || displayCompany(companyName).toLowerCase().includes(normalizedFilter);
       const inModels = companiesData[companyName].some((model) => model.toLowerCase().includes(normalizedFilter));
-      return inCompany || inModels;
+      const inCategory = selectedVehicleCategory === "all" || companiesData[companyName].some((model) => getModelCategories(model).includes(selectedVehicleCategory));
+      return inCategory && (!normalizedFilter || inCompany || inModels);
     })
     .forEach((companyName) => {
       const btn = createButton(displayCompany(companyName), () => {
@@ -431,7 +515,11 @@ function renderCars(companyName, filterText = "") {
   const normalizedFilter = filterText.trim().toLowerCase();
 
   companiesData[companyName]
-    .filter((modelName) => !normalizedFilter || modelName.toLowerCase().includes(normalizedFilter) || companyName.toLowerCase().includes(normalizedFilter))
+    .filter((modelName) => {
+      const matchesCategory = selectedVehicleCategory === "all" || getModelCategories(modelName).includes(selectedVehicleCategory);
+      const matchesSearch = !normalizedFilter || modelName.toLowerCase().includes(normalizedFilter) || companyName.toLowerCase().includes(normalizedFilter);
+      return matchesCategory && matchesSearch;
+    })
     .forEach((modelName) => {
       const btn = createButton(modelName, () => {
         if (activeCarBtn) activeCarBtn.classList.remove("active");
@@ -579,32 +667,33 @@ function addChatMessage(text, role = "user") {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+function initChatBridge() {
+  const chatBox = document.querySelector(".chat-box");
+  if (!chatBox || chatBox.querySelector(".chat-handoff")) return;
+  const labels = localizedText("Need a human answer?", "Besoin d'une reponse humaine ?", "Precisa de uma resposta humana?", "هل تحتاج إلى إجابة من شخص؟");
+  const emailLabel = localizedText("Email me", "M'envoyer un e-mail", "Enviar e-mail para mim", "أرسل لي بريدًا");
+  const whatsappLabel = localizedText("WhatsApp", "WhatsApp", "WhatsApp", "واتساب");
+  const subject = encodeURIComponent("AutoAtlas visitor question");
+  const body = encodeURIComponent("Hello AutoAtlas, I have a question about a vehicle: ");
+  const handoff = document.createElement("div");
+  handoff.className = "chat-handoff";
+  handoff.innerHTML = `<span>${labels}</span><a href="mailto:moolimat@gmail.com?subject=${subject}&body=${body}">${emailLabel}</a><a href="https://wa.me/962770795947?text=${body}" target="_blank" rel="noopener noreferrer">${whatsappLabel}</a>`;
+  chatBox.appendChild(handoff);
+}
+
 function getBotReply(message) {
-  if (locale !== "ar") {
-    return localizedText(
-      "Thanks for your question. AutoAtlas provides general reference information; verify prices, specifications, and safety data with the manufacturer and local dealer.",
-      "Merci pour votre question. AutoAtlas fournit des informations de reference generales; verifiez les prix, specifications et donnees de securite aupres du constructeur et du concessionnaire local.",
-      "Obrigado pela pergunta. O AutoAtlas fornece informacoes gerais de referencia; confirme precos, especificacoes e dados de seguranca com o fabricante e o concessionario local.",
-      ""
-    );
-  }
   const msg = message.trim();
-  if (!msg) return "يمكنك كتابة أي سؤال عن السيارات وسأحاول مساعدتك بمعلومة عامة.";
+  if (!msg) return localizedText("Type a vehicle question and I will provide a general, source-led answer.", "Ecrivez une question automobile et je fournirai une reponse generale fondee sur des sources.", "Escreva uma pergunta sobre carros e fornecerei uma resposta geral baseada em fontes.", "يمكنك كتابة أي سؤال عن السيارات وسأحاول مساعدتك بمعلومة عامة.");
 
-  if (msg.includes("سعر") || msg.includes("شراء")) {
-    return "للدقة: راجع الوكيل المحلي أو المنصات المعتمدة في الأردن/المنطقة حسب سنة الصنع، الفئة، والحالة الفنية.";
-  }
-  if (msg.includes("سلامة") || msg.includes("أمان")) {
-    return "للمقارنة الدقيقة بالسلامة: راجع Euro NCAP وIIHS وNHTSA مع تحديد الموديل وسنة الصنع.";
-  }
-  if (msg.includes("مصدر") || msg.includes("مرجع")) {
-    return "ستجد المصادر الرسمية داخل كل قسم، ويمكنك البدء من قائمة (المصادر الرسمية المعتمدة للموقع).";
-  }
-  if (msg.includes("كهرباء") || msg.includes("كهربائية") || msg.includes("هجينة")) {
-    return "قبل اختيار سيارة كهربائية أو هجينة، قارن بين تكلفة الشحن/الوقود، الصيانة، ومدى توفر البنية التحتية في مدينتك.";
-  }
+  const normalized = msg.toLowerCase();
+  const priceWords = ["price", "cost", "buy", "prix", "acheter", "preco", "comprar", "سعر", "شراء"];
+  const safetyWords = ["safety", "secure", "securite", "seguranca", "أمان", "سلامة"];
+  const electricWords = ["electric", "battery", "ev", "electrique", "batterie", "eletrico", "bateria", "كهرب", "بطارية", "هجينة"];
+  if (priceWords.some((word) => normalized.includes(word))) return localizedText("Prices depend on country, model year, trim, taxes, and condition. Verify the final offer with an authorised local dealer.", "Le prix depend du pays, de l'annee, de la finition, des taxes et de l'etat. Verifiez l'offre finale aupres d'un concessionnaire agree.", "O preco depende do pais, ano, versao, impostos e estado. Confirme a oferta final com um concessionario autorizado.", "للدقة: راجع الوكيل المحلي حسب سنة الصنع والفئة والضرائب والحالة الفنية.");
+  if (safetyWords.some((word) => normalized.includes(word))) return localizedText("Use Euro NCAP, IIHS, or NHTSA for the exact model year and equipment; ratings are not interchangeable between markets.", "Utilisez Euro NCAP, IIHS ou NHTSA pour l'annee et l'equipement exacts; les notes ne sont pas interchangeables entre marches.", "Use Euro NCAP, IIHS ou NHTSA para o ano e equipamento exatos; as avaliacoes variam por mercado.", "للمقارنة الدقيقة بالسلامة: راجع Euro NCAP وIIHS وNHTSA مع تحديد الموديل وسنة الصنع.");
+  if (electricWords.some((word) => normalized.includes(word))) return localizedText("Compare usable range, charging access, battery warranty, thermal conditions, and service availability rather than headline range alone.", "Comparez l'autonomie utile, la recharge, la garantie batterie, la temperature et le service, pas seulement l'autonomie annoncee.", "Compare autonomia real, recarga, garantia da bateria, temperatura e servico, nao apenas a autonomia anunciada.", "قارن مدى الاستخدام، الشحن، ضمان البطارية، درجات الحرارة، وتوفر الخدمة قبل الاختيار.");
 
-  return "شكراً لسؤالك. نلتزم بعرض معلومات عامة موثقة دون جمع أي بيانات شخصية.";
+  return localizedText("Thanks. I can provide general information, and you can send the question to the owner for a personalised answer using the links below.", "Merci. Je peux fournir une information generale; vous pouvez envoyer la question au proprietaire pour une reponse personnalisee avec les liens ci-dessous.", "Obrigado. Posso fornecer informacoes gerais; envie a pergunta ao responsavel pelos links abaixo para uma resposta personalizada.", "شكرًا لسؤالك. أقدم معلومات عامة ويمكنك إرسال السؤال إلى صاحب الموقع عبر الروابط أدناه.");
 }
 
 function setSelectOptions(selectEl, values, placeholder) {
@@ -773,6 +862,8 @@ if (sendBtn && chatInput) {
     if (e.key === "Enter") sendMessage();
   });
 }
+
+initChatBridge();
 
 history.scrollRestoration = 'manual';
 
