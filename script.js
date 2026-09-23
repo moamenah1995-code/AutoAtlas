@@ -295,6 +295,25 @@ function buildLocalizedHomeServices() {
       hero.insertAdjacentHTML("beforeend", `<div class="hero-visual" aria-hidden="true"><div class="vehicle-shot"></div><div class="floating-card top-card"><span class="mini-label">${locale === "en" ? "LATEST TECHNOLOGY" : locale === "fr" ? "TECHNOLOGIE RECENTE" : "TECNOLOGIA RECENTE"}</span><strong>EV / Hybrid</strong><small>${locale === "en" ? "Smart charging and advanced safety" : locale === "fr" ? "Recharge intelligente et securite avancee" : "Recarga inteligente e seguranca avancada"}</small></div><div class="floating-card bottom-card"><span class="mini-label">${locale === "en" ? "OFFICIAL SOURCES" : locale === "fr" ? "SOURCES OFFICIELLES" : "FONTES OFICIAIS"}</span><strong>AutoAtlas</strong><small>${locale === "en" ? "A reliable automotive reference" : locale === "fr" ? "Une reference automobile fiable" : "Uma referencia automotiva confiavel"}</small></div></div>`);
     }
   }
+
+  if (!document.querySelector(".localized-model-showcase")) {
+    const showcase = document.createElement("section");
+    showcase.className = "card featured-section localized-model-showcase";
+    const showcaseCopy = locale === "en"
+      ? { kicker: "Featured models", title: "Explore vehicles by type", link: "View all vehicle profiles", cards: [["BYD Seal", "Electric vehicle", "Strong performance and a refined design."], ["Tesla Model Y", "SUV", "Flexible space and an electric driving experience."], ["BMW 3 Series", "Sedan", "A balance of performance, comfort, and technology."]] }
+      : locale === "fr"
+        ? { kicker: "Modeles en vedette", title: "Explorez les vehicules par type", link: "Voir tous les profils", cards: [["BYD Seal", "Vehicule electrique", "Performances solides et design soigne."], ["Tesla Model Y", "SUV", "Espace modulable et conduite electrique."], ["BMW 3 Series", "Berline", "Un equilibre entre performance, confort et technologie."]] }
+        : { kicker: "Modelos em destaque", title: "Explore veiculos por tipo", link: "Ver todos os perfis", cards: [["BYD Seal", "Veiculo eletrico", "Desempenho forte e design refinado."], ["Tesla Model Y", "SUV", "Espaco versatil e experiencia eletrica."], ["BMW 3 Series", "Sedan", "Equilibrio entre desempenho, conforto e tecnologia."]] };
+    const images = [modelImageMap.Corolla, modelImageMap["Model Y"] || modelImageMap.Tucson, modelImageMap["3 Series"]];
+    showcase.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${showcaseCopy.kicker}</span><h2>🏁 ${showcaseCopy.title}</h2></div><a href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}" class="ghost-link">${showcaseCopy.link}</a></div><div class="model-grid">${showcaseCopy.cards.map((card, index) => `<a class="model-card-link" href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}"><article class="model-card"><div class="model-image"><img src="${images[index]}" alt="${card[0]}" loading="lazy" /><span class="model-badge">${card[1]}</span></div><div class="model-content"><h3>${card[0]}</h3><p>${card[2]}</p><div class="model-meta"><span>${locale === "en" ? "Official sources" : locale === "fr" ? "Sources officielles" : "Fontes oficiais"}</span><span>${locale === "en" ? "Specifications vary by market" : locale === "fr" ? "Specifications selon le marche" : "Especificacoes variam por mercado"}</span></div></div></article></a>`).join("")}</div>`;
+    document.querySelector("main.container")?.insertBefore(showcase, document.getElementById("technology"));
+  }
+
+  document.querySelectorAll(".localized-model-showcase img").forEach((image) => {
+    image.addEventListener("error", () => {
+      image.src = createModelPlaceholder("AutoAtlas", image.alt);
+    }, { once: true });
+  });
 }
 
 buildLocalizedHomeServices();
