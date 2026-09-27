@@ -578,10 +578,10 @@ function initSiteNavigation() {
         chat: { ar: "index.html#chat", en: "en.html#chat", pt: "pt.html#chat", fr: "fr.html#chat" }
       };
       const labels = {
-        ar: ["السيارات", "الموديلات", "المقارنة", "التقنيات", "المقالات", "من نحن", "الخصوصية", "الدردشة"],
-        en: ["Cars", "Models", "Compare", "Technology", "Articles", "About", "Privacy", "Chat"],
-        pt: ["Carros", "Modelos", "Comparar", "Tecnologia", "Artigos", "Sobre", "Privacidade", "Chat"],
-        fr: ["Voitures", "Modèles", "Comparer", "Technologie", "Articles", "À propos", "Confidentialité", "Chat"]
+        ar: ["السيارات", "الموديلات", "المقارنة", "التقنيات", "المقالات", "من نحن", "🔒 الخصوصية", "الدردشة"],
+        en: ["Cars", "Models", "Compare", "Technology", "Articles", "About", "🔒 Privacy", "Chat"],
+        pt: ["Carros", "Modelos", "Comparar", "Tecnologia", "Artigos", "Sobre", "🔒 Privacidade", "Chat"],
+        fr: ["Voitures", "Modèles", "Comparer", "Technologie", "Articles", "À propos", "🔒 Confidentialité", "Chat"]
       }[language];
       const keys = ["companies", "models", "compare", "technology", "articles", "about", "privacy", "chat"];
       document.querySelectorAll(".main-nav").forEach((nav) => {
@@ -1285,6 +1285,54 @@ function initPageTransitions() {
   });
 }
 
+function initAccessibilityControls() {
+  const languageCopy = {
+    ar: { label: "إمكانية الوصول", increase: "تكبير النص", decrease: "تصغير النص", contrast: "تباين عالٍ" },
+    en: { label: "Accessibility", increase: "Increase text size", decrease: "Decrease text size", contrast: "High contrast" },
+    pt: { label: "Acessibilidade", increase: "Aumentar texto", decrease: "Diminuir texto", contrast: "Alto contraste" },
+    fr: { label: "Accessibilité", increase: "Agrandir le texte", decrease: "Réduire le texte", contrast: "Contraste élevé" }
+  }[locale] || null;
+  if (!languageCopy || document.querySelector(".accessibility-tools")) return;
+  const tools = document.createElement("div");
+  tools.className = "accessibility-tools";
+  tools.setAttribute("role", "group");
+  tools.setAttribute("aria-label", languageCopy.label);
+  tools.innerHTML = `<button type="button" data-a11y="increase" aria-label="${languageCopy.increase}">A+</button><button type="button" data-a11y="decrease" aria-label="${languageCopy.decrease}">A-</button><button type="button" data-a11y="contrast" aria-pressed="false" aria-label="${languageCopy.contrast}">◐</button>`;
+  const target = document.querySelector(".nav-container, .header-top");
+  if (!target) return;
+  target.appendChild(tools);
+  const savedScale = Number(window.localStorage.getItem("autoatlas-text-scale")) || 1;
+  const savedContrast = window.localStorage.getItem("autoatlas-high-contrast") === "true";
+  document.documentElement.style.setProperty("--text-scale", String(Math.max(0.9, Math.min(1.25, savedScale))));
+  document.documentElement.classList.toggle("high-contrast", savedContrast);
+  tools.querySelector('[data-a11y="contrast"]').setAttribute("aria-pressed", savedContrast ? "true" : "false");
+  tools.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    if (button.dataset.a11y === "increase" || button.dataset.a11y === "decrease") {
+      const direction = button.dataset.a11y === "increase" ? 0.05 : -0.05;
+      const current = Number(getComputedStyle(document.documentElement).getPropertyValue("--text-scale")) || 1;
+      const next = Math.max(0.9, Math.min(1.25, current + direction));
+      document.documentElement.style.setProperty("--text-scale", String(next));
+      window.localStorage.setItem("autoatlas-text-scale", String(next));
+    }
+    if (button.dataset.a11y === "contrast") {
+      const enabled = !document.documentElement.classList.contains("high-contrast");
+      document.documentElement.classList.toggle("high-contrast", enabled);
+      button.setAttribute("aria-pressed", enabled ? "true" : "false");
+      window.localStorage.setItem("autoatlas-high-contrast", String(enabled));
+    }
+  });
+}
+
+function initImageAccessibility() {
+  document.querySelectorAll("img").forEach((image) => {
+    if (image.hasAttribute("alt")) return;
+    const context = image.closest("article, section, .card")?.querySelector("h1, h2, h3, h4")?.textContent?.trim();
+    image.alt = context || "";
+  });
+}
+
 function renderCompareResult() {
   if (!compareResult) return;
 
@@ -1478,6 +1526,8 @@ initModelsPage();
 initBehaviorAdaptation();
 initMotionStorytelling();
 initPageTransitions();
+initAccessibilityControls();
+initImageAccessibility();
 window.setTimeout(initArticleSearch, 0);
 initHomePortal();
 initLocalizedFooter();
