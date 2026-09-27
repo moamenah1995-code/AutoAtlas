@@ -865,6 +865,7 @@ function renderCarDetails(company, model) {
 }
 
 function renderArticles(filterText = "") {
+  articlesList = document.getElementById("articles-list") || document.querySelector(".articles-list");
   if (!articlesList) return;
   if (!articleSearchInput) {
     const wrapper = document.createElement("div");
@@ -1286,6 +1287,7 @@ initCompareFeature();
 initSmartVehicleSearch();
 initArticleSearch();
 initModelsPage();
+window.setTimeout(initArticleSearch, 0);
 initHomePortal();
 initLocalizedFooter();
 initLazyBackgrounds();
