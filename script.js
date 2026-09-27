@@ -866,6 +866,19 @@ function renderCarDetails(company, model) {
 
 function renderArticles(filterText = "") {
   if (!articlesList) return;
+  if (!articleSearchInput) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "tools-row";
+    const input = document.createElement("input");
+    input.id = "article-search";
+    input.type = "search";
+    input.placeholder = ui.searchArticles;
+    input.setAttribute("aria-label", ui.searchArticles);
+    wrapper.appendChild(input);
+    articlesList.parentElement?.insertBefore(wrapper, articlesList);
+    articleSearchInput = input;
+    articleSearchInput.addEventListener("input", () => renderArticles(articleSearchInput.value));
+  }
   const normalizedFilter = filterText.trim().toLowerCase();
   articlesList.innerHTML = "";
 
