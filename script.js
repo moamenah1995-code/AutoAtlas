@@ -909,6 +909,44 @@ function renderArticles(filterText = "") {
   if (!articlesList.children.length) {
     articlesList.innerHTML = `<div class="muted-box">${localizedText("No articles match your search.", "Aucun article ne correspond a votre recherche.", "Nenhum artigo corresponde a sua busca.", "لا توجد مقالات مطابقة للبحث.")}</div>`;
   }
+
+}
+
+function initArticleSearch() {
+  articlesList = document.getElementById("articles-list") || document.querySelector(".articles-list");
+  articleSearchInput = document.getElementById("article-search");
+  if (!articlesList || articleSearchInput) return;
+  const wrapper = document.createElement("div");
+  wrapper.className = "tools-row";
+  const input = document.createElement("input");
+  input.id = "article-search";
+  input.type = "search";
+  input.placeholder = ui.searchArticles;
+  input.setAttribute("aria-label", ui.searchArticles);
+  wrapper.appendChild(input);
+  articlesList.parentElement?.insertBefore(wrapper, articlesList);
+  articleSearchInput = input;
+  articleSearchInput.addEventListener("input", () => renderArticles(articleSearchInput.value));
+}
+
+function initModelsPage() {
+  const catalog = document.querySelector(".model-catalog");
+  if (!catalog) return;
+  const requestedBrand = new URLSearchParams(window.location.search).get("brand");
+  if (!requestedBrand) return;
+
+  const brandNames = {
+    toyota: ["Toyota", "تويوتا"],
+    bmw: ["BMW", "بي إم دبليو"],
+    byd: ["BYD", "بي واي دي"],
+    tesla: ["Tesla", "تسلا"]
+  };
+  const names = brandNames[requestedBrand.toLowerCase()];
+  if (!names) return;
+  catalog.querySelectorAll(".vehicle-card").forEach((card) => {
+    const title = card.querySelector("h2")?.textContent || "";
+    card.hidden = !names.some((name) => title.toLowerCase().includes(name.toLowerCase()));
+  });
 }
 
 function renderSources() {
@@ -1117,12 +1155,22 @@ function resetCompare() {
 }
 
 function initCompareFeature() {
+  compareCompany1 = document.getElementById("compare-company-1");
+  compareModel1 = document.getElementById("compare-model-1");
+  compareCompany2 = document.getElementById("compare-company-2");
+  compareModel2 = document.getElementById("compare-model-2");
+  compareBtn = document.getElementById("compare-btn");
+  compareResetBtn = document.getElementById("compare-reset-btn");
+  compareResult = document.getElementById("compare-result");
+
   if (!compareCompany1 || !compareCompany2 || !compareModel1 || !compareModel2 || !compareBtn || !compareResetBtn || !compareResult) {
     return;
   }
 
   renderCompareCompanies();
 
+  if (compareCompany1.dataset.enhanced === "true") return;
+  compareCompany1.dataset.enhanced = "true";
   compareCompany1.addEventListener("change", () => {
     updateCompareModels(compareCompany1, compareModel1);
   });
@@ -1221,17 +1269,14 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 initLanguageLinks();
 initSiteNavigation();
+initCompareFeature();
 initSmartVehicleSearch();
+initArticleSearch();
+initModelsPage();
 initHomePortal();
 initLocalizedFooter();
 initLazyBackgrounds();
 initThemeControl();
-
-if (articleSearchInput) {
-  articleSearchInput.addEventListener("input", () => {
-    renderArticles(articleSearchInput.value);
-  });
-}
 
 if (backToTopBtn) {
   window.addEventListener("scroll", () => {
@@ -1247,4 +1292,3 @@ if (backToTopBtn) {
 if (companiesList) renderCompanies();
 if (articlesList) renderArticles();
 if (officialSourcesList || articlesSourcesList) renderSources();
-initCompareFeature();
