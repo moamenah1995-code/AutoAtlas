@@ -22,12 +22,12 @@
   <meta property="og:title" content="AutoAtlas | Car Guide, Comparisons & Official Sources" />
   <meta property="og:description" content="AutoAtlas brings together trusted car reviews, model insights, official sources, and expert updates in one premium automotive platform." />
   <meta property="og:url" content="https://moamenah1995-code.github.io/AutoAtlas/en.html" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80&amp;fm=webp" />
   <meta property="og:image:alt" content="AutoAtlas automotive reference" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AutoAtlas | Car Guide, Comparisons & Official Sources" />
   <meta name="twitter:description" content="A premium automotive reference for brands, models, reviews, and official sources." />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80&amp;fm=webp" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -129,12 +129,12 @@
       <h2>🏎️ Car brands</h2>
       <p>This section presents well-known automotive brands and models. Choosing a vehicle reveals reference information, official reports, strengths and weaknesses, updates across model years, price range, and part categories.</p>
       <div class="tools-row">
-        <input type="text" placeholder="Search for a brand or model..." aria-label="Search for a brand or model" />
+        <input id="company-search" type="text" list="vehicle-suggestions" placeholder="Search for a brand or model..." aria-label="Search for a brand or model" />
       </div>
       <div class="companies-layout">
         <div>
           <h3>Brands</h3>
-          <div class="grid-list">
+          <div id="companies-list" class="grid-list">
             <button type="button">Toyota</button>
             <button type="button">Mercedes</button>
             <button type="button">BMW</button>
@@ -145,7 +145,7 @@
         </div>
         <div>
           <h3>Models</h3>
-          <div class="grid-list muted-box">Choose a brand to view its models.</div>
+          <div id="cars-list" class="grid-list muted-box">Choose a brand to view its models.</div>
         </div>
       </div>
     </section>

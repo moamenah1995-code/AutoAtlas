@@ -169,56 +169,56 @@ const articles = [
 ];
 
 const modelImageMap = {
-  Corolla: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80",
-  Camry: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
-  "Land Cruiser": "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80",
-  Hilux: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80",
-  Yaris: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=80",
-  "C-Class": "https://images.unsplash.com/photo-1617814065893-00757125d2e8?auto=format&fit=crop&w=1200&q=80",
-  "E-Class": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1200&q=80",
-  "S-Class": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80",
-  GLC: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80",
-  "G-Class": "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80",
-  "3 Series": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80",
-  "5 Series": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
-  "7 Series": "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80",
-  X5: "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1200&q=80",
-  X3: "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=1200&q=80",
-  Focus: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80",
-  Mustang: "https://images.unsplash.com/photo-1584345604476-8ec5f452d1f2?auto=format&fit=crop&w=1200&q=80",
-  Explorer: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
-  "F-150": "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=1200&q=80",
-  Edge: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
-  Elantra: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80",
-  Sonata: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?auto=format&fit=crop&w=1200&q=80",
-  Tucson: "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80",
-  "Santa Fe": "https://images.unsplash.com/photo-1618843479619-e9b4dbda4ac5?auto=format&fit=crop&w=1200&q=80",
-  Accent: "https://images.unsplash.com/photo-1549925862-9908f9e3f5c9?auto=format&fit=crop&w=1200&q=80",
-  Cerato: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80",
-  Sportage: "https://images.unsplash.com/photo-1617469767053-d3b523a0b6df?auto=format&fit=crop&w=1200&q=80",
-  Sorento: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&w=1200&q=80",
-  Rio: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1200&q=80",
-  K5: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80",
-  Civic: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80",
-  Accord: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80",
-  "CR-V": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1200&q=80",
-  Pilot: "https://images.unsplash.com/photo-1541348263662-e068662d82af?auto=format&fit=crop&w=1200&q=80",
-  City: "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80",
-  Sunny: "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80",
-  Altima: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?auto=format&fit=crop&w=1200&q=80",
-  Patrol: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80",
-  "X-Trail": "https://images.unsplash.com/photo-1616789916185-5f5f1d8d26ab?auto=format&fit=crop&w=1200&q=80",
-  Maxima: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80",
-  A3: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80",
-  A4: "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80",
-  A6: "https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?auto=format&fit=crop&w=1200&q=80",
-  Q5: "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80",
-  Q7: "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80",
-  Golf: "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80",
-  Passat: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80",
-  Tiguan: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
-  Touareg: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80",
-  Jetta: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80"
+  Corolla: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Camry: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "Land Cruiser": "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Hilux: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Yaris: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "C-Class": "https://images.unsplash.com/photo-1617814065893-00757125d2e8?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "E-Class": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "S-Class": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  GLC: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "G-Class": "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "3 Series": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "5 Series": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "7 Series": "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  X5: "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  X3: "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Focus: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Mustang: "https://images.unsplash.com/photo-1584345604476-8ec5f452d1f2?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Explorer: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "F-150": "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Edge: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Elantra: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Sonata: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Tucson: "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "Santa Fe": "https://images.unsplash.com/photo-1618843479619-e9b4dbda4ac5?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Accent: "https://images.unsplash.com/photo-1549925862-9908f9e3f5c9?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Cerato: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Sportage: "https://images.unsplash.com/photo-1617469767053-d3b523a0b6df?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Sorento: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Rio: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  K5: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Civic: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Accord: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "CR-V": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Pilot: "https://images.unsplash.com/photo-1541348263662-e068662d82af?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  City: "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Sunny: "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Altima: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Patrol: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  "X-Trail": "https://images.unsplash.com/photo-1616789916185-5f5f1d8d26ab?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Maxima: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  A3: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  A4: "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  A6: "https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Q5: "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Q7: "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Golf: "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Passat: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Tiguan: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Touareg: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  Jetta: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80&fm=webp"
 };
 
 function createModelPlaceholder(company, model) {
@@ -273,7 +273,7 @@ let compareModel2 = document.getElementById("compare-model-2");
 let compareBtn = document.getElementById("compare-btn");
 let compareResetBtn = document.getElementById("compare-reset-btn");
 let compareResult = document.getElementById("compare-result");
-const langButtons = document.querySelectorAll(".lang-btn");
+const langButtons = document.querySelectorAll(".lang-btn, .lang-pill, .lang-switch a, .lang-switcher a");
 
 const locale = document.documentElement.lang || "ar";
 const localizedUi = {
@@ -330,6 +330,42 @@ function localizedText(en, fr, pt, ar) {
   return locale === "en" ? en : locale === "fr" ? fr : locale === "pt" ? pt : ar;
 }
 
+function buildExpertArticle(article, index) {
+  const title = article.title;
+  const sourceNames = (article.sources || []).join(", ");
+  const intro = localizedText(
+    `This expert briefing examines ${title.toLowerCase()} from an engineering and decision-making perspective. It separates measured evidence from marketing language and does not treat a general source as proof of a specific vehicle specification.`,
+    `Cette analyse examine ${title.toLowerCase()} sous un angle d'ingenierie et d'aide a la decision. Elle separe les donnees mesurees du langage marketing et n'utilise pas une source generale pour prouver une specification particuliere.`,
+    `Esta analise examina ${title.toLowerCase()} sob uma perspectiva de engenharia e decisao. Ela separa dados medidos de linguagem de marketing e nao usa uma fonte geral como prova de uma especificacao especifica.`,
+    `تتناول هذه القراءة موضوع «${title}» من زاوية هندسية تساعد على اتخاذ القرار، مع فصل البيانات المقاسة عن اللغة التسويقية، وعدم اعتبار المصدر العام إثباتًا لمواصفة طراز محدد.`
+  );
+  const engineering = localizedText(
+    `Engineering frame: begin with the system boundary, the operating conditions, and the quantity being measured. For a vehicle, model year, trim, market, software version, temperature, load, and test cycle can change the result. A sound comparison therefore names these variables before drawing a conclusion. The useful question is not whether a technology is “best”, but which constraint it solves and what trade-off it introduces.`,
+    `Cadre d'ingenierie : commencez par definir le systeme, les conditions d'utilisation et la grandeur mesuree. Pour un vehicule, l'annee, la finition, le marche, le logiciel, la temperature, la charge et le cycle d'essai peuvent modifier le resultat. Une comparaison serieuse nomme ces variables avant toute conclusion.`,
+    `Enquadramento de engenharia: defina o sistema, as condicoes de uso e a grandeza medida. Em um veiculo, ano, versao, mercado, software, temperatura, carga e ciclo de teste podem alterar o resultado. Uma comparacao correta identifica essas variaveis antes da conclusao.`,
+    `الإطار الهندسي: ابدأ بتحديد حدود النظام وظروف التشغيل والكمية المقاسة. فسنة الصنع والفئة والسوق وإصدار البرمجيات ودرجة الحرارة والحمل ودورة الاختبار قد تغير النتيجة. لذلك يجب تسمية هذه المتغيرات قبل الاستنتاج، والسؤال الصحيح ليس أي تقنية «أفضل» بل ما القيد الذي تحله وما المقابل الذي تفرضه.`
+  );
+  const evidence = localizedText(
+    `Evidence reading: the primary references listed for this topic are used for their stated scope only. Manufacturer pages describe products and declared equipment; regulators and safety organizations describe rules, recalls, or test results; international agencies describe market, energy, or policy trends. None of these categories should be silently converted into a promise about reliability, resale value, or a particular owner's experience.`,
+    `Lecture des preuves : les references primaires listees sont utilisees dans leur domaine declare. Les constructeurs decrivent leurs produits et equipements; les organismes officiels publient regles, rappels ou tests; les agences internationales decrivent les tendances. Ces categories ne doivent pas etre transforme es en promesse de fiabilite ou de valeur residuelle.`,
+    `Leitura das evidencias: as fontes primarias listadas sao usadas apenas dentro de seu escopo. Fabricantes descrevem produtos e equipamentos; reguladores e organizacoes de seguranca publicam regras, recalls ou testes; agencias internacionais descrevem tendencias. Nenhuma categoria deve virar promessa de confiabilidade ou valor de revenda.`,
+    `قراءة الدليل: تُستخدم المراجع الأصلية المدرجة ضمن نطاقها فقط. صفحات المصنع تصف المنتجات والتجهيزات، والجهات التنظيمية تنشر القواعد والاستدعاءات أو نتائج الاختبارات، والوكالات الدولية تشرح اتجاهات الطاقة والسوق والسياسات. لا يجوز تحويل هذه الأنواع إلى وعد بالاعتمادية أو قيمة إعادة البيع.`
+  );
+  const practical = localizedText(
+    `Practical method: identify the exact vehicle and market; record the source date and test method; compare like with like; ask what is missing; and confirm the final decision with the owner's manual, an authorised service centre, or the relevant regulator. Keep a short audit trail containing the URL, access date, model year, and assumptions. This prevents a headline, a social post, or an image from becoming an unsupported technical claim.`,
+    `Methode pratique : identifiez le vehicule et le marche exacts; notez la date et la methode de la source; comparez des donnees comparables; cherchez ce qui manque; puis confirmez la decision avec le manuel, un atelier agree ou l'organisme competent. Conservez l'URL, la date, l'annee et les hypotheses.`,
+    `Metodo pratico: identifique o veiculo e o mercado; registre data e metodo da fonte; compare dados equivalentes; procure o que falta; e confirme a decisao no manual, em oficina autorizada ou no orgao competente. Guarde URL, data, ano e premissas para uma trilha de verificacao.`,
+    `الطريقة العملية: حدد الطراز والسوق بدقة، وسجل تاريخ المصدر وطريقة الاختبار، وقارن بيانات متشابهة، واسأل عما ينقص، ثم أكد القرار من دليل المالك أو مركز معتمد أو الجهة التنظيمية. احتفظ بالرابط والتاريخ وسنة الطراز والافتراضات حتى لا يتحول العنوان أو المنشور أو الصورة إلى ادعاء فني بلا سند.`
+  );
+  const future = localizedText(
+    `Forward view: the next phase of automotive development will likely be defined by integration rather than one isolated invention: energy storage, thermal management, software, sensing, manufacturing, and regulation must work together. Forecasts remain scenarios. They should be updated when new measurements, rules, costs, or field data appear, rather than presented as guaranteed dates or universal outcomes.`,
+    `Perspective : la prochaine phase sera probablement definie par l'integration de l'energie, de la gestion thermique, du logiciel, des capteurs, de la fabrication et de la regulation. Les previsions restent des scenarios et doivent etre mises a jour avec les nouvelles mesures, regles, couts et donnees de terrain.`,
+    `Perspectiva: a proxima fase provavelmente sera definida pela integracao de energia, gerenciamento termico, software, sensores, fabricacao e regulacao. Previsoes sao cenarios e devem ser atualizadas quando surgirem novas medicoes, regras, custos ou dados de campo.`,
+    `النظرة المستقبلية: ستتحدد المرحلة المقبلة غالبًا بتكامل تخزين الطاقة والإدارة الحرارية والبرمجيات والمستشعرات والتصنيع والتنظيم، لا باختراع منفرد. والتوقعات تظل سيناريوهات تُحدَّث عند ظهور قياسات أو قواعد أو تكاليف أو بيانات ميدانية جديدة، ولا تُعرض كمواعيد مضمونة.`
+  );
+  return { title, intro, engineering, evidence, practical, future, sourceNames, index };
+}
+
 function buildLocalizedHomeServices() {
   if (locale === "ar" || !document.querySelector("main.container")) return;
 
@@ -381,7 +417,7 @@ function buildLocalizedHomeServices() {
         ? { kicker: "Modeles en vedette", title: "Explorez les vehicules par type", link: "Voir tous les profils", cards: [["BYD Seal", "Vehicule electrique", "Performances solides et design soigne."], ["Tesla Model Y", "SUV", "Espace modulable et conduite electrique."], ["BMW 3 Series", "Berline", "Un equilibre entre performance, confort et technologie."]] }
         : { kicker: "Modelos em destaque", title: "Explore veiculos por tipo", link: "Ver todos os perfis", cards: [["BYD Seal", "Veiculo eletrico", "Desempenho forte e design refinado."], ["Tesla Model Y", "SUV", "Espaco versatil e experiencia eletrica."], ["BMW 3 Series", "Sedan", "Equilibrio entre desempenho, conforto e tecnologia."]] };
     const images = [modelImageMap.Corolla, modelImageMap["Model Y"] || modelImageMap.Tucson, modelImageMap["3 Series"]];
-    showcase.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${showcaseCopy.kicker}</span><h2>🏁 ${showcaseCopy.title}</h2></div><a href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}" class="ghost-link">${showcaseCopy.link}</a></div><div class="model-grid">${showcaseCopy.cards.map((card, index) => `<a class="model-card-link" href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}"><article class="model-card"><div class="model-image"><img src="${images[index]}" alt="${card[0]}" loading="lazy" /><span class="model-badge">${card[1]}</span></div><div class="model-content"><h3>${card[0]}</h3><p>${card[2]}</p><div class="model-meta"><span>${locale === "en" ? "Official sources" : locale === "fr" ? "Sources officielles" : "Fontes oficiais"}</span><span>${locale === "en" ? "Specifications vary by market" : locale === "fr" ? "Specifications selon le marche" : "Especificacoes variam por mercado"}</span></div></div></article></a>`).join("")}</div>`;
+    showcase.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${showcaseCopy.kicker}</span><h2>🏁 ${showcaseCopy.title}</h2></div><a href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}" class="ghost-link">${showcaseCopy.link}</a></div><div class="model-grid">${showcaseCopy.cards.map((card, index) => `<a class="model-card-link" href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}"><article class="model-card"><div class="model-image"><img src="${images[index]}"     alt="${card[0]}" loading="lazy" decoding="async" /><span class="model-badge">${card[1]}</span></div><div class="model-content"><h3>${card[0]}</h3><p>${card[2]}</p><div class="model-meta"><span>${locale === "en" ? "Official sources" : locale === "fr" ? "Sources officielles" : "Fontes oficiais"}</span><span>${locale === "en" ? "Specifications vary by market" : locale === "fr" ? "Specifications selon le marche" : "Especificacoes variam por mercado"}</span></div></div></article></a>`).join("")}</div>`;
     document.querySelector("main.container")?.insertBefore(showcase, document.getElementById("technology"));
   }
 
@@ -470,8 +506,13 @@ function initLanguageLinks() {
     terms: { ar: "terms.html", en: "terms-en.html", pt: "terms-pt.html", fr: "terms-fr.html" },
     contact: { ar: "contact.html", en: "contact-en.html", pt: "contact-pt.html", fr: "contact-fr.html" },
     carDetail: { ar: "car-detail.html", en: "car-detail-en.html", pt: "car-detail-pt.html", fr: "car-detail-fr.html" }
+    ,companies: { ar: "companies.html", en: "companies-en.html", pt: "companies-pt.html", fr: "companies-fr.html" }
+    ,models: { ar: "models.html", en: "models-en.html", pt: "models-pt.html", fr: "models-fr.html" }
+    ,compare: { ar: "compare.html", en: "compare-en.html", pt: "compare-pt.html", fr: "compare-fr.html" }
+    ,technology: { ar: "technology.html", en: "technology-en.html", pt: "technology-pt.html", fr: "technology-fr.html" }
+    ,about: { ar: "about.html", en: "about-en.html", pt: "about-pt.html", fr: "about-fr.html" }
   };
-  const languageLabels = { "العربية": "ar", English: "en", "Português": "pt", "Français": "fr" };
+  const languageLabels = { "العربية": "ar", English: "en", "Português": "pt", "Français": "fr", AR: "ar", EN: "en", PT: "pt", FR: "fr" };
   const currentGroup = Object.values(pageVariants).find((variants) => Object.values(variants).includes(currentPage)) || pageVariants.home;
   const activeLanguage = Object.entries(currentGroup).find(([, page]) => page === currentPage)?.[0] || "ar";
 
@@ -494,6 +535,144 @@ function initLanguageLinks() {
     if (href?.startsWith("index.html#")) {
       link.href = `${pageVariants.home[activeLanguage]}${href.slice("index.html".length)}`;
     }
+  });
+}
+
+function initLocalizedFooter() {
+      const currentPage = window.location.pathname.split("/").pop() || "index.html";
+      const language = currentPage === "en.html" || currentPage.endsWith("-en.html") ? "en" : currentPage === "pt.html" || currentPage.endsWith("-pt.html") ? "pt" : currentPage === "fr.html" || currentPage.endsWith("-fr.html") ? "fr" : "ar";
+      const copy = {
+        ar: [["الخصوصية", "privacy.html"], ["الشروط", "terms.html"], ["تواصل", "contact.html"]],
+        en: [["Privacy", "privacy-en.html"], ["Terms", "terms-en.html"], ["Contact", "contact-en.html"]],
+        pt: [["Privacidade", "privacy-pt.html"], ["Termos", "terms-pt.html"], ["Contato", "contact-pt.html"]],
+        fr: [["Confidentialité", "privacy-fr.html"], ["Conditions", "terms-fr.html"], ["Contact", "contact-fr.html"]]
+      }[language];
+      document.querySelectorAll(".site-footer .container").forEach((footer) => {
+        if (footer.querySelector(".footer-links")) return;
+        const nav = document.createElement("nav");
+        nav.className = "footer-links";
+        nav.setAttribute("aria-label", language === "ar" ? "روابط الموقع" : language === "fr" ? "Liens du site" : language === "pt" ? "Links do site" : "Site links");
+        nav.innerHTML = copy.map(([label, href]) => `<a href="${href}">${label}</a>`).join("");
+        footer.appendChild(nav);
+      });
+    }
+function initSiteNavigation() {
+      const currentPage = window.location.pathname.split("/").pop() || "index.html";
+      const language = currentPage === "en.html" || currentPage.endsWith("-en.html") ? "en" : currentPage === "pt.html" || currentPage.endsWith("-pt.html") ? "pt" : currentPage === "fr.html" || currentPage.endsWith("-fr.html") ? "fr" : "ar";
+      const page = currentPage === "index.html" || currentPage === "en.html" || currentPage === "pt.html" || currentPage === "fr.html" ? "home" :
+        currentPage.replace("-en.html", "").replace("-pt.html", "").replace("-fr.html", "").replace(".html", "") || "home";
+      const pages = {
+        home: { ar: "index.html", en: "en.html", pt: "pt.html", fr: "fr.html" },
+        companies: { ar: "companies.html", en: "companies-en.html", pt: "companies-pt.html", fr: "companies-fr.html" },
+        models: { ar: "models.html", en: "models-en.html", pt: "models-pt.html", fr: "models-fr.html" },
+        compare: { ar: "compare.html", en: "compare-en.html", pt: "compare-pt.html", fr: "compare-fr.html" },
+        technology: { ar: "technology.html", en: "technology-en.html", pt: "technology-pt.html", fr: "technology-fr.html" },
+        articles: { ar: "articles.html", en: "articles-en.html", pt: "articles-pt.html", fr: "articles-fr.html" },
+        about: { ar: "about.html", en: "about-en.html", pt: "about-pt.html", fr: "about-fr.html" },
+        privacy: { ar: "privacy.html", en: "privacy-en.html", pt: "privacy-pt.html", fr: "privacy-fr.html" },
+        chat: { ar: "index.html#chat", en: "en.html#chat", pt: "pt.html#chat", fr: "fr.html#chat" }
+      };
+      const labels = {
+        ar: ["السيارات", "الموديلات", "المقارنة", "التقنيات", "المقالات", "من نحن", "الخصوصية", "الدردشة"],
+        en: ["Cars", "Models", "Compare", "Technology", "Articles", "About", "Privacy", "Chat"],
+        pt: ["Carros", "Modelos", "Comparar", "Tecnologia", "Artigos", "Sobre", "Privacidade", "Chat"],
+        fr: ["Voitures", "Modèles", "Comparer", "Technologie", "Articles", "À propos", "Confidentialité", "Chat"]
+      }[language];
+      const keys = ["companies", "models", "compare", "technology", "articles", "about", "privacy", "chat"];
+      document.querySelectorAll(".main-nav").forEach((nav) => {
+        nav.innerHTML = keys.map((key, index) => `<a href="${pages[key][language]}">${labels[index]}</a>`).join("");
+      });
+    }
+
+function initHomePortal() {
+      const currentPage = window.location.pathname.split("/").pop() || "index.html";
+      if (!["index.html", "en.html", "pt.html", "fr.html"].includes(currentPage)) return;
+      const language = currentPage === "en.html" ? "en" : currentPage === "pt.html" ? "pt" : currentPage === "fr.html" ? "fr" : "ar";
+      const copy = {
+        ar: { eyebrow: "بوابتك إلى عالم السيارات", title: "اكتشف، قارن، واختر بثقة", text: "تجربة أبسط تبدأ من المعلومة الصحيحة: شركات، موديلات، تقنيات، ومقالات في صفحات واضحة.", cards: [["شركات السيارات", "تعرف على العلامات ومصادرها الرسمية.", "companies.html"], ["الموديلات والسيارات", "بطاقات مختصرة ومواصفات قابلة للتحقق.", "models.html"], ["المقارنات", "ضع سيارتين جنبًا إلى جنب.", "compare.html"], ["التقنيات الكهربائية", "افهم البطارية والشحن والسلامة.", "technology.html"], ["المقالات", "قراءات تحليلية بلا مبالغات.", "articles.html"], ["من نحن", "تعرف على منهجية AutoAtlas.", "about.html"]] },
+        en: { eyebrow: "Your automotive starting point", title: "Discover, compare, choose with confidence", text: "A clearer experience for researching brands, models, technology, and automotive articles.", cards: [["Car brands", "Explore brands and official sources.", "companies-en.html"], ["Models & cars", "Scan concise cards and key facts.", "models-en.html"], ["Comparisons", "Put two vehicles side by side.", "compare-en.html"], ["Electric technology", "Understand batteries, charging, and safety.", "technology-en.html"], ["Articles", "Read practical, source-aware analysis.", "articles-en.html"], ["About us", "Learn how AutoAtlas works.", "about-en.html"]] },
+        pt: { eyebrow: "Seu ponto de partida automotivo", title: "Descubra, compare e escolha melhor", text: "Uma experiência clara para pesquisar marcas, modelos, tecnologia e artigos automotivos.", cards: [["Marcas", "Explore marcas e fontes oficiais.", "companies-pt.html"], ["Modelos e carros", "Veja cartões e dados essenciais.", "models-pt.html"], ["Comparações", "Compare dois veículos lado a lado.", "compare-pt.html"], ["Tecnologia elétrica", "Entenda bateria, recarga e segurança.", "technology-pt.html"], ["Artigos", "Leia análises baseadas em fontes.", "articles-pt.html"], ["Sobre nós", "Conheça a metodologia AutoAtlas.", "about-pt.html"]] },
+        fr: { eyebrow: "Votre point de départ automobile", title: "Découvrez, comparez, choisissez mieux", text: "Une expérience claire pour explorer les marques, modèles, technologies et articles automobiles.", cards: [["Marques", "Explorez les marques et sources officielles.", "companies-fr.html"], ["Modèles et voitures", "Consultez les fiches et données clés.", "models-fr.html"], ["Comparaisons", "Mettez deux véhicules côte à côte.", "compare-fr.html"], ["Technologie électrique", "Comprenez batterie, recharge et sécurité.", "technology-fr.html"], ["Articles", "Lisez des analyses fondées sur les sources.", "articles-fr.html"], ["À propos", "Découvrez la méthode AutoAtlas.", "about-fr.html"]] }
+      }[language];
+      const main = document.querySelector("main");
+      const hero = main?.querySelector(".hero");
+      if (!main || !hero || main.querySelector(".home-portal")) return;
+      const portal = document.createElement("section");
+      portal.className = "home-portal";
+      portal.innerHTML = `<div class="portal-copy"><span class="section-kicker">${copy.eyebrow}</span><h2>${copy.title}</h2><p>${copy.text}</p></div><div class="portal-grid">${copy.cards.map(([title, text, href]) => `<a class="portal-card" href="${href}"><span class="portal-arrow" aria-hidden="true">↗</span><h3>${title}</h3><p>${text}</p></a>`).join("")}</div>`;
+      hero.insertAdjacentElement("afterend", portal);
+      main.querySelectorAll(":scope > section:not(.hero):not(.home-portal)").forEach((section) => section.classList.add("legacy-home-section"));
+    }
+
+    function initLazyBackgrounds() {
+      const backgrounds = {
+        "electric-image": "linear-gradient(135deg, rgba(15, 23, 42, .18), rgba(37, 99, 235, .35)), url(\"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80&fm=webp\")",
+        "suv-image": "linear-gradient(135deg, rgba(15, 23, 42, .2), rgba(6, 182, 212, .35)), url(\"https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=80&fm=webp\")",
+        "sedan-image": "linear-gradient(135deg, rgba(15, 23, 42, .2), rgba(124, 58, 237, .3)), url(\"https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=900&q=80&fm=webp\")",
+        "model-image-one": "linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.48)), url(\"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80&fm=webp\")",
+        "model-image-two": "linear-gradient(180deg, rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.5)), url(\"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80&fm=webp\")",
+        "model-image-three": "linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.45)), url(\"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80&fm=webp\")"
+      };
+      const targets = [];
+      Object.entries(backgrounds).forEach(([className, background]) => {
+        document.querySelectorAll(`.${className}`).forEach((element) => {
+          element.classList.add("lazy-bg");
+          element.style.setProperty("--lazy-background", background);
+          targets.push(element);
+        });
+      });
+      const load = (element) => {
+        element.classList.add("is-loaded");
+        element.removeAttribute("data-lazy-background");
+      };
+      if (!("IntersectionObserver" in window)) {
+        targets.forEach(load);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, instance) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          load(entry.target);
+          instance.unobserve(entry.target);
+        });
+      }, { rootMargin: "240px 0px" });
+      targets.forEach((element) => {
+        element.setAttribute("data-lazy-background", "true");
+        observer.observe(element);
+      });
+    }
+
+function initThemeControl() {
+  const savedTheme = window.localStorage.getItem("autoatlas-theme");
+  const theme = savedTheme === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme = theme;
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const language = currentPage.endsWith("-en.html") ? "en" : currentPage.endsWith("-pt.html") ? "pt" : currentPage.endsWith("-fr.html") ? "fr" : "ar";
+  const labels = {
+    ar: { dark: "الوضع الداكن", light: "الوضع الفاتح", switchTo: "تفعيل الوضع الفاتح" },
+    en: { dark: "Dark mode", light: "Light mode", switchTo: "Switch to light mode" },
+    pt: { dark: "Modo escuro", light: "Modo claro", switchTo: "Ativar modo claro" },
+    fr: { dark: "Mode sombre", light: "Mode clair", switchTo: "Activer le mode clair" }
+  }[language];
+  document.querySelectorAll(".site-header .container").forEach((container) => {
+    if (container.querySelector(".theme-toggle")) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "theme-toggle";
+    button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+    button.setAttribute("aria-label", theme === "light" ? labels.dark : labels.switchTo);
+    button.innerHTML = `<span aria-hidden="true">${theme === "light" ? "☀" : "☾"}</span><span>${theme === "light" ? labels.light : labels.dark}</span>`;
+    button.addEventListener("click", () => {
+      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      window.localStorage.setItem("autoatlas-theme", nextTheme);
+      button.setAttribute("aria-pressed", nextTheme === "light" ? "true" : "false");
+      button.setAttribute("aria-label", nextTheme === "light" ? labels.dark : labels.switchTo);
+      button.innerHTML = `<span aria-hidden="true">${nextTheme === "light" ? "☀" : "☾"}</span><span>${nextTheme === "light" ? labels.light : labels.dark}</span>`;
+    });
+    const target = container.querySelector(".nav-container, .header-top");
+    if (target) target.appendChild(button);
   });
 }
 
@@ -550,6 +729,61 @@ function renderCars(companyName, filterText = "") {
     carDetails.textContent = ui.chooseCar;
   }
 
+  function initSmartVehicleSearch() {
+    if (!companySearchInput) return;
+
+    let suggestions = document.getElementById("vehicle-suggestions");
+    if (!suggestions) {
+      suggestions = document.createElement("datalist");
+      suggestions.id = "vehicle-suggestions";
+      companySearchInput.parentElement?.appendChild(suggestions);
+    }
+
+    const options = [];
+    Object.keys(companiesData).forEach((companyName) => {
+      options.push({ value: companyName, label: displayCompany(companyName) });
+      companiesData[companyName].forEach((modelName) => {
+        options.push({ value: modelName, label: `${modelName} - ${displayCompany(companyName)}` });
+      });
+    });
+    suggestions.innerHTML = options
+      .map((option) => `<option value="${option.value}" label="${option.label}"></option>`)
+      .join("");
+    companySearchInput.setAttribute("autocomplete", "off");
+    companySearchInput.setAttribute("aria-autocomplete", "list");
+
+    const updateResults = () => {
+      const value = companySearchInput.value.trim();
+      const matchingCompany = Object.keys(companiesData).find((companyName) =>
+        companyName.toLowerCase() === value.toLowerCase() ||
+        displayCompany(companyName).toLowerCase() === value.toLowerCase()
+      );
+      const matchingModel = Object.keys(companiesData).find((companyName) =>
+        companiesData[companyName].some((modelName) => modelName.toLowerCase() === value.toLowerCase())
+      );
+
+      if (matchingCompany || matchingModel) {
+        selectedCompany = matchingCompany || matchingModel;
+        renderCompanies(value);
+        renderCars(selectedCompany, matchingModel ? value : "");
+        return;
+      }
+
+      renderCompanies(value);
+      if (selectedCompany) renderCars(selectedCompany, value);
+    };
+
+    companySearchInput.addEventListener("input", updateResults);
+    companySearchInput.addEventListener("change", updateResults);
+    companySearchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        companySearchInput.value = "";
+        updateResults();
+        companySearchInput.blur();
+      }
+    });
+  }
+
   const normalizedFilter = filterText.trim().toLowerCase();
 
   companiesData[companyName]
@@ -596,14 +830,14 @@ function renderCarDetails(company, model) {
     const source = localizedText("Use the official manufacturer page for the exact specification and equipment available in your market.", "Utilisez la page officielle du constructeur pour connaitre les specifications et les equipements de votre marche.", "Use a pagina oficial do fabricante para conferir especificacoes e equipamentos do seu mercado.", "");
     const checks = localizedText(["Confirm the model year and trim", "Check the maintenance history", "Match safety ratings to the exact vehicle"], ["Confirmez l'annee et la finition", "Verifiez l'historique d'entretien", "Associez les notes de securite au vehicule exact"], ["Confirme o ano e a versao", "Verifique o historico de manutencao", "Relacione as notas de seguranca ao veiculo exato"], []);
     carDetails.className = "car-details";
-    carDetails.innerHTML = `<h3>${brand} - ${model}</h3><img src="${details.image}" alt="${brand} ${model}" loading="lazy" /><div class="detail-grid"><div class="detail-box"><h4>${labels.overview}</h4><p>${overview}</p></div><div class="detail-box"><h4>${labels.source}</h4><p>${source}</p></div><div class="detail-box"><h4>${labels.checks}</h4><ul>${checks.map((item) => `<li>${item}</li>`).join("")}</ul></div><div class="detail-box"><h4>${labels.limits}</h4><p>${localizedText("Prices, safety equipment, and running costs vary by country, year, and condition.", "Les prix, equipements de securite et couts d'utilisation varient selon le pays, l'annee et l'etat.", "Precos, equipamentos de seguranca e custos de uso variam por pais, ano e condicao.", "")}</p></div><div class="detail-box"><h4>${labels.parts}</h4><ul>${details.parts.map((part) => `<li>${part}</li>`).join("")}</ul></div></div><section class="sources-box"><h4>${labels.sources}</h4><ul>${details.sources.map(sourceItemHtml).join("")}</ul></section>`;
+    carDetails.innerHTML = `<h3>${brand} - ${model}</h3>    <img src="${details.image}" alt="${brand} ${model}" loading="lazy" decoding="async" /><div class="detail-grid"><div class="detail-box"><h4>${labels.overview}</h4><p>${overview}</p></div><div class="detail-box"><h4>${labels.source}</h4><p>${source}</p></div><div class="detail-box"><h4>${labels.checks}</h4><ul>${checks.map((item) => `<li>${item}</li>`).join("")}</ul></div><div class="detail-box"><h4>${labels.limits}</h4><p>${localizedText("Prices, safety equipment, and running costs vary by country, year, and condition.", "Les prix, equipements de securite et couts d'utilisation varient selon le pays, l'annee et l'etat.", "Precos, equipamentos de seguranca e custos de uso variam por pais, ano e condicao.", "")}</p></div><div class="detail-box"><h4>${labels.parts}</h4><ul>${details.parts.map((part) => `<li>${part}</li>`).join("")}</ul></div></div><section class="sources-box"><h4>${labels.sources}</h4><ul>${details.sources.map(sourceItemHtml).join("")}</ul></section>`;
     return;
   }
 
   carDetails.className = "car-details";
   carDetails.innerHTML = `
     <h3>${company} - ${model}</h3>
-    <img src="${details.image}" alt="صورة توضيحية للطراز ${model} من ${company}" loading="lazy" />
+    <img src="${details.image}" alt="صورة توضيحية للطراز ${model} من ${company}" loading="lazy" decoding="async" />
     <p class="image-disclaimer">الصورة توضيحية للمساعدة على التعرف البصري، وليست مصدراً للمواصفات أو الفئة أو سنة الصنع.</p>
     <div class="detail-grid">
       <div class="detail-box"><h4>تاريخ السيارة</h4><p>${details.history}</p></div>
@@ -986,14 +1220,12 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 });
 
 initLanguageLinks();
-
-if (companySearchInput) {
-  companySearchInput.addEventListener("input", () => {
-    const value = companySearchInput.value;
-    renderCompanies(value);
-    if (selectedCompany) renderCars(selectedCompany, value);
-  });
-}
+initSiteNavigation();
+initSmartVehicleSearch();
+initHomePortal();
+initLocalizedFooter();
+initLazyBackgrounds();
+initThemeControl();
 
 if (articleSearchInput) {
   articleSearchInput.addEventListener("input", () => {

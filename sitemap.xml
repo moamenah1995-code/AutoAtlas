@@ -120,4 +120,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/companies.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/companies-en.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/companies-pt.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/companies-fr.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/models.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/models-en.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/models-pt.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/models-fr.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/compare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/compare-en.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/compare-pt.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/compare-fr.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/technology.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/technology-en.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/technology-pt.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/technology-fr.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-en.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-pt.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-fr.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
