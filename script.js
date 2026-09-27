@@ -734,61 +734,6 @@ function renderCars(companyName, filterText = "") {
     carDetails.textContent = ui.chooseCar;
   }
 
-  function initSmartVehicleSearch() {
-    if (!companySearchInput) return;
-
-    let suggestions = document.getElementById("vehicle-suggestions");
-    if (!suggestions) {
-      suggestions = document.createElement("datalist");
-      suggestions.id = "vehicle-suggestions";
-      companySearchInput.parentElement?.appendChild(suggestions);
-    }
-
-    const options = [];
-    Object.keys(companiesData).forEach((companyName) => {
-      options.push({ value: companyName, label: displayCompany(companyName) });
-      companiesData[companyName].forEach((modelName) => {
-        options.push({ value: modelName, label: `${modelName} - ${displayCompany(companyName)}` });
-      });
-    });
-    suggestions.innerHTML = options
-      .map((option) => `<option value="${option.value}" label="${option.label}"></option>`)
-      .join("");
-    companySearchInput.setAttribute("autocomplete", "off");
-    companySearchInput.setAttribute("aria-autocomplete", "list");
-
-    const updateResults = () => {
-      const value = companySearchInput.value.trim();
-      const matchingCompany = Object.keys(companiesData).find((companyName) =>
-        companyName.toLowerCase() === value.toLowerCase() ||
-        displayCompany(companyName).toLowerCase() === value.toLowerCase()
-      );
-      const matchingModel = Object.keys(companiesData).find((companyName) =>
-        companiesData[companyName].some((modelName) => modelName.toLowerCase() === value.toLowerCase())
-      );
-
-      if (matchingCompany || matchingModel) {
-        selectedCompany = matchingCompany || matchingModel;
-        renderCompanies(value);
-        renderCars(selectedCompany, matchingModel ? value : "");
-        return;
-      }
-
-      renderCompanies(value);
-      if (selectedCompany) renderCars(selectedCompany, value);
-    };
-
-    companySearchInput.addEventListener("input", updateResults);
-    companySearchInput.addEventListener("change", updateResults);
-    companySearchInput.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        companySearchInput.value = "";
-        updateResults();
-        companySearchInput.blur();
-      }
-    });
-  }
-
   const normalizedFilter = filterText.trim().toLowerCase();
 
   companiesData[companyName]
@@ -810,6 +755,52 @@ function renderCars(companyName, filterText = "") {
   if (!carsList.children.length) {
     carsList.innerHTML = localizedText("No models match your search.", "Aucun modele ne correspond a votre recherche.", "Nenhum modelo corresponde a sua busca.", "لا توجد موديلات مطابقة لهذا البحث.");
   }
+}
+
+function initSmartVehicleSearch() {
+  if (!companySearchInput) return;
+  let suggestions = document.getElementById("vehicle-suggestions");
+  if (!suggestions) {
+    suggestions = document.createElement("datalist");
+    suggestions.id = "vehicle-suggestions";
+    companySearchInput.parentElement?.appendChild(suggestions);
+  }
+  const options = [];
+  Object.keys(companiesData).forEach((companyName) => {
+    options.push({ value: companyName, label: displayCompany(companyName) });
+    companiesData[companyName].forEach((modelName) => {
+      options.push({ value: modelName, label: `${modelName} - ${displayCompany(companyName)}` });
+    });
+  });
+  suggestions.innerHTML = options.map((option) => `<option value="${option.value}" label="${option.label}"></option>`).join("");
+  companySearchInput.setAttribute("autocomplete", "off");
+  companySearchInput.setAttribute("aria-autocomplete", "list");
+  const updateResults = () => {
+    const value = companySearchInput.value.trim();
+    const matchingCompany = Object.keys(companiesData).find((companyName) =>
+      companyName.toLowerCase() === value.toLowerCase() || displayCompany(companyName).toLowerCase() === value.toLowerCase()
+    );
+    const matchingModel = Object.keys(companiesData).find((companyName) =>
+      companiesData[companyName].some((modelName) => modelName.toLowerCase() === value.toLowerCase())
+    );
+    if (matchingCompany || matchingModel) {
+      selectedCompany = matchingCompany || matchingModel;
+      renderCompanies(value);
+      renderCars(selectedCompany, matchingModel ? value : "");
+      return;
+    }
+    renderCompanies(value);
+    if (selectedCompany) renderCars(selectedCompany, value);
+  };
+  companySearchInput.addEventListener("input", updateResults);
+  companySearchInput.addEventListener("change", updateResults);
+  companySearchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      companySearchInput.value = "";
+      updateResults();
+      companySearchInput.blur();
+    }
+  });
 }
 
 function sourceItemHtml(source) {
@@ -1231,6 +1222,69 @@ function initBehaviorAdaptation() {
   savePersonalizationStorage(key, behavior);
 }
 
+function initMotionStorytelling() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealTargets = document.querySelectorAll(
+    ".page-hero, .content-card, .vehicle-card, .portal-card, .article-item, .feature-box, .detail-specs, .detail-pros, .notice, .compare-page-card, .personalization-card"
+  );
+
+  revealTargets.forEach((element, index) => {
+    element.classList.add("motion-reveal");
+    element.style.setProperty("--motion-delay", `${Math.min(index % 6, 5) * 70}ms`);
+  });
+
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    revealTargets.forEach((element) => element.classList.add("is-visible"));
+  } else {
+    const observer = new IntersectionObserver((entries, instance) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        instance.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px" });
+    revealTargets.forEach((element) => observer.observe(element));
+  }
+
+  const detailMain = document.querySelector(".car-detail-page main");
+  if (detailMain && !detailMain.querySelector(".motion-story")) {
+    const storyCopy = {
+      ar: { title: "رحلة السيارة في أربع لقطات", items: [["الفكرة", "تبدأ السيارة من تصميم يوازن بين الاستخدام والشكل."], ["المنظومة", "تتحدد التجربة بالطاقة والدفع والشحن أو الوقود."], ["التقنية", "تضيف الشاشات وأنظمة المساعدة قيمة بشرط مطابقة الفئة."], ["الاستخدام", "يتحول الاختيار إلى قرار عملي حسب الطريق والصيانة والسوق."]] },
+      en: { title: "The vehicle story in four beats", items: [["The idea", "Design balances the intended use with the vehicle's form."], ["The system", "Powertrain, drive, and charging or fuel shape the experience."], ["The technology", "Screens and assistance add value when matched to the exact trim."], ["The use", "The final choice depends on roads, service, and the local market."]] },
+      pt: { title: "A história do veículo em quatro etapas", items: [["A ideia", "O design equilibra o uso previsto e a forma do veículo."], ["O sistema", "Motorização, tração e recarga ou combustível moldam a experiência."], ["A tecnologia", "Ecrãs e assistência agregam valor quando correspondem à versão."], ["O uso", "A escolha depende das estradas, serviço e mercado local."]] },
+      fr: { title: "L'histoire du véhicule en quatre temps", items: [["L'idée", "Le design équilibre l'usage prévu et la forme du véhicule."], ["Le système", "Motorisation, transmission et recharge ou carburant façonnent l'expérience."], ["La technologie", "Écrans et aides ajoutent de la valeur selon la finition exacte."], ["L'usage", "Le choix dépend des routes, du service et du marché local."]] }
+    }[locale] || null;
+    if (storyCopy) {
+      const story = document.createElement("section");
+      story.className = "motion-story card";
+      story.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">Motion Storytelling</span><h2>${storyCopy.title}</h2></div></div><div class="story-track">${storyCopy.items.map(([title, text], index) => `<article class="story-step motion-reveal" style="--motion-delay: ${index * 110}ms"><span class="story-index">0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}</div>`;
+      detailMain.insertBefore(story, detailMain.children[1] || null);
+      if (reducedMotion) story.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
+      else if ("IntersectionObserver" in window) {
+        const storyObserver = new IntersectionObserver((entries, instance) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            instance.unobserve(entry.target);
+          });
+        }, { threshold: 0.18 });
+        story.querySelectorAll(".motion-reveal").forEach((element) => storyObserver.observe(element));
+      }
+    }
+  }
+}
+
+function initPageTransitions() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:") || link.target === "_blank") return;
+    link.addEventListener("click", () => {
+      document.body.classList.add("is-leaving");
+    });
+  });
+}
+
 function renderCompareResult() {
   if (!compareResult) return;
 
@@ -1422,6 +1476,8 @@ initSmartVehicleSearch();
 initArticleSearch();
 initModelsPage();
 initBehaviorAdaptation();
+initMotionStorytelling();
+initPageTransitions();
 window.setTimeout(initArticleSearch, 0);
 initHomePortal();
 initLocalizedFooter();
