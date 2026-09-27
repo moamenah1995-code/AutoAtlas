@@ -1,3 +1,8 @@
+window.addEventListener("error", (event) => {
+  console.error("AutoAtlas startup error:", event.error || event.message);
+  document.documentElement.dataset.autoatlasError = event.message || "startup-error";
+});
+
 const companiesData = {
   "تويوتا": ["Corolla", "Camry", "Land Cruiser", "Hilux", "Yaris"],
   "مرسيدس": ["C-Class", "E-Class", "S-Class", "GLC", "G-Class"],
@@ -431,7 +436,7 @@ function buildLocalizedHomeServices() {
   document.querySelectorAll(".localized-model-showcase img").forEach((image) => {
     image.addEventListener("error", () => {
       image.src = createModelPlaceholder("AutoAtlas", image.alt);
-    }, { once: true });
+    });
   });
 }
 
@@ -1096,12 +1101,134 @@ function getCompareCarData(company, model) {
   return {
     company,
     model,
+    image: profile.image,
+    categories: getModelCategories(model),
     yearRange: profile.yearRange || "—",
     parts: profile.parts || [],
     pros: profile.pros || [],
     cons: profile.cons || [],
     sources: profile.sources || []
   };
+}
+
+const personalizationCopy = {
+  ar: {
+    title: "مساعد اختيار السيارة",
+    intro: "أجب عن تفضيلاتك ليقترح AutoAtlas سيارات مناسبة من البيانات المتاحة، دون استبدال فحص الوكيل والمصدر الرسمي.",
+    usage: "الاستخدام الأساسي", city: "مدينة", family: "عائلة", travel: "سفر", work: "عمل واستخدام متنوع",
+    fuel: "نوع الطاقة", any: "أي نوع", electric: "كهربائية", hybrid: "هجينة", petrol: "بنزين أو ديزل",
+    people: "عدد الركاب", budget: "أولوية الشراء", value: "قيمة وتشغيل", comfort: "راحة وتجهيز", efficiency: "كفاءة وطاقة",
+    submit: "عرض توصياتي", result: "توصيات مناسبة لك", note: "التوصية إرشادية؛ تحقق من الفئة والسوق وسنة الصنع.",
+    view: "عرض الملف", score: "مدى الملاءمة"
+  },
+  en: {
+    title: "Smart vehicle guide", intro: "Set your preferences and AutoAtlas will rank suitable vehicles from its available data. Always verify the exact trim and market.",
+    usage: "Main use", city: "City", family: "Family", travel: "Travel", work: "Mixed/work",
+    fuel: "Powertrain", any: "Any type", electric: "Electric", hybrid: "Hybrid", petrol: "Petrol or diesel",
+    people: "Passengers", budget: "Buying priority", value: "Value and running cost", comfort: "Comfort and equipment", efficiency: "Efficiency and energy",
+    submit: "Show recommendations", result: "Recommended for you", note: "Guidance only; verify trim, market, and model year.",
+    view: "View profile", score: "Fit score"
+  },
+  pt: {
+    title: "Guia inteligente de veículos", intro: "Defina suas preferências e o AutoAtlas classificará veículos adequados com os dados disponíveis. Confirme sempre a versão e o mercado.",
+    usage: "Uso principal", city: "Cidade", family: "Família", travel: "Viagem", work: "Uso misto/trabalho",
+    fuel: "Motorização", any: "Qualquer tipo", electric: "Elétrico", hybrid: "Híbrido", petrol: "Gasolina ou diesel",
+    people: "Passageiros", budget: "Prioridade", value: "Valor e custo", comfort: "Conforto e equipamentos", efficiency: "Eficiência e energia",
+    submit: "Ver recomendações", result: "Recomendados para você", note: "Orientação; confirme versão, mercado e ano.",
+    view: "Ver perfil", score: "Compatibilidade"
+  },
+  fr: {
+    title: "Guide intelligent automobile", intro: "Définissez vos préférences et AutoAtlas classera les véhicules adaptés selon ses données. Vérifiez toujours la finition et le marché.",
+    usage: "Usage principal", city: "Ville", family: "Famille", travel: "Voyage", work: "Mixte/travail",
+    fuel: "Motorisation", any: "Tous types", electric: "Électrique", hybrid: "Hybride", petrol: "Essence ou diesel",
+    people: "Passagers", budget: "Priorité", value: "Valeur et coût", comfort: "Confort et équipement", efficiency: "Efficacité et énergie",
+    submit: "Afficher mes recommandations", result: "Recommandés pour vous", note: "Conseil indicatif; vérifiez finition, marché et année.",
+    view: "Voir le profil", score: "Compatibilité"
+  }
+};
+
+function getPersonalizationStorage(key, fallback) {
+  try {
+    return JSON.parse(window.localStorage.getItem(key)) || fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function savePersonalizationStorage(key, value) {
+  try {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.warn("AutoAtlas personalization could not be saved.", error);
+  }
+}
+
+function getRecommendationScore(company, model, preferences) {
+  const categories = getModelCategories(model);
+  let score = 45;
+  if (preferences.fuel === "electric") score += categories.includes("electric") ? 35 : -18;
+  if (preferences.fuel === "hybrid") score += categories.includes("hybrid") ? 25 : -8;
+  if (preferences.fuel === "petrol") score += categories.some((item) => ["petrol", "diesel"].includes(item)) ? 16 : -5;
+  if (preferences.usage === "city") score += ["petrol", "hybrid", "electric"].some((item) => categories.includes(item)) ? 8 : 0;
+  if (preferences.usage === "family") score += categories.includes("suv") ? 18 : 5;
+  if (preferences.usage === "travel") score += categories.includes("suv") || categories.includes("luxury") ? 14 : 4;
+  if (preferences.priority === "efficiency") score += categories.includes("electric") || categories.includes("hybrid") ? 12 : 0;
+  if (preferences.priority === "comfort") score += categories.includes("luxury") ? 15 : 4;
+  if (preferences.priority === "value") score += ["petrol", "hybrid"].some((item) => categories.includes(item)) ? 10 : 2;
+  if (Number(preferences.people) >= 5 && categories.includes("suv")) score += 10;
+  return Math.max(25, Math.min(98, score));
+}
+
+function renderRecommendations(container, preferences) {
+  const copy = personalizationCopy[locale] || personalizationCopy.ar;
+  const ranked = Object.entries(companiesData).flatMap(([company, models]) =>
+    models.map((model) => ({ company, model, score: getRecommendationScore(company, model, preferences) }))
+  ).sort((a, b) => b.score - a.score).slice(0, 4);
+  container.querySelector(".recommendation-results").innerHTML = `
+    <div class="recommendation-heading"><h3>${copy.result}</h3><p>${copy.note}</p></div>
+    <div class="recommendation-grid">${ranked.map((item) => {
+      const profile = carProfiles[item.company][item.model];
+      const detailPage = locale === "en" ? "car-detail-en.html" : locale === "pt" ? "car-detail-pt.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail.html";
+      return `<article class="recommendation-card"><img src="${profile.image}" alt="${displayCompany(item.company)} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${copy.score}: ${item.score}%</span><h4>${displayCompany(item.company)} - ${item.model}</h4><a class="text-link" href="${detailPage}">${copy.view}</a></div></article>`;
+    }).join("")}</div>`;
+}
+
+function initPersonalization() {
+  const home = ["index.html", "en.html", "pt.html", "fr.html"].includes(window.location.pathname.split("/").pop() || "index.html");
+  if (!home || document.querySelector(".personalization-card")) return;
+  const copy = personalizationCopy[locale] || personalizationCopy.ar;
+  const saved = getPersonalizationStorage("autoatlas-preferences", { usage: "city", fuel: "any", people: "4", priority: "value" });
+  const section = document.createElement("section");
+  section.className = "card personalization-card";
+  section.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">AutoAtlas AI</span><h2>${copy.title}</h2><p>${copy.intro}</p></div></div><form class="preference-form"><label>${copy.usage}<select name="usage"><option value="city">${copy.city}</option><option value="family">${copy.family}</option><option value="travel">${copy.travel}</option><option value="work">${copy.work}</option></select></label><label>${copy.fuel}<select name="fuel"><option value="any">${copy.any}</option><option value="electric">${copy.electric}</option><option value="hybrid">${copy.hybrid}</option><option value="petrol">${copy.petrol}</option></select></label><label>${copy.people}<select name="people"><option value="2">2</option><option value="4">4</option><option value="5">5+</option></select></label><label>${copy.budget}<select name="priority"><option value="value">${copy.value}</option><option value="comfort">${copy.comfort}</option><option value="efficiency">${copy.efficiency}</option></select></label><button class="primary-btn" type="submit">${copy.submit}</button></form><div class="recommendation-results" aria-live="polite"></div>`;
+  const portal = document.querySelector(".home-portal");
+  (portal || document.querySelector("main"))?.insertAdjacentElement("afterend", section);
+  const form = section.querySelector("form");
+  Object.entries(saved).forEach(([key, value]) => { if (form.elements[key]) form.elements[key].value = value; });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const preferences = Object.fromEntries(new FormData(form).entries());
+    savePersonalizationStorage("autoatlas-preferences", preferences);
+    renderRecommendations(section, preferences);
+  });
+  renderRecommendations(section, saved);
+}
+
+function initBehaviorAdaptation() {
+  const key = "autoatlas-behavior";
+  const behavior = getPersonalizationStorage(key, { visits: 0, interests: {} });
+  behavior.visits += 1;
+  document.querySelectorAll("a[href], button").forEach((control) => {
+    control.addEventListener("click", () => {
+      const label = (control.textContent || control.getAttribute("aria-label") || "").trim().slice(0, 60);
+      if (!label) return;
+      behavior.interests[label] = (behavior.interests[label] || 0) + 1;
+      savePersonalizationStorage(key, behavior);
+    }, { once: true });
+  });
+  const topInterest = Object.entries(behavior.interests).sort((a, b) => b[1] - a[1])[0];
+  if (topInterest) document.body.dataset.topInterest = topInterest[0];
+  savePersonalizationStorage(key, behavior);
 }
 
 function renderCompareResult() {
@@ -1118,6 +1245,11 @@ function renderCompareResult() {
 
   compareResult.className = "";
   compareResult.innerHTML = `
+    <div class="smart-compare-visual">
+      <div class="compare-vehicle-visual"><img src="${car1.image}" alt="${displayCompany(car1.company)} ${car1.model}" loading="lazy" decoding="async"><strong>${displayCompany(car1.company)} - ${car1.model}</strong></div>
+      <div class="compare-vs" aria-hidden="true">VS</div>
+      <div class="compare-vehicle-visual"><img src="${car2.image}" alt="${displayCompany(car2.company)} ${car2.model}" loading="lazy" decoding="async"><strong>${displayCompany(car2.company)} - ${car2.model}</strong></div>
+    </div>
     <div class="compare-result-grid">
       <div class="compare-cell head compare-label">${localizedText("Item", "Element", "Item", "البند")}</div>
       <div class="compare-cell head">${displayCompany(car1.company)} - ${car1.model}</div>
@@ -1151,6 +1283,7 @@ function renderCompareResult() {
       <div class="compare-cell">${joinSourcesAsHtml(car1.sources)}</div>
       <div class="compare-cell">${joinSourcesAsHtml(car2.sources)}</div>
     </div>
+    <p class="smart-compare-note">${localizedText("Smart reading: the stronger choice depends on your market, charging access, exact trim, and priorities. The table is a structured reference, not a universal winner.", "Lecture intelligente : le meilleur choix dépend du marché, de la recharge, de la finition et de vos priorités. Le tableau est une référence structurée, pas un gagnant universel.", "Leitura inteligente: a melhor escolha depende do mercado, recarga, versão e prioridades. A tabela é uma referência estruturada, não um vencedor universal.", "القراءة الذكية: الاختيار الأفضل يعتمد على السوق وتوفر الشحن والفئة وأولوياتك. الجدول مرجع منظم وليس فائزًا مطلقًا.")}</p>
   `;
 }
 
@@ -1283,10 +1416,12 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 initLanguageLinks();
 initSiteNavigation();
+initPersonalization();
 initCompareFeature();
 initSmartVehicleSearch();
 initArticleSearch();
 initModelsPage();
+initBehaviorAdaptation();
 window.setTimeout(initArticleSearch, 0);
 initHomePortal();
 initLocalizedFooter();
