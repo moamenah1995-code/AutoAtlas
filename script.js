@@ -515,6 +515,10 @@ function initLanguageLinks() {
     ,models: { ar: "models.html", en: "models-en.html", pt: "models-pt.html", fr: "models-fr.html" }
     ,compare: { ar: "compare.html", en: "compare-en.html", pt: "compare-pt.html", fr: "compare-fr.html" }
     ,technology: { ar: "technology.html", en: "technology-en.html", pt: "technology-pt.html", fr: "technology-fr.html" }
+    ,technologyEv: { ar: "technology-ev.html", en: "technology-ev-en.html", pt: "technology-ev-pt.html", fr: "technology-ev-fr.html" }
+    ,technologyCharging: { ar: "technology-charging.html", en: "technology-charging-en.html", pt: "technology-charging-pt.html", fr: "technology-charging-fr.html" }
+    ,technologyRenewables: { ar: "technology-renewables.html", en: "technology-renewables-en.html", pt: "technology-renewables-pt.html", fr: "technology-renewables-fr.html" }
+    ,technologyFuture: { ar: "technology-future.html", en: "technology-future-en.html", pt: "technology-future-pt.html", fr: "technology-future-fr.html" }
     ,about: { ar: "about.html", en: "about-en.html", pt: "about-pt.html", fr: "about-fr.html" }
   };
   const languageLabels = { "العربية": "ar", English: "en", "Português": "pt", "Français": "fr", AR: "ar", EN: "en", PT: "pt", FR: "fr" };
