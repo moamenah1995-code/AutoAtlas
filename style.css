@@ -2114,6 +2114,30 @@ button.active {
   background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 100%);
 }
 
+.type-card.petrol {
+  background: linear-gradient(180deg, #fefce8 0%, #fef08a 100%);
+}
+
+.type-card.diesel {
+  background: linear-gradient(180deg, #f1f5f9 0%, #cbd5e1 100%);
+}
+
+.type-card.gas {
+  background: linear-gradient(180deg, #f0fdf4 0%, #bbf7d0 100%);
+}
+
+.type-card.modified {
+  background: linear-gradient(180deg, #fef2f2 0%, #fecaca 100%);
+}
+
+.type-card .type-note {
+  display: block;
+  margin-top: 0.5rem;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
 .type-icon {
   font-size: 2rem;
   margin-bottom: 0.6rem;
