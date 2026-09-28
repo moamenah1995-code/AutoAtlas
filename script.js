@@ -681,6 +681,24 @@ function initThemeControl() {
   });
 }
 
+function initCookieConsent() {
+  const banner = document.getElementById("cookie-consent");
+  if (!banner) return;
+
+  const consentKey = "autoatlas-cookie-consent";
+  if (window.localStorage.getItem(consentKey)) {
+    banner.hidden = true;
+    return;
+  }
+
+  banner.querySelectorAll("[data-cookie-choice]").forEach((button) => {
+    button.addEventListener("click", () => {
+      window.localStorage.setItem(consentKey, button.dataset.cookieChoice);
+      banner.hidden = true;
+    });
+  });
+}
+
 let activeCarBtn = null;
 let selectedCompany = null;
 
@@ -1533,6 +1551,7 @@ initHomePortal();
 initLocalizedFooter();
 initLazyBackgrounds();
 initThemeControl();
+initCookieConsent();
 
 if (backToTopBtn) {
   window.addEventListener("scroll", () => {
