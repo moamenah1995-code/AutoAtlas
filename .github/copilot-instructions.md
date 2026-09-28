@@ -3,8 +3,10 @@
 ## Tooling and validation
 
 - This is a dependency-free static site. There is no `package.json`, build system, linter, or automated test suite, so no build, lint, full-test, or single-test command is configured.
-- For a local browser check, serve the repository root (for example, `python -m http.server 8000`) and open the affected `.html` page through the server. Do not validate routing from `file://` URLs.
+- For a local browser check, serve the repository root (for example, `python -m http.server 8080`) and open the affected `.html` page through the server. Use port 8080 to match [.vscode/launch.json](/C:/Users/user/OneDrive/Desktop/ALikhtyar/.vscode/launch.json)'s "Launch Chrome against localhost" debug config. Do not validate routing from `file://` URLs.
 - Use the browser to exercise changed controls and language links. Check the console for errors, keyboard focus/activation, and narrow-screen layout when changing shared UI.
+- A specialized [site-maintainer agent](/C:/Users/user/OneDrive/Desktop/ALikhtyar/.github/agents/site-maintainer.agent.md) and a [website-accuracy-icons skill](/C:/Users/user/OneDrive/Desktop/ALikhtyar/.github/skills/website-accuracy-icons/SKILL.md) already exist for this repo; invoke the skill for content-accuracy or icon/link/control reliability work instead of improvising an equivalent procedure.
+- `README.md`, `TODO.md`, and `GOOGLE_SEARCH_CONSOLE.md` (in Arabic) hold the deployment, publishing-checklist, and Search Console context; consult them before changing deployment or SEO-submission guidance.
 
 ## Architecture
 
