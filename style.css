@@ -1504,6 +1504,47 @@ button:active,
     margin: 0 0 0.35rem;
   }
 
+  .articles-list {
+    grid-template-columns: 1fr;
+  }
+
+  .article-item {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .article-summary {
+    margin-bottom: 1rem;
+    color: var(--text);
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .article-body {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .article-body section {
+    padding: 0.9rem 1rem;
+    border-inline-start: 3px solid var(--primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--bg-soft);
+  }
+
+  [dir="rtl"] .article-body section {
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+
+  .article-body h5 {
+    margin: 0 0 0.35rem;
+    color: var(--text);
+    font-size: 0.98rem;
+  }
+
+  .article-body p {
+    margin: 0;
+  }
+
   .story-step p {
     margin: 0;
     color: var(--muted);

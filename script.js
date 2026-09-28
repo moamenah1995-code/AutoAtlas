@@ -921,11 +921,35 @@ function renderArticles(filterText = "") {
       })
       .join("");
 
-    const title = locale === "ar" ? article.title : localizedText(`Automotive analysis ${idx + 1}`, `Analyse automobile ${idx + 1}`, `Analise automotiva ${idx + 1}`, article.title);
-    const summary = locale === "ar" ? article.summary : localizedText("A source-led overview of automotive technology, safety, markets, or ownership. Consult the listed primary sources for model- and market-specific information.", "Un apercu fonde sur des sources de la technologie, de la securite, des marches ou de l'usage automobile. Consultez les sources primaires pour les informations propres au modele et au marche.", "Uma visao baseada em fontes sobre tecnologia, seguranca, mercados ou uso automotivo. Consulte as fontes primarias para informacoes especificas de modelo e mercado.", article.summary);
+    const expertArticle = buildExpertArticle(article, idx + 1);
+    const title = locale === "ar"
+      ? article.title
+      : localizedText(`Engineering briefing ${idx + 1}: ${article.title}`, `Analyse d'ingenierie ${idx + 1} : ${article.title}`, `Analise de engenharia ${idx + 1}: ${article.title}`, article.title);
+    const summary = locale === "ar"
+      ? article.summary
+      : localizedText("A source-led overview of automotive technology, safety, markets, or ownership. Consult the listed primary sources for model- and market-specific information.", "Un apercu fonde sur des sources de la technologie, de la securite, des marches ou de l'usage automobile. Consultez les sources primaires pour les informations propres au modele et au marche.", "Uma visao baseada em fontes sobre tecnologia, seguranca, mercados ou uso automotivo. Consulte as fontes primarias para informacoes especificas de modelo e mercado.", article.summary);
     articleElement.innerHTML = `
       <h4>${idx + 1}. ${title}</h4>
-      <p>${summary}</p>
+      <p class="article-summary">${summary}</p>
+      <div class="article-body">
+        <section>
+          <h5>${localizedText("Engineering perspective", "Perspective d'ingenierie", "Perspectiva de engenharia", "المنظور الهندسي")}</h5>
+          <p>${expertArticle.intro}</p>
+          <p>${expertArticle.engineering}</p>
+        </section>
+        <section>
+          <h5>${localizedText("Reading the evidence", "Lire les preuves", "Como ler as evidencias", "قراءة الدليل")}</h5>
+          <p>${expertArticle.evidence}</p>
+        </section>
+        <section>
+          <h5>${localizedText("Workshop and ownership checklist", "Liste de controle atelier et usage", "Lista de verificacao da oficina e do uso", "قائمة فحص الصيانة والاستخدام")}</h5>
+          <p>${expertArticle.practical}</p>
+        </section>
+        <section>
+          <h5>${localizedText("What to monitor next", "Points a suivre", "O que acompanhar", "ما الذي نتابعه لاحقًا")}</h5>
+          <p>${expertArticle.future}</p>
+        </section>
+      </div>
       <div class="sources-box">
         <h5>${localizedText("Article sources", "Sources de l'article", "Fontes do artigo", "مراجع المقال")}</h5>
         <ul>${articleSources || `<li>${localizedText("General references are listed below.", "Les references generales sont indiquees ci-dessous.", "As referencias gerais estao listadas abaixo.", "مراجع عامة: راجع قائمة مراجع المقالات أدناه.")}</li>`}</ul>
