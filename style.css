@@ -1394,6 +1394,73 @@ main {
   font-weight: 800;
 }
 
+.technology-executive-summary {
+  margin: 1rem 0 1.5rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-inline-start: 4px solid var(--accent);
+  border-radius: 16px;
+  background: var(--bg-soft);
+}
+
+.technology-executive-summary p,
+.technology-article-section p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.technology-article-section {
+  margin: 1.5rem 0 0.85rem;
+}
+
+.technology-article-section h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  line-height: 1.4;
+}
+
+.technology-process {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.85rem 0 1.25rem;
+  padding-inline-start: 1.5rem;
+}
+
+.technology-process li {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-strong);
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.technology-process strong {
+  color: var(--text);
+}
+
+.technology-engineering-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.technology-engineering-grid .technology-detail-card p {
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 640px) {
+  .technology-engineering-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .technology-executive-summary {
+    padding: 1rem;
+  }
+}
+
 .technology-source-links a {
   padding: 0.5rem 0.7rem;
   border: 1px solid var(--line);
