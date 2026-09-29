@@ -1451,6 +1451,181 @@ main {
   margin-top: 0.45rem;
 }
 
+.technology-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel-strong);
+}
+
+.technology-section-nav a {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.technology-section-nav a:focus-visible,
+.technology-faq summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.technology-key-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.technology-fact-card {
+  min-height: 100%;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.technology-fact-card strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--primary);
+}
+
+.technology-fact-card p,
+.technology-comparison-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.technology-visual-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.55rem;
+  align-items: stretch;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-soft);
+}
+
+.technology-visual-flow figcaption {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.technology-flow-node {
+  display: grid;
+  place-items: center;
+  min-height: 82px;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel-strong);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.technology-flow-node:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  inset-inline-end: -0.58rem;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+
+[dir="rtl"] .technology-flow-node:not(:last-child)::after {
+  content: "←";
+}
+
+.technology-flow-node {
+  position: relative;
+}
+
+.technology-comparison-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel-strong);
+}
+
+.technology-comparison {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.technology-comparison caption {
+  padding: 1rem;
+  color: var(--text);
+  font-weight: 800;
+  text-align: start;
+}
+
+.technology-comparison th,
+.technology-comparison td {
+  min-width: 140px;
+  padding: 0.8rem;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.technology-comparison th {
+  color: var(--text);
+}
+
+.technology-comparison td {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.technology-faq {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.technology-faq details {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel-strong);
+}
+
+.technology-faq summary {
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.technology-faq details p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.technology-detail [id] {
+  scroll-margin-top: 1.5rem;
+}
+
 @media (max-width: 640px) {
   .technology-engineering-grid {
     grid-template-columns: 1fr;
@@ -1458,6 +1633,30 @@ main {
 
   .technology-executive-summary {
     padding: 1rem;
+  }
+
+  .technology-key-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .technology-visual-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .technology-flow-node:not(:last-child)::after {
+    content: "↓";
+    position: static;
+    margin: 0;
+  }
+
+  [dir="rtl"] .technology-flow-node:not(:last-child)::after {
+    content: "↓";
+  }
+}
+
+@media (max-width: 380px) {
+  .technology-key-facts {
+    grid-template-columns: 1fr;
   }
 }
 
