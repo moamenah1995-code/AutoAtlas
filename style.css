@@ -824,6 +824,204 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    margin: 1.25rem 0;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 28px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 78% 22%, rgba(56, 189, 248, 0.35), transparent 22%),
+      linear-gradient(125deg, #071426 0%, #10284c 54%, #1d4ed8 100%);
+    box-shadow: 0 28px 58px rgba(15, 23, 42, 0.18);
+  }
+
+  .page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -8% -120px auto;
+    width: 330px;
+    height: 330px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+  }
+
+  .page-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-hero h1 {
+    max-width: 760px;
+    margin: 0.25rem 0 0.75rem;
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.12;
+  }
+
+  .page-hero p {
+    max-width: 680px;
+    margin: 0;
+    color: #dbeafe;
+    font-size: 1.05rem;
+  }
+
+  .section-kicker {
+    display: inline-block;
+    color: #93c5fd;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .section-heading-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem 0 0.9rem;
+  }
+
+  .section-heading-row h2 {
+    margin-bottom: 0;
+  }
+
+  .feature-route-grid,
+  .vehicle-grid,
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    gap: 1rem;
+  }
+
+  .route-card,
+  .vehicle-card,
+  .brand-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 1.2rem;
+    border: 1px solid #dbe6f2;
+    border-radius: 20px;
+    background: linear-gradient(160deg, #fff 0%, #f4f8ff 100%);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .route-card:hover,
+  .vehicle-card:hover,
+  .brand-card:hover {
+    transform: translateY(-5px);
+    border-color: #93c5fd;
+    box-shadow: 0 20px 34px rgba(15, 23, 42, 0.12);
+  }
+
+  .route-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #dbeafe, #cffafe);
+    font-size: 1.45rem;
+  }
+
+  .route-card p,
+  .vehicle-card p,
+  .brand-card p {
+    color: #475569;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    color: #1d4ed8;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .card-link:hover {
+    color: #0f3db8;
+  }
+
+  .vehicle-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .vehicle-card img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+  }
+
+  .vehicle-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.15rem;
+  }
+
+  .vehicle-tag {
+    align-self: flex-start;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    color: #075985;
+    background: #e0f2fe;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .page-footer {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid #dbe6f2;
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .footer-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .footer-links a {
+    color: #475569;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    color: #1d4ed8;
+  }
+
+  @media (max-width: 620px) {
+    .page-hero {
+      margin-top: 0.8rem;
+      border-radius: 22px;
+    }
+
+    .section-heading-row {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
   .hero-visual {
     min-height: 280px;
   }
