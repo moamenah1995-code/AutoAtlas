@@ -1622,6 +1622,76 @@ main {
   line-height: 1.75;
 }
 
+.technology-timeline {
+  position: relative;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.technology-timeline::before {
+  position: absolute;
+  inset-block: 1.15rem 1.15rem;
+  inset-inline-start: 1rem;
+  width: 2px;
+  background: var(--accent);
+  content: "";
+}
+
+.technology-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 0.38fr) 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 0 0 1rem;
+}
+
+.technology-timeline li::before {
+  position: relative;
+  z-index: 1;
+  grid-column: 1;
+  width: 0.7rem;
+  height: 0.7rem;
+  justify-self: start;
+  margin: 0.55rem 0.65rem;
+  border: 3px solid var(--panel-strong);
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 1px var(--accent);
+  content: "";
+}
+
+.technology-timeline-stage {
+  grid-column: 1;
+  grid-row: 1;
+  padding-inline-start: 2rem;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.8;
+}
+
+.technology-timeline li > div {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.technology-timeline strong {
+  color: var(--text);
+}
+
+.technology-timeline p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .technology-detail [id] {
   scroll-margin-top: 1.5rem;
 }
@@ -1651,6 +1721,30 @@ main {
 
   [dir="rtl"] .technology-flow-node:not(:last-child)::after {
     content: "↓";
+  }
+
+  .technology-timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .technology-timeline::before {
+    inset-inline-start: 0.85rem;
+  }
+
+  .technology-timeline li::before {
+    grid-row: 1;
+    margin-inline: 0.5rem;
+  }
+
+  .technology-timeline-stage {
+    grid-row: 1;
+    padding-inline-start: 1.8rem;
+  }
+
+  .technology-timeline li > div {
+    grid-column: 1;
+    grid-row: 2;
   }
 }
 
