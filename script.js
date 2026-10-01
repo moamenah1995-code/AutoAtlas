@@ -1005,24 +1005,54 @@ function initArticleSearch() {
   articleSearchInput.addEventListener("input", () => renderArticles(articleSearchInput.value));
 }
 
+const researchModelCatalog = [
+  ["Tesla", "Model Y", "United States", "SUV", "electric", "AWD/RWD varies by trim", "https://www.tesla.com/modely", "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Ford", "Mustang Mach-E", "United States", "SUV", "electric", "RWD/AWD varies by trim", "https://www.ford.com/suvs/mach-e/", "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Chevrolet", "Equinox EV", "United States", "SUV", "electric", "FWD/AWD varies by trim", "https://www.chevrolet.com/electric/equinox-ev", "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Rivian", "R1S", "United States", "SUV", "electric", "AWD configurations", "https://rivian.com/r1s", "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["BMW", "iX3", "Germany", "SUV", "electric", "Configuration varies by market", "https://www.bmw.com/en/automotive-life/the-new-bmw-ix3.html", "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Mercedes-Benz", "CLA", "Germany", "Sedan", "electric / hybrid varies by market", "FWD/RWD/AWD varies by version", "https://www.mercedes-benz.com/en/vehicles/mercedes-benz-vehicles/cla/", "https://images.unsplash.com/photo-1617814065893-00757125d2e8?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Audi", "Q6 e-tron", "Germany", "SUV", "electric", "RWD/AWD varies by version", "https://www.audi.com/en/models/q6-e-tron.html", "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Porsche", "Macan Electric", "Germany", "SUV", "electric", "RWD/AWD varies by version", "https://www.porsche.com/international/models/macan/macan-electric-models/", "https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["BYD", "Seal", "China", "Sedan", "electric", "RWD/AWD varies by market", "https://www.byd.com/en/car/seal", "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Geely", "EX5", "China", "SUV", "electric", "Configuration varies by market", "https://www.geely.com/en/models/geely-ex5", "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["NIO", "ET5", "China", "Sedan", "electric", "Configuration varies by market", "https://www.nio.com/et5", "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["XPENG", "G6", "China", "SUV", "electric", "RWD/AWD varies by market", "https://www.xpeng.com/g6", "https://images.unsplash.com/photo-1618843479619-e9b4dbda4ac5?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Hyundai", "IONIQ 5", "Korea", "Crossover", "electric", "RWD/AWD varies by market", "https://www.hyundai.com/worldwide/en/eco/ioniq5", "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Kia", "EV9", "Korea", "SUV", "electric", "RWD/AWD varies by version", "https://worldwide.kia.com/int/ev9", "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Genesis", "Electrified GV70", "Korea", "SUV", "electric", "AWD varies by market", "https://www.genesis.com/worldwide/en/models/electrified-gv70.html", "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Toyota", "bZ4X", "Japan", "SUV", "electric", "FWD/AWD varies by market", "https://www.toyota.com/bz4x/", "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Nissan", "Ariya", "Japan", "SUV", "electric", "FWD/AWD varies by version", "https://www.nissanusa.com/vehicles/electric-cars/ariya.html", "https://images.unsplash.com/photo-1616789916185-5f5f1d8d26ab?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Subaru", "Solterra", "Japan", "SUV", "electric", "AWD availability varies by market", "https://www.subaru.com/vehicles/solterra.html", "https://images.unsplash.com/photo-1618843479619-e9b4dbda4ac5?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Mazda", "CX-70 PHEV", "Japan", "SUV", "plug-in hybrid", "AWD availability varies by market", "https://www.mazdausa.com/vehicles/cx-70-phev", "https://images.unsplash.com/photo-1549399542-7e82138f24f7?auto=format&fit=crop&w=1200&q=80&fm=webp"],
+  ["Honda", "CR-V e:FCEV", "Japan", "SUV", "fuel-cell plug-in hybrid", "FWD varies by market", "https://automobiles.honda.com/cr-v-fcev", "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1200&q=80&fm=webp"]
+].map(([brand, model, origin, body, powertrain, drive, officialUrl, image]) => ({ brand, model, origin, body, powertrain, drive, officialUrl, image }));
+
 function initModelsPage() {
   const catalog = document.querySelector(".model-catalog");
-  if (!catalog) return;
-  const requestedBrand = new URLSearchParams(window.location.search).get("brand");
-  if (!requestedBrand) return;
+  const detail = document.getElementById("model-reference-detail");
+  if (!catalog || !detail) return;
 
-  const brandNames = {
-    toyota: ["Toyota", "تويوتا"],
-    bmw: ["BMW", "بي إم دبليو"],
-    byd: ["BYD", "بي واي دي"],
-    tesla: ["Tesla", "تسلا"]
+  const copy = {
+    ar: { source: "المصدر الرسمي للطراز", select: "اختر سيارة لعرض ملف التحقق", market: "الأسواق التي يجب التحقق منها", spec: "المواصفات الهندسية", powertrain: "منظومة الحركة", drive: "نظام الدفع", type: "النوع", origin: "منشأ العلامة", year: "دليل موديلات 2026–2027", note: "لا تُنشر أرقام البطارية والمدى والسعر والقوة والعزم هنا إلا بعد مطابقتها مع سنة الطراز والفئة والسوق. استخدم المصدر الرسمي أدناه وحدد الأردن أو الولايات المتحدة أو الخليج أو أوروبا قبل المقارنة.", markets: ["الأردن", "الولايات المتحدة", "الخليج", "أوروبا"], official: "فتح صفحة الشركة الرسمية", photos: "معرض الصور", photoNote: "الصور المعروضة توضيحية؛ صور التجهيزات والمقصورة الدقيقة تُراجع من معرض الشركة الرسمي للطراز.", price: "السعر", range: "المدى والبطارية", interior: "المقصورة وأنظمة المساعدة", parts: "المكونات التي يجب مطابقتها" },
+    en: { source: "Official model source", select: "Choose a vehicle to open its verification profile", market: "Markets to verify", spec: "Engineering configuration", powertrain: "Powertrain", drive: "Drive system", type: "Body type", origin: "Brand origin", year: "2026–2027 model research guide", note: "Battery, range, price, power, and torque figures are not shown until they are matched to the exact model year, trim, and market. Use the official source below and select Jordan, the United States, Gulf markets, or Europe before comparing.", markets: ["Jordan", "United States", "Gulf", "Europe"], official: "Open official manufacturer page", photos: "Image gallery", photoNote: "Images are illustrative; use the official model gallery for exact exterior, interior, and trim photography.", price: "Price", range: "Battery and range", interior: "Cabin and driver assistance", parts: "Components to match" },
+    fr: { source: "Source officielle du modèle", select: "Choisissez un véhicule pour ouvrir sa fiche de vérification", market: "Marchés à vérifier", spec: "Configuration d'ingénierie", powertrain: "Motorisation", drive: "Transmission", type: "Carrosserie", origin: "Origine de la marque", year: "Guide de recherche des modèles 2026–2027", note: "Les chiffres de batterie, autonomie, prix, puissance et couple ne sont pas affichés sans correspondance avec l'année, la finition et le marché exacts. Utilisez la source officielle et choisissez la Jordanie, les États-Unis, le Golfe ou l'Europe avant de comparer.", markets: ["Jordanie", "États-Unis", "Golfe", "Europe"], official: "Ouvrir la page officielle du constructeur", photos: "Galerie d'images", photoNote: "Les images sont illustratives ; consultez la galerie officielle pour l'extérieur, l'intérieur et la finition exacts.", price: "Prix", range: "Batterie et autonomie", interior: "Habitacle et aides à la conduite", parts: "Éléments à vérifier" },
+    pt: { source: "Fonte oficial do modelo", select: "Escolha um veículo para abrir o perfil de verificação", market: "Mercados a verificar", spec: "Configuração de engenharia", powertrain: "Motorização", drive: "Sistema de tração", type: "Tipo de carroceria", origin: "Origem da marca", year: "Guia de pesquisa de modelos 2026–2027", note: "Números de bateria, autonomia, preço, potência e torque não são exibidos sem correspondência com ano-modelo, versão e mercado exatos. Use a fonte oficial e selecione Jordânia, Estados Unidos, Golfo ou Europa antes de comparar.", markets: ["Jordânia", "Estados Unidos", "Golfo", "Europa"], official: "Abrir página oficial do fabricante", photos: "Galeria de imagens", photoNote: "As imagens são ilustrativas; consulte a galeria oficial para exterior, interior e versão exatos.", price: "Preço", range: "Bateria e autonomia", interior: "Cabine e assistência ao motorista", parts: "Componentes a conferir" }
+  }[locale] || null;
+  if (!copy) return;
+
+  const requestedBrand = new URLSearchParams(window.location.search).get("brand")?.toLowerCase();
+  const models = requestedBrand ? researchModelCatalog.filter((item) => item.brand.toLowerCase() === requestedBrand) : researchModelCatalog;
+  catalog.innerHTML = models.map((item, index) => `<article class="vehicle-card research-model-card"><img src="${item.image}" alt="${item.brand} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${item.origin} · ${item.powertrain}</span><h2>${item.brand} ${item.model}</h2><p>${item.body} · ${item.drive}</p><button class="primary-btn" type="button" data-model-index="${researchModelCatalog.indexOf(item)}">${copy.source}</button></div></article>`).join("");
+
+  if (!models.length) catalog.innerHTML = `<p class="muted-box">${copy.select}</p>`;
+  const showModel = (item) => {
+    const gallery = [item.image, item.image, item.image, item.image].map((image, index) => `<img src="${image}" alt="${item.brand} ${item.model} ${index + 1}" loading="lazy" decoding="async">`).join("");
+    detail.className = "model-reference-detail";
+    detail.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${copy.year}</span><h2>${item.brand} ${item.model}</h2></div><a class="primary-btn" href="${item.officialUrl}" target="_blank" rel="noopener noreferrer">${copy.official}</a></div><div class="model-reference-grid"><section><h3>${copy.spec}</h3><dl><dt>${copy.type}</dt><dd>${item.body}</dd><dt>${copy.powertrain}</dt><dd>${item.powertrain}</dd><dt>${copy.drive}</dt><dd>${item.drive}</dd><dt>${copy.origin}</dt><dd>${item.origin}</dd></dl></section><section><h3>${copy.market}</h3><ul>${copy.markets.map((market) => `<li>${market}: ${copy.note}</li>`).join("")}</ul></section><section><h3>${copy.parts}</h3><ul><li>${copy.range}</li><li>${copy.price}</li><li>${copy.interior}</li><li>${copy.powertrain}</li></ul></section></div><section class="model-reference-gallery"><h3>${copy.photos}</h3><p>${copy.photoNote}</p><div>${gallery}</div></section>`;
+    detail.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-  const names = brandNames[requestedBrand.toLowerCase()];
-  if (!names) return;
-  catalog.querySelectorAll(".vehicle-card").forEach((card) => {
-    const title = card.querySelector("h2")?.textContent || "";
-    card.hidden = !names.some((name) => title.toLowerCase().includes(name.toLowerCase()));
-  });
+  catalog.querySelectorAll("[data-model-index]").forEach((button) => button.addEventListener("click", () => showModel(researchModelCatalog[Number(button.dataset.modelIndex)])));
 }
 
 function renderSources() {
