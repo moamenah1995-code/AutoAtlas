@@ -298,10 +298,10 @@ const localizedUi = {
 const ui = localizedUi[locale] || localizedUi.ar;
 const AI_CHAT_ENDPOINT = "";
 const vehicleCategoryLabels = {
-  ar: { all: "كل السيارات", petrol: "بنزين", diesel: "ديزل", hybrid: "هجينة", electric: "كهربائية", suv: "SUV", luxury: "فاخرة" },
-  en: { all: "All vehicles", petrol: "Petrol", diesel: "Diesel", hybrid: "Hybrid", electric: "Electric", suv: "SUV", luxury: "Luxury" },
-  fr: { all: "Tous les vehicules", petrol: "Essence", diesel: "Diesel", hybrid: "Hybride", electric: "Electrique", suv: "SUV", luxury: "Luxe" },
-  pt: { all: "Todos os veiculos", petrol: "Gasolina", diesel: "Diesel", hybrid: "Hibrido", electric: "Eletrico", suv: "SUV", luxury: "Luxo" }
+  ar: { all: "كل السيارات", petrol: "بنزين", diesel: "ديزل", hybrid: "هجينة", electric: "كهربائية", gas: "غاز", suv: "SUV", luxury: "فاخرة" },
+  en: { all: "All vehicles", petrol: "Petrol", diesel: "Diesel", hybrid: "Hybrid", electric: "Electric", gas: "Gas", suv: "SUV", luxury: "Luxury" },
+  fr: { all: "Tous les vehicules", petrol: "Essence", diesel: "Diesel", hybrid: "Hybride", electric: "Electrique", gas: "Gaz", suv: "SUV", luxury: "Luxe" },
+  pt: { all: "Todos os veiculos", petrol: "Gasolina", diesel: "Diesel", hybrid: "Hibrido", electric: "Eletrico", gas: "Gas", suv: "SUV", luxury: "Luxo" }
 };
 let selectedVehicleCategory = "all";
 const categoryLabels = vehicleCategoryLabels[locale] || vehicleCategoryLabels.ar;
@@ -443,13 +443,13 @@ function buildLocalizedHomeServices() {
 function initVehicleCategories() {
   const grid = document.querySelector(".types-grid");
   if (!grid) return;
-  const categories = ["all", "petrol", "diesel", "hybrid", "electric", "suv", "luxury"];
-  const icons = { all: "🚘", petrol: "⛽", diesel: "🛢️", hybrid: "🔋", electric: "⚡", suv: "🛻", luxury: "✨" };
+  const categories = ["all", "petrol", "diesel", "hybrid", "electric", "gas", "suv", "luxury"];
+  const icons = { all: "🚘", petrol: "⛽", diesel: "🛢️", hybrid: "🔋", electric: "⚡", gas: "🔥", suv: "🛻", luxury: "✨" };
   const descriptions = {
-    ar: { all: "عرض جميع السيارات", petrol: "محركات الاحتراق التقليدية", diesel: "محركات الديزل والاستخدام الشاق", hybrid: "محرك احتراق مع دعم كهربائي", electric: "قيادة كهربائية وبطارية عالية الجهد", suv: "مركبات مرتفعة متعددة الاستخدامات", luxury: "تجهيزات وراحة من الفئة العليا" },
-    en: { all: "Show every vehicle", petrol: "Conventional combustion engines", diesel: "Diesel power for demanding use", hybrid: "Combustion engine with electric support", electric: "Battery-electric driving", suv: "Raised multi-purpose vehicles", luxury: "Premium equipment and comfort" },
-    fr: { all: "Afficher tous les vehicules", petrol: "Moteurs thermiques classiques", diesel: "Diesel pour les usages exigeants", hybrid: "Moteur thermique avec assistance electrique", electric: "Conduite electrique sur batterie", suv: "Vehicules polyvalents sur eleves", luxury: "Equipements et confort premium" },
-    pt: { all: "Mostrar todos os veiculos", petrol: "Motores a combustao", diesel: "Diesel para uso exigente", hybrid: "Motor a combustao com apoio eletrico", electric: "Conducao eletrica por bateria", suv: "Veiculos altos e versateis", luxury: "Equipamentos e conforto premium" }
+    ar: { all: "عرض جميع السيارات", petrol: "محركات الاحتراق التقليدية", diesel: "محركات الديزل والاستخدام الشاق", hybrid: "محرك احتراق مع دعم كهربائي", electric: "قيادة كهربائية وبطارية عالية الجهد", gas: "غاز طبيعي أو غاز بترولي عند توفره رسميًا", suv: "مركبات مرتفعة متعددة الاستخدامات", luxury: "تجهيزات وراحة من الفئة العليا" },
+    en: { all: "Show every vehicle", petrol: "Conventional combustion engines", diesel: "Diesel power for demanding use", hybrid: "Combustion engine with electric support", electric: "Battery-electric driving", gas: "Natural gas or LPG where officially offered", suv: "Raised multi-purpose vehicles", luxury: "Premium equipment and comfort" },
+    fr: { all: "Afficher tous les vehicules", petrol: "Moteurs thermiques classiques", diesel: "Diesel pour les usages exigeants", hybrid: "Moteur thermique avec assistance electrique", electric: "Conduite electrique sur batterie", gas: "Gaz naturel ou GPL lorsqu'il est proposé officiellement", suv: "Vehicules polyvalents sur eleves", luxury: "Equipements et confort premium" },
+    pt: { all: "Mostrar todos os veiculos", petrol: "Motores a combustao", diesel: "Diesel para uso exigente", hybrid: "Motor a combustao com apoio eletrico", electric: "Conducao eletrica por bateria", gas: "Gas natural ou GPL quando oferecido oficialmente", suv: "Veiculos altos e versateis", luxury: "Equipamentos e conforto premium" }
   };
   const copy = descriptions[locale] || descriptions.ar;
   grid.innerHTML = "";
@@ -772,6 +772,16 @@ function renderCars(companyName, filterText = "") {
         activeCarBtn = btn;
         renderCarDetails(companyName, modelName);
       });
+      const categories = getModelCategories(modelName)
+        .filter((category) => ["petrol", "diesel", "hybrid", "electric", "gas"].includes(category))
+        .map((category) => categoryLabels[category])
+        .join(" · ");
+      const image = carProfiles[companyName][modelName].image;
+      btn.classList.add("model-selection-card");
+      btn.innerHTML = `<img src="${image}" alt="" loading="lazy" decoding="async"><span><strong>${modelName}</strong><small>${categories || categoryLabels.petrol}</small></span>`;
+      btn.querySelector("img").addEventListener("error", () => {
+        btn.querySelector("img").src = createModelPlaceholder(companyName, modelName);
+      }, { once: true });
       carsList.appendChild(btn);
     });
 
