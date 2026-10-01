@@ -579,15 +579,16 @@ function initSiteNavigation() {
         articles: { ar: "articles.html", en: "articles-en.html", pt: "articles-pt.html", fr: "articles-fr.html" },
         about: { ar: "about.html", en: "about-en.html", pt: "about-pt.html", fr: "about-fr.html" },
         privacy: { ar: "privacy.html", en: "privacy-en.html", pt: "privacy-pt.html", fr: "privacy-fr.html" },
-        chat: { ar: "index.html#chat", en: "en.html#chat", pt: "pt.html#chat", fr: "fr.html#chat" }
+        terms: { ar: "terms.html", en: "terms-en.html", pt: "terms-pt.html", fr: "terms-fr.html" },
+        contact: { ar: "contact.html", en: "contact-en.html", pt: "contact-pt.html", fr: "contact-fr.html" }
       };
       const labels = {
-        ar: ["السيارات", "الموديلات", "المقارنة", "التقنيات", "المقالات", "من نحن", "🔒 الخصوصية", "الدردشة"],
-        en: ["Cars", "Models", "Compare", "Technology", "Articles", "About", "🔒 Privacy", "Chat"],
-        pt: ["Carros", "Modelos", "Comparar", "Tecnologia", "Artigos", "Sobre", "🔒 Privacidade", "Chat"],
-        fr: ["Voitures", "Modèles", "Comparer", "Technologie", "Articles", "À propos", "🔒 Confidentialité", "Chat"]
+        ar: ["السيارات", "الموديلات", "المقارنة", "التقنيات", "المقالات", "من نحن", "🔒 الخصوصية", "الشروط", "تواصل"],
+        en: ["Cars", "Models", "Compare", "Technology", "Articles", "About", "🔒 Privacy", "Terms", "Contact"],
+        pt: ["Carros", "Modelos", "Comparar", "Tecnologia", "Artigos", "Sobre", "🔒 Privacidade", "Termos", "Contato"],
+        fr: ["Voitures", "Modèles", "Comparer", "Technologie", "Articles", "À propos", "🔒 Confidentialité", "Conditions", "Contact"]
       }[language];
-      const keys = ["companies", "models", "compare", "technology", "articles", "about", "privacy", "chat"];
+      const keys = ["companies", "models", "compare", "technology", "articles", "about", "privacy", "terms", "contact"];
       document.querySelectorAll(".main-nav").forEach((nav) => {
         nav.innerHTML = keys.map((key, index) => `<a href="${pages[key][language]}">${labels[index]}</a>`).join("");
       });
