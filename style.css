@@ -1941,6 +1941,14 @@ main {
   margin-top: 1rem;
 }
 
+.image-source-link {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
 .model-reference-detail {
   margin-top: 1.5rem;
   padding: clamp(1rem, 3vw, 1.5rem);
