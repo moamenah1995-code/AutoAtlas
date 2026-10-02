@@ -105,6 +105,7 @@ const sourceScopes = {
   "Jordan Customs": "إجراءات وبيانات الاستيراد والرسوم الجمركية في الأردن"
 };
 
+// AUTO-GENERATED:ARTICLES:START
 const articles = [
   { title: "المنافسة بين شركات السيارات العالمية", summary: "تحليل المنافسة بناءً على الإنتاج العالمي وحصص السوق من مصادر مثل OICA وتقارير الشركات الرسمية.", sources: ["OICA", "ACEA"] },
   { title: "أفضل التصاميم في تاريخ السيارات", summary: "مراجعة معايير التصميم الصناعي وعلاقتها بالديناميكا الهوائية والسلامة وفق نشرات الشركات.", sources: ["Euro NCAP", "IIHS"] },
@@ -172,6 +173,7 @@ const articles = [
   { title: "الذكاء الاصطناعي في هندسة المركبات", summary: "استخدام النماذج في التصميم والمحاكاة والتنبؤ بالصيانة، مع بقاء التحقق الهندسي والاختبار الميداني شرطًا.", sources: ["NHTSA", "ACEA"] },
   { title: "توقعات السيارات حتى 2035", summary: "سيناريوهات مشروطة للطاقة والبطاريات والبرمجيات والتنظيم، لا وعود زمنية أو أرقامًا غير مثبتة.", sources: ["IEA - Global EV Outlook", "OICA", "UNECE Vehicle Regulations"] }
 ];
+// AUTO-GENERATED:ARTICLES:END
 
 const modelImageMap = {
   Corolla: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1200&q=80&fm=webp",
