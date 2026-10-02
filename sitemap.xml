@@ -185,4 +185,29 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/solar-ev-jordan-ar.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/jordan-ev-charging-study-ar.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/amman-public-transport-electrification-ar.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/commercial-fleet-electrification-jordan-ar.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/home-energy-storage-smart-charging-ar.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
