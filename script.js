@@ -1007,6 +1007,8 @@ function initArticleSearch() {
   articleSearchInput.addEventListener("input", () => renderArticles(articleSearchInput.value));
 }
 
+// AUTO-GENERATED:CARS:START
+// Do not edit by hand. Edit cars.json and run `node scripts/build-cars.mjs`.
 const researchModelCatalog = [
   ["Tesla", "Model Y", "United States", "SUV", "electric", "AWD/RWD varies by trim", "https://www.tesla.com/modely", "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80&fm=webp"],
   ["Ford", "Mustang Mach-E", "United States", "SUV", "electric", "RWD/AWD varies by trim", "https://www.ford.com/suvs/mach-e/", "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80&fm=webp"],
@@ -1062,6 +1064,7 @@ const marketResearchStatus = {
   "Mazda CX-70 PHEV": { us: "official", jordan: "dealer", gulf: "dealer", europe: "not-listed" },
   "Honda CR-V e:FCEV": { us: "official", jordan: "not-listed", gulf: "not-listed", europe: "not-listed" }
 };
+// AUTO-GENERATED:CARS:END
 
 function initModelsPage() {
   const catalog = document.querySelector(".model-catalog");

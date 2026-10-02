@@ -32,6 +32,9 @@ jobs:
       - name: Build articles pipeline (sitemap, search index, RSS)
         run: node scripts/build-articles.mjs
 
+      - name: Build car catalog (cars.json)
+        run: node scripts/build-cars.mjs
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

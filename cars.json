@@ -1,0 +1,342 @@
+[
+  {
+    "id": "tesla-model-y",
+    "brand": "Tesla",
+    "model": "Model Y",
+    "origin": "United States",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "AWD/RWD varies by trim",
+    "officialUrl": "https://www.tesla.com/modely",
+    "image": "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "ford-mustang-mach-e",
+    "brand": "Ford",
+    "model": "Mustang Mach-E",
+    "origin": "United States",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by trim",
+    "officialUrl": "https://www.ford.com/suvs/mach-e/",
+    "image": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "chevrolet-equinox-ev",
+    "brand": "Chevrolet",
+    "model": "Equinox EV",
+    "origin": "United States",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "FWD/AWD varies by trim",
+    "officialUrl": "https://www.chevrolet.com/electric/equinox-ev",
+    "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "not-listed",
+      "gulf": "not-listed",
+      "europe": "not-listed"
+    }
+  },
+  {
+    "id": "rivian-r1s",
+    "brand": "Rivian",
+    "model": "R1S",
+    "origin": "United States",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "AWD configurations",
+    "officialUrl": "https://rivian.com/r1s",
+    "image": "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "not-listed",
+      "gulf": "dealer",
+      "europe": "not-listed"
+    }
+  },
+  {
+    "id": "bmw-ix3",
+    "brand": "BMW",
+    "model": "iX3",
+    "origin": "Germany",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "Configuration varies by market",
+    "officialUrl": "https://www.bmw.com/en/automotive-life/the-new-bmw-ix3.html",
+    "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "dealer",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "mercedes-benz-cla",
+    "brand": "Mercedes-Benz",
+    "model": "CLA",
+    "origin": "Germany",
+    "body": "Sedan",
+    "powertrain": "electric / hybrid varies by market",
+    "drive": "FWD/RWD/AWD varies by version",
+    "officialUrl": "https://www.mercedes-benz.com/en/vehicles/mercedes-benz-vehicles/cla/",
+    "image": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "audi-q6-e-tron",
+    "brand": "Audi",
+    "model": "Q6 e-tron",
+    "origin": "Germany",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by version",
+    "officialUrl": "https://www.audi.com/en/models/q6-e-tron.html",
+    "image": "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "porsche-macan-electric",
+    "brand": "Porsche",
+    "model": "Macan Electric",
+    "origin": "Germany",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by version",
+    "officialUrl": "https://www.porsche.com/international/models/macan/macan-electric-models/",
+    "image": "https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "byd-seal",
+    "brand": "BYD",
+    "model": "Seal",
+    "origin": "China",
+    "body": "Sedan",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by market",
+    "officialUrl": "https://www.byd.com/en/car/seal",
+    "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "not-listed",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "geely-ex5",
+    "brand": "Geely",
+    "model": "EX5",
+    "origin": "China",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "Configuration varies by market",
+    "officialUrl": "https://www.geely.com/en/models/geely-ex5",
+    "image": "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "not-listed",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "nio-et5",
+    "brand": "NIO",
+    "model": "ET5",
+    "origin": "China",
+    "body": "Sedan",
+    "powertrain": "electric",
+    "drive": "Configuration varies by market",
+    "officialUrl": "https://www.nio.com/et5",
+    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "not-listed",
+      "jordan": "not-listed",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "xpeng-g6",
+    "brand": "XPENG",
+    "model": "G6",
+    "origin": "China",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by market",
+    "officialUrl": "https://www.xpeng.com/g6",
+    "image": "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "not-listed",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "hyundai-ioniq-5",
+    "brand": "Hyundai",
+    "model": "IONIQ 5",
+    "origin": "Korea",
+    "body": "Crossover",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by market",
+    "officialUrl": "https://www.hyundai.com/worldwide/en/eco/ioniq5",
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "kia-ev9",
+    "brand": "Kia",
+    "model": "EV9",
+    "origin": "Korea",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "RWD/AWD varies by version",
+    "officialUrl": "https://worldwide.kia.com/int/ev9",
+    "image": "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "genesis-electrified-gv70",
+    "brand": "Genesis",
+    "model": "Electrified GV70",
+    "origin": "Korea",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "AWD varies by market",
+    "officialUrl": "https://www.genesis.com/worldwide/en/models/electrified-gv70.html",
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "toyota-bz4x",
+    "brand": "Toyota",
+    "model": "bZ4X",
+    "origin": "Japan",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "FWD/AWD varies by market",
+    "officialUrl": "https://www.toyota.com/bz4x/",
+    "image": "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "nissan-ariya",
+    "brand": "Nissan",
+    "model": "Ariya",
+    "origin": "Japan",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "FWD/AWD varies by version",
+    "officialUrl": "https://www.nissanusa.com/vehicles/electric-cars/ariya.html",
+    "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "official"
+    }
+  },
+  {
+    "id": "subaru-solterra",
+    "brand": "Subaru",
+    "model": "Solterra",
+    "origin": "Japan",
+    "body": "SUV",
+    "powertrain": "electric",
+    "drive": "AWD availability varies by market",
+    "officialUrl": "https://www.subaru.com/vehicles/solterra.html",
+    "image": "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "not-listed",
+      "gulf": "not-listed",
+      "europe": "dealer"
+    }
+  },
+  {
+    "id": "mazda-cx-70-phev",
+    "brand": "Mazda",
+    "model": "CX-70 PHEV",
+    "origin": "Japan",
+    "body": "SUV",
+    "powertrain": "plug-in hybrid",
+    "drive": "AWD availability varies by market",
+    "officialUrl": "https://www.mazdausa.com/vehicles/cx-70-phev",
+    "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "dealer",
+      "gulf": "dealer",
+      "europe": "not-listed"
+    }
+  },
+  {
+    "id": "honda-cr-v-e-fcev",
+    "brand": "Honda",
+    "model": "CR-V e:FCEV",
+    "origin": "Japan",
+    "body": "SUV",
+    "powertrain": "fuel-cell plug-in hybrid",
+    "drive": "FWD varies by market",
+    "officialUrl": "https://automobiles.honda.com/cr-v-fcev",
+    "image": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1200&q=80&fm=webp",
+    "availability": {
+      "us": "official",
+      "jordan": "not-listed",
+      "gulf": "not-listed",
+      "europe": "not-listed"
+    }
+  }
+]

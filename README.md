@@ -58,3 +58,13 @@ GitHub Action
 - **رفع الموقع تلقائياً**: تتولى خطوة `upload-pages-artifact` الموجودة أصلاً في كلا ملفي الـ workflow رفع نتيجة البناء إلى GitHub Pages.
 
 لا تُحرَّر الملفات المولَّدة (`search-index.json`، `rss.xml`، كتلة `articles` داخل `script.js`، و`<lastmod>` في `sitemap.xml`) يدوياً؛ أي تعديل يدوي عليها سيُستبدَل عند تنفيذ `scripts/build-articles.mjs` في الـ CI أو محلياً.
+
+## إضافة سيارة جديدة إلى صفحات الأبحاث/المقارنة (أتمتة كاملة)
+مصدر بيانات كتالوج السيارات المبحوثة الوحيد هو [cars.json](./cars.json)، وهو ما تعرضه صفحات `models.html` وبدائلها اللغوية (research/compare). هذا المسار لا علاقة له بمشروع Azure Functions الاختياري في [AutoAtlasFunctions](./AutoAtlasFunctions/README.md)؛ الموقع الثابت لا يعتمد عليه في العرض الفعلي. لإضافة سيارة جديدة:
+1. أضف كائناً جديداً إلى `cars.json` يحوي: `id` (فريد، slug)، `brand`، `model`، `origin`، `body`، `powertrain`، `drive`، `officialUrl`، `image`، و`availability` (كائن بالمناطق الأربع: `us`‎/`jordan`‎/`gulf`‎/`europe`‎، وقيمة كل منها واحدة من `official`‎/`dealer`‎/`not-listed`).
+2. (اختياري أثناء التطوير المحلي) شغّل `node scripts/build-cars.mjs` للتحقق من النتيجة محلياً.
+3. ارفع التغيير (commit/push) إلى `main`.
+
+عند كل دفعة إلى `main`، ينفّذ [.github/workflows/deploy.yml](./.github/workflows/deploy.yml) و[.github/workflows/pages.yml](./.github/workflows/pages.yml) خطوة [scripts/build-cars.mjs](./scripts/build-cars.mjs) تلقائياً قبل النشر: يعيد توليد `researchModelCatalog` و`marketResearchStatus` بين الحدين `AUTO-GENERATED:CARS:START/END` داخل `script.js` من `cars.json`.
+
+لا تُحرَّر كتلة `researchModelCatalog`/`marketResearchStatus` داخل `script.js` يدوياً؛ أي تعديل يدوي عليها سيُستبدَل عند تنفيذ `scripts/build-cars.mjs` في الـ CI أو محلياً.
