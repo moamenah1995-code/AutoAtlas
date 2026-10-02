@@ -110,7 +110,7 @@ function pageKind(filename) {
   if (/^models(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "model-list";
   if (/^compare(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "comparison";
   if (/^car-detail(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "vehicle-guide";
-  if (/^(solar-ev-jordan|jordan-ev-charging-study|amman-public-transport-electrification|commercial-fleet-electrification-jordan|home-energy-storage-smart-charging)\.html$/.test(filename)) return "research-article";
+  if (/^(solar-ev-jordan|jordan-ev-charging-study|amman-public-transport-electrification|commercial-fleet-electrification-jordan|home-energy-storage-smart-charging)(?:-ar)?\.html$/.test(filename)) return "research-article";
   if (/^about(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "about";
   if (/^contact(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "contact";
   return "webpage";
