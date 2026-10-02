@@ -36,6 +36,15 @@ jobs:
       - name: Build car catalog (cars.json)
         run: node scripts/build-cars.mjs
 
+      - name: Build Jordan mobility and energy research pages
+        run: node scripts/build-jordan-guides.mjs
+
+      - name: Build author profiles and content authority metadata
+        run: node scripts/build-author-authority.mjs
+
+      - name: Build page structured data (JSON-LD)
+        run: node scripts/build-structured-data.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

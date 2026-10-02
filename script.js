@@ -433,7 +433,13 @@ function buildLocalizedHomeServices() {
         ? { kicker: "Modeles en vedette", title: "Explorez les vehicules par type", link: "Voir tous les profils", cards: [["BYD Seal", "Vehicule electrique", "Performances solides et design soigne."], ["Tesla Model Y", "SUV", "Espace modulable et conduite electrique."], ["BMW 3 Series", "Berline", "Un equilibre entre performance, confort et technologie."]] }
         : { kicker: "Modelos em destaque", title: "Explore veiculos por tipo", link: "Ver todos os perfis", cards: [["BYD Seal", "Veiculo eletrico", "Desempenho forte e design refinado."], ["Tesla Model Y", "SUV", "Espaco versatil e experiencia eletrica."], ["BMW 3 Series", "Sedan", "Equilibrio entre desempenho, conforto e tecnologia."]] };
     const images = [modelImageMap.Corolla, modelImageMap["Model Y"] || modelImageMap.Tucson, modelImageMap["3 Series"]];
-    showcase.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${showcaseCopy.kicker}</span><h2>🏁 ${showcaseCopy.title}</h2></div><a href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}" class="ghost-link">${showcaseCopy.link}</a></div><div class="model-grid">${showcaseCopy.cards.map((card, index) => `<a class="model-card-link" href="${locale === "en" ? "car-detail-en.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail-pt.html"}"><article class="model-card"><div class="model-image"><img src="${images[index]}"     alt="${card[0]}" loading="lazy" decoding="async" /><span class="model-badge">${card[1]}</span></div><div class="model-content"><h3>${card[0]}</h3><p>${card[2]}</p><div class="model-meta"><span>${locale === "en" ? "Official sources" : locale === "fr" ? "Sources officielles" : "Fontes oficiais"}</span><span>${locale === "en" ? "Specifications vary by market" : locale === "fr" ? "Specifications selon le marche" : "Especificacoes variam por mercado"}</span></div></div></article></a>`).join("")}</div>`;
+    const showcaseModels = [
+      { brand: "BYD", model: "Seal" },
+      { brand: "Tesla", model: "Model Y" },
+      { brand: "BMW", model: "3 Series" }
+    ];
+    const modelsPage = locale === "en" ? "models-en.html" : locale === "fr" ? "models-fr.html" : "models-pt.html";
+    showcase.innerHTML = `<div class="section-heading-row"><div><span class="section-kicker">${showcaseCopy.kicker}</span><h2>🏁 ${showcaseCopy.title}</h2></div><a href="${modelsPage}" class="ghost-link">${showcaseCopy.link}</a></div><div class="model-grid">${showcaseCopy.cards.map((card, index) => `<a class="model-card-link" href="${getVehicleCatalogUrl(showcaseModels[index].brand, showcaseModels[index].model)}"><article class="model-card"><div class="model-image"><img src="${images[index]}" alt="${card[0]}" loading="lazy" decoding="async" /><span class="model-badge">${card[1]}</span></div><div class="model-content"><h3>${card[0]}</h3><p>${card[2]}</p><div class="model-meta"><span>${locale === "en" ? "Official sources" : locale === "fr" ? "Sources officielles" : "Fontes oficiais"}</span><span>${locale === "en" ? "Specifications vary by market" : locale === "fr" ? "Specifications selon le marche" : "Especificacoes variam por mercado"}</span></div></div></article></a>`).join("")}</div>`;
     document.querySelector("main.container")?.insertBefore(showcase, document.getElementById("technology"));
   }
 
@@ -718,6 +724,12 @@ function initCookieConsent() {
 let activeCarBtn = null;
 let selectedCompany = null;
 
+function getVehicleCatalogUrl(company, model) {
+  const page = locale === "en" ? "companies-en.html" : locale === "fr" ? "companies-fr.html" : locale === "pt" ? "companies-pt.html" : "companies.html";
+  const query = new URLSearchParams({ company, model });
+  return `${page}?${query.toString()}`;
+}
+
 function createButton(text, onClick) {
   const btn = document.createElement("button");
   btn.textContent = text;
@@ -789,6 +801,7 @@ function renderCars(companyName, filterText = "") {
         .join(" · ");
       const image = carProfiles[companyName][modelName].image;
       btn.classList.add("model-selection-card");
+      btn.dataset.modelName = modelName;
       btn.innerHTML = `<img src="${image}" alt="" loading="lazy" decoding="async"><span><strong>${modelName}</strong><small>${categories || categoryLabels.petrol}</small></span>`;
       btn.querySelector("img").addEventListener("error", () => {
         btn.querySelector("img").src = createModelPlaceholder(companyName, modelName);
@@ -845,6 +858,25 @@ function initSmartVehicleSearch() {
       companySearchInput.blur();
     }
   });
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedBrand = params.get("company");
+  const requestedModel = params.get("model");
+  if (requestedModel) {
+    const companyName = Object.keys(companiesData).find((name) => {
+      const brandMatches = !requestedBrand || name.toLowerCase() === requestedBrand.toLowerCase() || displayCompany(name).toLowerCase() === requestedBrand.toLowerCase();
+      return brandMatches && companiesData[name].some((model) => model.toLowerCase() === requestedModel.toLowerCase());
+    });
+    if (companyName) {
+      selectedCompany = companyName;
+      companySearchInput.value = requestedModel;
+      renderCompanies();
+      renderCars(companyName, requestedModel);
+      const modelButton = Array.from(carsList?.querySelectorAll("[data-model-name]") || []).find((button) => button.dataset.modelName.toLowerCase() === requestedModel.toLowerCase());
+      modelButton?.click();
+      document.getElementById("car-details")?.scrollIntoView({ block: "start" });
+    }
+  }
 }
 
 function sourceItemHtml(source) {
@@ -904,6 +936,25 @@ function renderCarDetails(company, model) {
   }
 }
 
+// AUTO-GENERATED:AUTHOR-AUTHORITY:START
+function articleAuthorityHtml(sourceCount) {
+  const decodeLegacy = (value) => {
+    const cp1252 = new Map([["€",0x80],["‚",0x82],["ƒ",0x83],["„",0x84],["…",0x85],["†",0x86],["‡",0x87],["ˆ",0x88],["‰",0x89],["Š",0x8a],["‹",0x8b],["Œ",0x8c],["Ž",0x8e],["‘",0x91],["’",0x92],["“",0x93],["”",0x94],["•",0x95],["–",0x96],["—",0x97],["˜",0x98],["™",0x99],["š",0x9a],["›",0x9b],["œ",0x9c],["ž",0x9e],["Ÿ",0x9f]]);
+    return !/[ØÙÃÂ]/.test(value) ? value : new TextDecoder().decode(Uint8Array.from([...value].map((char) => cp1252.get(char) ?? (char.charCodeAt(0) & 0xff))));
+  };
+  const copy = locale === "ar"
+    ? { author: "الكاتبة", reviewed: "آخر مراجعة: غير مسجل", status: "المراجعة الفنية: خارج نطاق مراجعة الأدلة التقنية", sources: "مراجعة المصادر: غير مسجلة؛ مراجع مدرجة: " }
+    : locale === "fr"
+      ? { author: "Autrice", reviewed: "Dernière révision : non renseignée", status: "Révision technique : hors du périmètre des guides techniques", sources: "Vérification des sources non renseignée ; références listées : " }
+      : locale === "pt"
+        ? { author: "Autora", reviewed: "Última revisão: não registrada", status: "Revisão técnica: fora do escopo dos guias técnicos", sources: "Verificação das fontes não registrada; referências listadas: " }
+        : { author: "Author", reviewed: "Last reviewed: not recorded", status: "Technical review: outside the reviewed technology-guide set", sources: "Source review not recorded; references listed: " };
+  for (const key of Object.keys(copy)) copy[key] = decodeLegacy(copy[key]);
+  const profile = locale === "ar" ? "author.html" : "author-" + locale + ".html";
+  return '<aside class="article-author-meta"><p><strong>' + copy.author + ':</strong> <a href="' + profile + '">Mu'minah Alimat</a></p><p>' + copy.reviewed + '</p><p>' + copy.status + '</p><p>' + copy.sources + sourceCount + '</p></aside>';
+}
+// AUTO-GENERATED:AUTHOR-AUTHORITY:END
+
 function renderArticles(filterText = "") {
   articlesList = document.getElementById("articles-list") || document.querySelector(".articles-list");
   if (!articlesList) return;
@@ -957,6 +1008,7 @@ function renderArticles(filterText = "") {
     articleElement.innerHTML = `
       <h4>${idx + 1}. ${title}</h4>
       <p class="article-summary">${summary}</p>
+      ${articleAuthorityHtml((article.sources || []).length)}
       <div class="article-body">
         <section>
           <h5>${localizedText("Engineering perspective", "Perspective d'ingenierie", "Perspectiva de engenharia", "المنظور الهندسي")}</h5>
@@ -1322,8 +1374,8 @@ function renderRecommendations(container, preferences) {
     <div class="recommendation-heading"><h3>${copy.result}</h3><p>${copy.note}</p></div>
     <div class="recommendation-grid">${ranked.map((item) => {
       const profile = carProfiles[item.company][item.model];
-      const detailPage = locale === "en" ? "car-detail-en.html" : locale === "pt" ? "car-detail-pt.html" : locale === "fr" ? "car-detail-fr.html" : "car-detail.html";
-      return `<article class="recommendation-card"><img src="${profile.image}" alt="${displayCompany(item.company)} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${copy.score}: ${item.score}%</span><h4>${displayCompany(item.company)} - ${item.model}</h4><a class="text-link" href="${detailPage}">${copy.view}</a></div></article>`;
+      const profileUrl = getVehicleCatalogUrl(displayCompany(item.company), item.model);
+      return `<article class="recommendation-card"><img src="${profile.image}" alt="${displayCompany(item.company)} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${copy.score}: ${item.score}%</span><h4>${displayCompany(item.company)} - ${item.model}</h4><a class="text-link" href="${profileUrl}">${copy.view}</a></div></article>`;
     }).join("")}</div>`;
 }
 
@@ -1677,6 +1729,186 @@ initLocalizedFooter();
 initLazyBackgrounds();
 initThemeControl();
 initCookieConsent();
+
+// Engineering visuals shared by every localized technology guide.
+function initTechnologyLearningTools() {
+  const article = document.querySelector('.technology-detail');
+  if (!article) return;
+
+  const lang = document.documentElement.lang.startsWith('ar') ? 'ar'
+    : document.documentElement.lang.startsWith('fr') ? 'fr'
+      : document.documentElement.lang.startsWith('pt') ? 'pt' : 'en';
+  const slug = location.pathname.match(/technology-(ev|charging|renewables|future)/)?.[1] || 'ev';
+  const copy = {
+    en: { chart: 'Energy flow explorer', subtitle: 'Select an operating condition to explore how energy use shifts. The bars are a conceptual illustration, not measured vehicle data.', modes: ['Steady cruise', 'Stop and go', 'Cold weather'], labels: ['Useful output', 'Conversion losses', 'Auxiliary loads', 'Recovered energy'], compare: 'Technology trade-offs', option: 'Option', strength: 'Engineering strength', tradeoff: 'Design trade-off', comparisons: { ev: [['Permanent-magnet motor', 'High torque density', 'Uses rare-earth magnets'], ['Induction motor', 'No permanent magnets', 'Can have higher rotor losses']], charging: [['AC charging', 'Uses the vehicle’s onboard charger', 'Power is limited by onboard hardware'], ['DC fast charging', 'Station supplies controlled DC', 'Higher grid demand and equipment cost']], renewables: [['Solar PV', 'Generates electricity on site', 'Output changes with sun and weather'], ['Grid electricity', 'Available on demand', 'Emissions depend on the generation mix']], future: [['Driver assistance', 'Supports a human driver', 'Driver remains responsible'], ['Automated driving', 'Can perform defined tasks', 'Requires validated operating limits']] }, fact: 'Did you know?', facts: { ev: 'Regenerative braking sends some kinetic energy back through the motor and inverter. It cannot recover all braking energy: tyre grip, battery temperature and charge level set the limits.', charging: 'A charger’s headline kW rating is a peak, not a promise. The vehicle and station continuously negotiate power, and the battery often tapers its request as it fills.', renewables: 'A solar array can produce more or less than a vehicle needs at a given moment. A stationary battery or scheduled charging shifts that energy across time.', future: 'Connected vehicle data can support smoother traffic and predictive maintenance, but only when communications, privacy and safety controls work together.' }, term: 'Hover or focus the highlighted term for a concise engineering definition.' },
+    fr: { chart: 'Explorer les flux d’énergie', subtitle: 'Choisissez une condition pour explorer les variations d’usage. Barres conceptuelles, sans données de véhicule mesurées.', modes: ['Croisière', 'Arrêts fréquents', 'Temps froid'], labels: ['Énergie utile', 'Pertes de conversion', 'Charges auxiliaires', 'Énergie récupérée'], levels: ['Faible', 'Moyen', 'Élevé'], fact: 'Le saviez-vous ?', facts: { ev: 'Le freinage régénératif renvoie une partie de l’énergie cinétique vers la batterie. L’adhérence, la température et le niveau de charge limitent cette récupération.', charging: 'La puissance maximale annoncée est un pic, pas une garantie. Le véhicule et la borne négocient en continu; la puissance diminue souvent lorsque la batterie se remplit.', renewables: 'La production solaire varie au fil du temps. Une batterie stationnaire ou une recharge programmée permet de décaler l’énergie disponible.', future: 'Les données connectées peuvent fluidifier le trafic et anticiper la maintenance, à condition de protéger les communications, la vie privée et la sécurité.' }, term: 'Survolez ou placez le focus sur le terme pour afficher sa définition.' },
+    pt: { chart: 'Explorador do fluxo de energia', subtitle: 'Escolha uma condição para explorar as mudanças de uso. Barras conceituais, sem dados medidos de veículos.', modes: ['Velocidade constante', 'Trânsito urbano', 'Clima frio'], labels: ['Saída útil', 'Perdas de conversão', 'Cargas auxiliares', 'Energia recuperada'], levels: ['Baixo', 'Médio', 'Alto'], fact: 'Sabia que?', facts: { ev: 'A travagem regenerativa devolve parte da energia cinética à bateria. A aderência, a temperatura e o nível de carga limitam a recuperação.', charging: 'A potência máxima anunciada é um pico, não uma garantia. Veículo e posto negociam continuamente, e a potência costuma diminuir à medida que a bateria enche.', renewables: 'A produção solar varia ao longo do tempo. Uma bateria estacionária ou o carregamento programado pode deslocar a energia disponível.', future: 'Dados conectados podem melhorar o fluxo de trânsito e prever manutenção, desde que comunicação, privacidade e segurança sejam protegidas.' }, term: 'Passe o cursor ou foque o termo destacado para ver uma definição breve.' },
+    ar: { chart: 'استكشف تدفق الطاقة', subtitle: 'اختر حالة تشغيل لاستكشاف تغير استخدام الطاقة. الأشرطة توضيحية ومفاهيمية وليست قياسات فعلية لمركبة.', modes: ['سير ثابت', 'توقف وانطلاق', 'طقس بارد'], labels: ['خرج مفيد', 'فاقد التحويل', 'أحمال مساعدة', 'طاقة مستعادة'], levels: ['منخفض', 'متوسط', 'مرتفع'], fact: 'هل تعلم؟', facts: { ev: 'يعيد الكبح المتجدد جزءًا من الطاقة الحركية إلى البطارية. تحدّ التماسك وحرارة البطارية ومستوى شحنها من مقدار الاستعادة.', charging: 'قدرة الشاحن القصوى قيمة لحظية وليست وعدًا ثابتًا. يتفاوض الشاحن والمركبة على القدرة، وغالبًا ما تخفض البطارية طلبها كلما امتلأت.', renewables: 'يتغير إنتاج الألواح الشمسية بمرور الوقت. تساعد البطارية الثابتة أو جدولة الشحن على نقل الطاقة إلى وقت الحاجة.', future: 'تساعد بيانات المركبات المتصلة على تحسين حركة المرور والصيانة التنبؤية عند حماية الاتصالات والخصوصية والسلامة.' }, term: 'مرّر المؤشر أو ركّز على المصطلح المميز لعرض تعريف هندسي موجز.' }
+  }[lang];
+
+  const comparisonLabels = {
+    en: ['Technology trade-offs', 'Option', 'Engineering strength', 'Design trade-off'],
+    fr: ['Compromis technologiques', 'Option', 'Atout technique', 'Compromis de conception'],
+    pt: ['Compromissos tecnológicos', 'Opção', 'Vantagem técnica', 'Compromisso de projeto'],
+    ar: ['المفاضلات التقنية', 'الخيار', 'الميزة الهندسية', 'مفاضلة التصميم']
+  }[lang];
+  const comparisonContent = {
+    en: {
+      ev: [['Permanent-magnet motor', 'High torque density', 'Uses rare-earth magnets'], ['Induction motor', 'No permanent magnets', 'Can have higher rotor losses']],
+      charging: [['AC charging', 'Uses the vehicle’s onboard charger', 'Power is limited by onboard hardware'], ['DC fast charging', 'Station supplies controlled DC', 'Higher grid demand and equipment cost']],
+      renewables: [['Solar PV', 'Generates electricity on site', 'Output changes with sun and weather'], ['Grid electricity', 'Available on demand', 'Emissions depend on the generation mix']],
+      future: [['Driver assistance', 'Supports a human driver', 'Driver remains responsible'], ['Automated driving', 'Can perform defined tasks', 'Requires validated operating limits']]
+    },
+    fr: {
+      ev: [['Moteur à aimants permanents', 'Forte densité de couple', 'Utilise des terres rares'], ['Moteur à induction', 'Sans aimants permanents', 'Pertes rotorique parfois supérieures']],
+      charging: [['Recharge CA', 'Utilise le chargeur embarqué', 'Puissance limitée par le véhicule'], ['Recharge rapide CC', 'La borne fournit du courant continu', 'Réseau et équipements plus sollicités']],
+      renewables: [['Solaire photovoltaïque', 'Produit sur place', 'Production variable selon le soleil'], ['Électricité du réseau', 'Disponible à la demande', 'Émissions liées au mix électrique']],
+      future: [['Aide à la conduite', 'Assiste un conducteur humain', 'Le conducteur reste responsable'], ['Conduite automatisée', 'Exécute des tâches définies', 'Limites opérationnelles à valider']]
+    },
+    pt: {
+      ev: [['Motor de ímanes permanentes', 'Alta densidade de binário', 'Usa elementos de terras raras'], ['Motor de indução', 'Dispensa ímanes permanentes', 'Pode ter mais perdas no rotor']],
+      charging: [['Carregamento CA', 'Usa o carregador de bordo', 'Potência limitada pelo veículo'], ['Carregamento rápido CC', 'O posto fornece corrente contínua', 'Maior exigência para a rede e o equipamento']],
+      renewables: [['Solar fotovoltaica', 'Produz energia no local', 'A produção varia com o sol e o clima'], ['Eletricidade da rede', 'Disponível a pedido', 'Emissões dependem da matriz elétrica']],
+      future: [['Assistência à condução', 'Apoia um condutor humano', 'O condutor mantém a responsabilidade'], ['Condução automatizada', 'Executa tarefas definidas', 'Limites operacionais precisam de validação']]
+    },
+    ar: {
+      ev: [['محرك مغناطيس دائم', 'كثافة عزم مرتفعة', 'يستخدم عناصر أرضية نادرة'], ['محرك حثّي', 'لا يحتاج مغناطيسًا دائمًا', 'قد ترتفع خسائر الدوّار']],
+      charging: [['شحن بالتيار المتردد', 'يستخدم الشاحن الداخلي للمركبة', 'القدرة محدودة بمكونات المركبة'], ['شحن سريع بالتيار المستمر', 'المحطة توفر التيار المستمر', 'طلب أعلى على الشبكة والمعدات']],
+      renewables: [['طاقة شمسية كهروضوئية', 'تولّد الكهرباء في الموقع', 'يتغير الإنتاج مع الشمس والطقس'], ['كهرباء الشبكة', 'متاحة عند الطلب', 'تعتمد الانبعاثات على مزيج التوليد']],
+      future: [['مساعدة السائق', 'تدعم السائق البشري', 'تبقى المسؤولية على السائق'], ['قيادة آلية', 'تنفذ مهامًا محددة', 'تحتاج حدود التشغيل إلى تحقق']]
+    }
+  }[lang];
+  copy.compare ||= comparisonLabels[0];
+  copy.option ||= comparisonLabels[1];
+  copy.strength ||= comparisonLabels[2];
+  copy.tradeoff ||= comparisonLabels[3];
+  copy.comparisons ||= comparisonContent;
+
+  const evolutionByLanguage = {
+    en: {
+      title: 'Technology evolution',
+      entries: {
+        ev: [['Foundations', 'Electric traction emerges', 'Early electric machines establish the principles of controllable traction and energy conversion.'], ['Vehicle integration', 'Battery systems become practical', 'Rechargeable batteries, power electronics and control systems combine into complete road-vehicle platforms.'], ['Today’s design frontier', 'Optimizing the whole system', 'Modern development balances cell chemistry, thermal control, charging, software and lifecycle recovery.']],
+        charging: [['Direct connection', 'Conductive charging', 'Vehicles receive energy through a physical electrical connection, with onboard equipment managing AC charging.'], ['Dedicated infrastructure', 'Public charging networks', 'Higher-power DC equipment and communication protocols coordinate charging between vehicle and station.'], ['Grid integration', 'Flexible and bidirectional charging', 'Managed charging can shift demand; bidirectional systems can also return energy when supported and permitted.']],
+        renewables: [['Generation', 'Photovoltaics enter energy systems', 'Solar cells convert sunlight into electricity that can supply buildings and transport.'], ['Integration', 'Grid-connected solar', 'Inverters connect PV generation to building and utility systems, while the grid balances changing output.'], ['Coordination', 'Solar, storage and vehicles', 'Stationary batteries and scheduled EV charging help match variable generation with demand.']],
+        future: [['Sensing', 'Driver-assistance foundations', 'Onboard sensors and electronic controls support specific functions such as braking and stability.'], ['Connectivity', 'Vehicles exchange information', 'Connected services add navigation, diagnostics and cooperative information alongside driver assistance.'], ['System coordination', 'Mobility services and automation', 'Automation and shared data link vehicles with roads and services, subject to defined operating limits and oversight.']]
+      }
+    },
+    fr: {
+      title: 'Évolution des technologies',
+      entries: {
+        ev: [['Fondements', 'Émergence de la traction électrique', 'Les premières machines électriques établissent les principes de la traction et de la conversion d’énergie.'], ['Intégration au véhicule', 'Des batteries adaptées aux véhicules', 'Batteries rechargeables, électronique de puissance et commandes forment des plateformes routières complètes.'], ['Enjeux actuels', 'Optimiser le système complet', 'La conception moderne équilibre chimie des cellules, thermique, recharge, logiciel et recyclage.']],
+        charging: [['Connexion directe', 'Recharge conductive', 'Une connexion électrique physique apporte l’énergie; l’équipement embarqué gère la recharge CA.'], ['Infrastructure dédiée', 'Réseaux publics de recharge', 'Les bornes CC et leurs protocoles coordonnent la recharge entre véhicule et station.'], ['Intégration au réseau', 'Recharge pilotée et bidirectionnelle', 'La recharge pilotée peut déplacer la demande; le retour d’énergie dépend du matériel et des règles locales.']],
+        renewables: [['Production', 'Le photovoltaïque dans le système énergétique', 'Les cellules solaires convertissent la lumière en électricité pour les bâtiments et les transports.'], ['Intégration', 'Solaire raccordé au réseau', 'Les onduleurs relient la production solaire aux bâtiments et au réseau, qui équilibre sa variabilité.'], ['Coordination', 'Solaire, stockage et véhicules', 'Batteries stationnaires et recharge programmée rapprochent production variable et demande.']],
+        future: [['Détection', 'Fondements de l’aide à la conduite', 'Capteurs et commandes électroniques prennent en charge des fonctions précises, comme le freinage.'], ['Connectivité', 'Échange d’informations du véhicule', 'Les services connectés ajoutent navigation, diagnostic et informations coopératives à l’aide à la conduite.'], ['Coordination', 'Services de mobilité et automatisation', 'Automatisation et données relient véhicules, routes et services selon des limites et une supervision définies.']]
+      }
+    },
+    pt: {
+      title: 'Evolução da tecnologia',
+      entries: {
+        ev: [['Fundamentos', 'Surge a tração elétrica', 'As primeiras máquinas elétricas estabelecem princípios de tração controlável e conversão de energia.'], ['Integração no veículo', 'Baterias tornam-se práticas', 'Baterias recarregáveis, eletrónica de potência e controlo formam plataformas rodoviárias completas.'], ['Fronteira atual', 'Otimização do sistema completo', 'O desenvolvimento equilibra química das células, gestão térmica, carregamento, software e recuperação de materiais.']],
+        charging: [['Ligação direta', 'Carregamento condutivo', 'Uma ligação elétrica física transfere energia; o equipamento de bordo gere o carregamento CA.'], ['Infraestrutura dedicada', 'Redes públicas de carregamento', 'Equipamentos CC e protocolos coordenam o carregamento entre o veículo e o posto.'], ['Integração na rede', 'Carregamento flexível e bidirecional', 'O carregamento gerido pode deslocar a procura; o retorno de energia depende do suporte técnico e das regras.']],
+        renewables: [['Geração', 'Fotovoltaica nos sistemas de energia', 'Células solares convertem luz em eletricidade para edifícios e transportes.'], ['Integração', 'Solar ligada à rede', 'Inversores ligam a geração solar aos edifícios e à rede, que equilibra a produção variável.'], ['Coordenação', 'Solar, armazenamento e veículos', 'Baterias estacionárias e carregamento programado ajudam a alinhar geração variável e procura.']],
+        future: [['Sensores', 'Fundamentos da assistência ao condutor', 'Sensores e controlos eletrónicos apoiam funções específicas, como travagem e estabilidade.'], ['Conectividade', 'Veículos partilham informação', 'Serviços conectados acrescentam navegação, diagnóstico e informação cooperativa à assistência.'], ['Coordenação', 'Serviços de mobilidade e automação', 'Automação e dados ligam veículos, estradas e serviços dentro de limites e supervisão definidos.']]
+      }
+    },
+    ar: {
+      title: 'تطور التقنية',
+      entries: {
+        ev: [['الأسس', 'ظهور الدفع الكهربائي', 'أرست الآلات الكهربائية المبكرة مبادئ الدفع القابل للتحكم وتحويل الطاقة.'], ['التكامل في المركبة', 'تطور أنظمة البطاريات', 'جمعت البطاريات القابلة للشحن وإلكترونيات القدرة والتحكم في منصات مركبات متكاملة.'], ['اتجاهات اليوم', 'تحسين النظام كاملًا', 'توازن التصاميم الحديثة بين كيمياء الخلايا والإدارة الحرارية والشحن والبرمجيات واستعادة المواد.']],
+        charging: [['التوصيل المباشر', 'الشحن الموصل', 'تنقل وصلة كهربائية الطاقة، وتتولى معدات المركبة إدارة الشحن بالتيار المتردد.'], ['بنية مخصصة', 'شبكات الشحن العامة', 'تنظم معدات التيار المستمر الأعلى قدرة وبروتوكولاتها الشحن بين المركبة والمحطة.'], ['التكامل مع الشبكة', 'الشحن المرن وثنائي الاتجاه', 'يمكن للشحن المنسق نقل الطلب زمنيًا؛ ويعتمد رد الطاقة على دعم الأجهزة والأنظمة المحلية.']],
+        renewables: [['التوليد', 'الخلايا الشمسية في منظومة الطاقة', 'تحول الخلايا الشمسية الضوء إلى كهرباء يمكن أن تخدم المباني والنقل.'], ['التكامل', 'الطاقة الشمسية المتصلة بالشبكة', 'تربط العواكس التوليد الشمسي بالمباني والشبكة التي توازن تغير الإنتاج.'], ['التنسيق', 'الشمس والتخزين والمركبات', 'تساعد البطاريات الثابتة وجدولة شحن المركبات على مواءمة الإنتاج المتغير مع الطلب.']],
+        future: [['الاستشعار', 'أسس مساعدة السائق', 'تدعم المستشعرات والتحكم الإلكتروني وظائف محددة مثل الكبح والثبات.'], ['الاتصال', 'تبادل معلومات المركبات', 'تضيف الخدمات المتصلة الملاحة والتشخيص والمعلومات التعاونية إلى أنظمة المساعدة.'], ['تنسيق المنظومة', 'خدمات التنقل والأتمتة', 'تربط الأتمتة والبيانات المركبات والطرق والخدمات ضمن حدود تشغيل وإشراف محددة.']]
+      }
+    }
+  }[lang];
+  const evolution = document.createElement('section');
+  evolution.className = 'technology-article-section tech-evolution';
+  const timelineLabel = { en: 'TECHNOLOGY TIMELINE', fr: 'CHRONOLOGIE TECHNOLOGIQUE', pt: 'LINHA DO TEMPO DA TECNOLOGIA', ar: 'الخط الزمني للتقنية' }[lang];
+  evolution.innerHTML = `<span class="technology-card-index">${timelineLabel}</span><h2>${evolutionByLanguage.title}</h2><ol class="technology-timeline">${evolutionByLanguage.entries[slug].map(([phase, title, description]) => `<li><span class="technology-timeline-stage">${phase}</span><div><strong>${title}</strong><p>${description}</p></div></li>`).join('')}</ol>`;
+  const futureSection = article.querySelector('#future-developments');
+  (futureSection || article.querySelector('#real-world-applications'))?.before(evolution);
+
+  const chart = document.createElement('section');
+  chart.className = 'tech-learning-panel';
+  const infographicLabel = { en: 'INTERACTIVE INFOGRAPHIC', fr: 'INFOGRAPHIE INTERACTIVE', pt: 'INFOGRAFIA INTERATIVA', ar: 'إنفوغراف تفاعلي' }[lang];
+  chart.setAttribute('aria-labelledby', 'tech-chart-title');
+  chart.innerHTML = `<div class="tech-learning-heading"><span class="technology-card-index">${infographicLabel}</span><h2 id="tech-chart-title">${copy.chart}</h2><p>${copy.subtitle}</p></div><div class="tech-chart-controls" role="group" aria-label="${copy.chart}">${copy.modes.map((label, i) => `<button type="button" class="tech-chart-toggle${i === 0 ? ' is-active' : ''}" aria-pressed="${i === 0}" data-mode="${i}">${label}</button>`).join('')}</div><div class="tech-chart" role="img" aria-label="${copy.chart}">${copy.labels.map((label, i) => `<div class="tech-chart-row"><span>${label}</span><div class="tech-chart-track"><span class="tech-chart-bar" data-series="${i}"></span></div><strong class="tech-chart-value"></strong></div>`).join('')}</div><p class="tech-chart-note" aria-live="polite"></p>`;
+
+  const datasets = slug === 'charging' ? [[72, 18, 10, 0], [58, 25, 17, 0], [51, 24, 25, 0]]
+    : slug === 'renewables' ? [[68, 18, 14, 0], [46, 20, 34, 0], [38, 18, 44, 0]]
+      : slug === 'future' ? [[70, 17, 13, 0], [74, 15, 11, 0], [67, 18, 15, 0]]
+        : [[72, 18, 10, 0], [63, 21, 16, 8], [56, 20, 24, 0]];
+  function render(mode) {
+    chart.querySelectorAll('.tech-chart-toggle').forEach((button) => {
+      const active = Number(button.dataset.mode) === mode;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    chart.querySelectorAll('.tech-chart-row').forEach((row, i) => {
+      const value = datasets[mode][i];
+      row.querySelector('.tech-chart-bar').style.width = `${value}%`;
+      row.querySelector('.tech-chart-value').textContent = value === 0 ? '—' : value >= 65 ? copy.levels?.[2] || 'High' : value >= 35 ? copy.levels?.[1] || 'Medium' : copy.levels?.[0] || 'Low';
+    });
+    chart.querySelector('.tech-chart-note').textContent = `${copy.modes[mode]} · ${copy.subtitle}`;
+  }
+  chart.addEventListener('click', (event) => {
+    const button = event.target.closest('.tech-chart-toggle');
+    if (button) render(Number(button.dataset.mode));
+  });
+  const flow = article.querySelector('.technology-visual-flow');
+  (flow || article.querySelector('#real-world-applications') || article.querySelector('#how-it-works'))?.after(chart);
+  render(0);
+
+  const comparison = document.createElement('section');
+  comparison.className = 'technology-article-section tech-competition';
+  const tradeoffLabel = { en: 'ENGINEERING TRADE-OFFS', fr: 'COMPROMIS TECHNIQUES', pt: 'COMPROMISSOS DE ENGENHARIA', ar: 'مفاضلات هندسية' }[lang];
+  comparison.innerHTML = `<span class="technology-card-index">${tradeoffLabel}</span><h2>${copy.compare}</h2><div class="technology-comparison-wrap"><table class="technology-comparison"><thead><tr><th scope="col">${copy.option}</th><th scope="col">${copy.strength}</th><th scope="col">${copy.tradeoff}</th></tr></thead><tbody>${copy.comparisons[slug].map(([name, strength, tradeoff]) => `<tr><th scope="row">${name}</th><td>${strength}</td><td>${tradeoff}</td></tr>`).join('')}</tbody></table></div>`;
+  chart.after(comparison);
+
+  const fact = document.createElement('aside');
+  fact.className = 'tech-did-you-know';
+  fact.innerHTML = `<span class="tech-fact-icon" aria-hidden="true">✦</span><div><span class="technology-card-index">${copy.fact}</span><p>${copy.facts[slug]}</p></div>`;
+  comparison.after(fact);
+
+  const glossary = {
+    'BMS': 'Battery management system: monitors cell conditions and coordinates pack protection.',
+    'kWh': 'Kilowatt-hour: a unit of energy. It describes stored or consumed energy.',
+    'kW': 'Kilowatt: a unit of power, or the rate of energy transfer.',
+    'regenerative braking': 'Braking that operates the traction motor as a generator to return part of the vehicle’s kinetic energy.',
+    'inverter': 'Power electronics that control electrical energy between the battery and traction motor.',
+    'photovoltaic': 'Technology that converts light directly into electrical energy.'
+  };
+  const terms = lang === 'fr' ? { 'BMS': 'Système de gestion de batterie : surveille les cellules et coordonne leur protection.', 'kWh': 'Kilowattheure : unité d’énergie stockée ou consommée.', 'kW': 'Kilowatt : unité de puissance, soit le débit de transfert d’énergie.', 'freinage régénératif': 'Freinage qui transforme le moteur en générateur pour récupérer une partie de l’énergie cinétique.', 'onduleur': 'Électronique de puissance qui contrôle l’énergie entre batterie et moteur.', 'photovoltaïque': 'Technologie qui convertit directement la lumière en électricité.' }
+    : lang === 'pt' ? { 'BMS': 'Sistema de gestão da bateria: monitoriza as células e coordena a proteção.', 'kWh': 'Quilowatt-hora: unidade de energia armazenada ou consumida.', 'kW': 'Quilowatt: unidade de potência, a taxa de transferência de energia.', 'travagem regenerativa': 'Travagem que usa o motor como gerador para recuperar parte da energia cinética.', 'inversor': 'Eletrónica de potência que controla a energia entre a bateria e o motor.', 'fotovoltaico': 'Tecnologia que converte diretamente a luz em eletricidade.' }
+      : lang === 'ar' ? { 'BMS': 'نظام إدارة البطارية: يراقب الخلايا وينسق إجراءات الحماية.', 'kWh': 'كيلوواط ساعة: وحدة لقياس الطاقة المخزنة أو المستهلكة.', 'kW': 'كيلوواط: وحدة القدرة، أي معدل انتقال الطاقة.', 'الكبح المتجدد': 'كبح يحول المحرك إلى مولد لاستعادة جزء من الطاقة الحركية.', 'العاكس': 'إلكترونيات قدرة تتحكم بالطاقة بين البطارية والمحرك.', 'الكهروضوئية': 'تقنية تحول الضوء مباشرة إلى كهرباء.' } : glossary;
+  const replacements = Object.entries(terms).sort((a, b) => b[0].length - a[0].length);
+  const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT, { acceptNode(node) {
+    return node.parentElement.closest('script,style,button,a,.technology-card-index,.technology-flow-node,.tech-learning-panel,.tech-did-you-know,[data-term]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+  }});
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+  for (const node of textNodes) {
+    let fragment = null;
+    for (const [term, definition] of replacements) {
+      const index = node.textContent.toLowerCase().indexOf(term.toLowerCase());
+      if (index < 0) continue;
+      fragment ||= document.createDocumentFragment();
+      fragment.append(document.createTextNode(node.textContent.slice(0, index)));
+      const mark = document.createElement('span');
+      mark.className = 'tech-term';
+      mark.tabIndex = 0;
+      mark.dataset.term = 'true';
+      mark.setAttribute('aria-label', `${node.textContent.slice(index, index + term.length)}. ${definition}`);
+      mark.dataset.tip = definition;
+      mark.textContent = node.textContent.slice(index, index + term.length);
+      fragment.append(mark, document.createTextNode(node.textContent.slice(index + term.length)));
+      node.parentNode.replaceChild(fragment, node);
+      break;
+    }
+  }
+}
+initTechnologyLearningTools();
 
 if (backToTopBtn) {
   window.addEventListener("scroll", () => {
