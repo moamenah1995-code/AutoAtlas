@@ -16,7 +16,7 @@
 - Feature landing pages use `body[data-page]` such as `companies`, `models`, `compare`, `technology`, and `about`; their headers contain an empty `.main-nav` that `script.js` populates. Existing home and legal pages retain their own structural markup, then shared script behavior localizes links and enhancements.
 - The technology knowledge hub has four localized category families: `technology-ev`, `technology-charging`, `technology-renewables`, and `technology-future`. Keep their four language variants, category-card destinations, detail-page language switches, `pageVariants` in `initLanguageLinks`, and sitemap entries synchronized.
 - `sitemap.xml` and `robots.txt` use the GitHub Pages base URL `https://moamenah1995-code.github.io/AutoAtlas/`. The manifest, canonical URLs, Open Graph URLs, structured data, and `hreflang` links follow that same base.
-- GitHub Pages deploys the repository root on pushes to `main`. Both `.github/workflows/deploy.yml` and `.github/workflows/pages.yml` currently deploy the same artifact; keep them aligned when deployment behavior changes.
+- `.github/workflows/pages.yml` is the single GitHub Pages deployment workflow. It builds the article/search/RSS outputs and car catalog, then deploys the repository root on pushes to `main` or manual dispatch. Keep deployment behavior documented there.
 
 ## Repository conventions
 

@@ -140,4 +140,49 @@
   <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-en.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-pt.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://moamenah1995-code.github.io/AutoAtlas/about-fr.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/author.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/author-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/author-fr.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/author-pt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/solar-ev-jordan.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/jordan-ev-charging-study.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/amman-public-transport-electrification.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/commercial-fleet-electrification-jordan.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://moamenah1995-code.github.io/AutoAtlas/home-energy-storage-smart-charging.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

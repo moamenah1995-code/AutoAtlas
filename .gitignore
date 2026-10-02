@@ -4,6 +4,9 @@ Thumbs.db
 
 # Local temp files
 *.log
+AutoAtlasFunctions/local.settings.json
+AutoAtlasFunctions/bin/
+AutoAtlasFunctions/obj/
 
 # Editor settings
 .vscode/
