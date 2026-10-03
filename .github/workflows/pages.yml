@@ -57,6 +57,9 @@ jobs:
       - name: Build author profiles and content authority metadata
         run: node scripts/build-author-authority.mjs
 
+      - name: Build localized Open Graph and Twitter metadata
+        run: node scripts/build-social-metadata.mjs
+
       - name: Build page structured data (JSON-LD)
         run: node scripts/build-structured-data.mjs
 

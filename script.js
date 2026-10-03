@@ -918,7 +918,7 @@ function articleAuthorityHtml(sourceCount) {
         : { author: "Author", reviewed: "Last reviewed: not recorded", status: "Technical review: outside the reviewed technology-guide set", sources: "Source review not recorded; references listed: " };
   for (const key of Object.keys(copy)) copy[key] = decodeLegacy(copy[key]);
   const profile = locale === "ar" ? "author.html" : "author-" + locale + ".html";
-  return '<aside class="article-author-meta"><p><strong>' + copy.author + ':</strong> <a href="' + profile + '">Mu&#39;minah Alimat</a></p><p>' + copy.reviewed + '</p><p>' + copy.status + '</p><p>' + copy.sources + sourceCount + '</p></aside>';
+  return '<aside class="article-author-meta"><p><strong>' + copy.author + ':</strong> <a href="' + profile + '">Mu'minah Alimat</a></p><p>' + copy.reviewed + '</p><p>' + copy.status + '</p><p>' + copy.sources + sourceCount + '</p></aside>';
 }
 // AUTO-GENERATED:AUTHOR-AUTHORITY:END
 

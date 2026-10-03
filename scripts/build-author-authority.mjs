@@ -17,6 +17,12 @@ const pageLabels = {
   fr: { home: "Accueil", title: "Profil de l’autrice", crumb: "AutoAtlas", reviewScope: "La révision porte sur la cohérence technique et la qualité des sources ; elle ne signifie pas qu’un essai terrain ou une certification réglementaire a été réalisé." },
   pt: { home: "Início", title: "Perfil da autora", crumb: "AutoAtlas", reviewScope: "A revisão cobre a consistência de engenharia e a qualidade das fontes; não significa que tenham sido realizados testes de campo ou certificação regulatória." },
 };
+const seoDescriptions = {
+  ar: "تعرّف إلى مؤمنة عليمات، مهندسة صناعية ومهندسة طاقة ومؤسسة AutoAtlas، واطّلع على مؤهلاتها وخبرتها وأبحاثها في التنقل والطاقة.",
+  en: "Meet Mu'minah Alimat, AutoAtlas founder and industrial and energy engineer. Explore her qualifications, experience, and research in sustainable mobility.",
+  fr: "Découvrez Mu'minah Alimat, fondatrice d’AutoAtlas et ingénieure en énergie. Consultez sa formation, son expérience et ses recherches sur la mobilité durable.",
+  pt: "Conheça Mu'minah Alimat, fundadora da AutoAtlas e engenheira industrial e de energia. Veja sua formação, experiência e pesquisas em mobilidade sustentável.",
+};
 const reviewedGuideNames = {
   ar: ["تقنيات المركبات الكهربائية", "بنية شحن المركبات", "الطاقة المتجددة والشحن الشمسي", "مستقبل التنقل والنقل الذكي"],
   en: ["Electric vehicle technology", "Charging infrastructure", "Renewable energy and solar charging", "Future mobility and smart transportation"],
@@ -55,13 +61,15 @@ function profilePage(lang) {
   const canonical = `${BASE}${paths[lang]}`;
   const alternates = locales.map((l) => `<link rel="alternate" hreflang="${l}" href="${BASE}${paths[l]}">`).join("\n");
   const description = author.bio[lang];
+  const seoDescription = seoDescriptions[lang];
   const nav = `<nav class="main-nav" aria-label="${esc(pageCopy.home)}"><a href="${lang === "ar" ? "index.html" : `${lang}.html`}">${esc(pageCopy.home)}</a></nav>`;
   const interests = author.interests[lang].map((item) => `<li>${esc(item)}</li>`).join("");
   return `<!doctype html>
 <html lang="${lang}"${lang === "ar" ? ' dir="rtl"' : ""}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1220"><title>${esc(copy.title)} | AutoAtlas</title>
-<meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}">
+<meta name="description" content="${esc(seoDescription)}"><link rel="canonical" href="${canonical}">
 ${alternates}
-<link rel="alternate" hreflang="x-default" href="${BASE}${paths.ar}"><link rel="stylesheet" href="style.css"><script defer src="script.js"></script></head>
+<link rel="alternate" hreflang="x-default" href="${BASE}${paths.ar}">
+<link rel="stylesheet" href="style.css"><script defer src="script.js"></script></head>
 <body data-page="author"><header class="site-header"><div class="container"><div class="nav-container"><a class="brand" href="${lang === "ar" ? "index.html" : `${lang}.html`}"><span class="brand-mark">A</span><span>AutoAtlas</span></a>${nav}<div class="lang-switch">${locales.map((l) => `<a${l === lang ? ' class="active"' : ""} href="${paths[l]}">${languageNames[l]}</a>`).join("")}</div></div></div></header>
 <main class="container page-main author-profile-page"><nav class="technology-breadcrumb" aria-label="${esc(pageCopy.title)}"><a href="${lang === "ar" ? "technology.html" : `technology-${lang}.html`}">${esc(pageCopy.crumb)}</a><span aria-hidden="true">/</span><span>${esc(author.name)}</span></nav>
 <section class="author-profile-hero"><span class="author-monogram" aria-hidden="true">MA</span><div><span class="section-kicker">${esc(copy.eyebrow)}</span><h1>${esc(author.name)}</h1><p class="author-role">${esc(author.role[lang])}</p><p>${esc(description)}</p></div></section>
