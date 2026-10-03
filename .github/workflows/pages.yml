@@ -45,6 +45,9 @@ jobs:
       - name: Build French and Portuguese Jordan study editions
         run: node scripts/build-jordan-guides-fr-pt.mjs
 
+      - name: Add quantitative solar EV feasibility case study in all locales
+        run: node scripts/enhance-solar-ev-jordan-study.mjs
+
       - name: Build author profiles and content authority metadata
         run: node scripts/build-author-authority.mjs
 
