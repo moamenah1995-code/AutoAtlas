@@ -6,7 +6,8 @@ import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "https://moamenah1995-code.github.io/AutoAtlas/";
-const IMAGE = "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?fit=crop&fm=jpg&h=630&w=1200&q=80";
+const PROFILE_IMAGE = `${BASE}assets/author-engineering-og.jpg`;
+const RENEWABLES_IMAGE = `${BASE}assets/solar-ev-jordan-og.jpg`;
 const locales = { ar: "ar_JO", en: "en_US", fr: "fr_FR", pt: "pt_BR" };
 const authorDescriptions = {
   ar: "تعرّف إلى مؤمنة عليمات، مهندسة صناعية ومهندسة طاقة ومؤسسة AutoAtlas، واطّلع على مؤهلاتها وخبرتها وأبحاثها في التنقل والطاقة.",
@@ -54,9 +55,10 @@ for (const { lang, file, type } of targets) {
   const socialTitle = type === "profile"
     ? `${authorNames[lang]} — ${title.replace(/\s*\|\s*AutoAtlas$/i, "")} | AutoAtlas`
     : title;
+  const image = type === "profile" ? PROFILE_IMAGE : RENEWABLES_IMAGE;
   const alternateLocales = Object.entries(locales).filter(([code]) => code !== lang)
     .map(([, locale]) => `<meta property="og:locale:alternate" content="${locale}">`).join("");
-  const block = `${start}<meta property="og:type" content="${type}"><meta property="og:site_name" content="AutoAtlas"><meta property="og:locale" content="${locales[lang]}">${alternateLocales}<meta property="og:title" content="${escapeHtml(socialTitle)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="${escapeHtml(canonical)}"><meta property="og:image" content="${IMAGE}"><meta property="og:image:secure_url" content="${IMAGE}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${escapeHtml(socialTitle)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escapeHtml(socialTitle)}"><meta name="twitter:description" content="${escapeHtml(description)}"><meta name="twitter:image" content="${IMAGE}"><meta name="twitter:image:alt" content="${escapeHtml(socialTitle)}">${end}`;
+  const block = `${start}<meta property="og:type" content="${type}"><meta property="og:site_name" content="AutoAtlas"><meta property="og:locale" content="${locales[lang]}">${alternateLocales}<meta property="og:title" content="${escapeHtml(socialTitle)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="${escapeHtml(canonical)}"><meta property="og:image" content="${image}"><meta property="og:image:secure_url" content="${image}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${escapeHtml(socialTitle)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escapeHtml(socialTitle)}"><meta name="twitter:description" content="${escapeHtml(description)}"><meta name="twitter:image" content="${image}"><meta name="twitter:image:alt" content="${escapeHtml(socialTitle)}">${end}`;
   if (!/<\/head>/i.test(html)) throw new Error(`${file}: missing closing head element`);
   html = html.replace(/<\/head>/i, `${block}</head>`);
   writeFileSync(path, html, "utf8");

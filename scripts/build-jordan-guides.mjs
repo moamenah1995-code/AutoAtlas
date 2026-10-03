@@ -6,6 +6,13 @@ import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "https://moamenah1995-code.github.io/AutoAtlas/";
+const socialImages = {
+  "solar-ev-jordan.html": "solar-ev-jordan-og.jpg",
+  "jordan-ev-charging-study.html": "ev-charging-infrastructure-og.jpg",
+  "amman-public-transport-electrification.html": "amman-public-transport-og.jpg",
+  "commercial-fleet-electrification-jordan.html": "commercial-fleet-og.jpg",
+  "home-energy-storage-smart-charging.html": "home-energy-storage-og.jpg",
+};
 const pages = [
   {
     file: "solar-ev-jordan.html", title: "Solar EV Charging in Jordan: Sizing, Energy Match, and Grid Constraints",
@@ -68,7 +75,7 @@ function esc(value) { return String(value).replace(/&/g,"&amp;").replace(/</g,"&
 function render(page) {
   const url = `${BASE}${page.file}`;
   const arabicUrl = `${BASE}${page.file.replace(/\.html$/, "-ar.html")}`;
-  const image = "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?fit=crop&fm=jpg&h=630&w=1200&q=80";
+  const image = `${BASE}assets/${socialImages[page.file] ?? "author-engineering-og.jpg"}`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1220"><title>${esc(page.title)} | AutoAtlas</title>
 <meta name="description" content="${esc(page.description)}"><link rel="canonical" href="${url}"><link rel="alternate" hreflang="en" href="${url}"><link rel="alternate" hreflang="ar" href="${arabicUrl}"><link rel="alternate" hreflang="x-default" href="${url}">

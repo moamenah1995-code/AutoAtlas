@@ -5,6 +5,13 @@ import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const BASE = "https://moamenah1995-code.github.io/AutoAtlas/";
+const socialImages = {
+  "solar-ev-jordan.html": "solar-ev-jordan-og.jpg",
+  "jordan-ev-charging-study.html": "ev-charging-infrastructure-og.jpg",
+  "amman-public-transport-electrification.html": "amman-public-transport-og.jpg",
+  "commercial-fleet-electrification-jordan.html": "commercial-fleet-og.jpg",
+  "home-energy-storage-smart-charging.html": "home-energy-storage-og.jpg",
+};
 const studies = [
   {
     en: "solar-ev-jordan.html", ar: "solar-ev-jordan-ar.html",
@@ -79,7 +86,7 @@ for (const s of studies) {
   const url = BASE + s.ar;
   const enUrl = BASE + s.en;
   const enSource = readFileSync(join(ROOT, s.en), "utf8");
-  const img = enSource.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? `${BASE}file.jpe`;
+  const img = enSource.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? `${BASE}assets/${socialImages[study.en] ?? "author-engineering-og.jpg"}`;
   const authorCard = `<aside class="author-authority-card" aria-label="الكاتب والمراجع التقني"><div class="author-byline"><span class="author-monogram" aria-hidden="true">MA</span><div><span class="technology-card-index">الكاتب والمراجع التقني</span><p><strong>الكاتبة:</strong> <a href="author.html">مؤمنة عليمات</a> <span class="author-role-inline">المؤسسة والكاتبة والمراجعة التقنية</span></p></div></div><dl class="author-review-metadata"><div><dt>آخر مراجعة</dt><dd>غير مسجل</dd></div><div><dt>حالة المراجعة التقنية</dt><dd>لم تُدرج هذه الدراسة ضمن سجل مراجعة أدلة التقنية.</dd></div><div><dt>المصادر التي تمت مراجعتها</dt><dd>سجل مراجعة المصادر غير متاح؛ أُدرجت المراجع مع كل دراسة.</dd></div></dl></aside>`;
   const siblings = `<section class="technology-related"><h2>دراسات الأردن ذات الصلة</h2>${related(s)}</section><section class="technology-related"><h2>أدلة AutoAtlas ذات الصلة</h2><a href="technology-renewables.html">الطاقة المتجددة والشحن الشمسي</a><a href="technology-charging.html">بنية الشحن التحتية</a><a href="technology-ev.html">تقنيات المركبات الكهربائية</a><a href="technology-future.html">التنقل المستقبلي والنقل الذكي</a><a href="author.html">الملف المهني للكاتبة: مؤمنة عليمات</a></section>`;
   const ld = { "@context": "https://schema.org", "@graph": [

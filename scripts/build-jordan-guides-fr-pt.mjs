@@ -5,6 +5,13 @@ import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const BASE = "https://moamenah1995-code.github.io/AutoAtlas/";
+const socialImages = {
+  "solar-ev-jordan.html": "solar-ev-jordan-og.jpg",
+  "jordan-ev-charging-study.html": "ev-charging-infrastructure-og.jpg",
+  "amman-public-transport-electrification.html": "amman-public-transport-og.jpg",
+  "commercial-fleet-electrification-jordan.html": "commercial-fleet-og.jpg",
+  "home-energy-storage-smart-charging.html": "home-energy-storage-og.jpg",
+};
 const sourceLinks = {
   worldBank: "https://datacatalog.worldbank.org/search/dataset/0041176/jordan-solar-irradiation-and-pv-power-potential-maps",
   pvwatts: "https://pvwatts.nrel.gov/",
@@ -175,7 +182,7 @@ function render(page, lang) {
   const file = filenames[lang];
   const url = BASE + file;
   const englishUrl = BASE + filenames.en;
-  const image = readFileSync(join(ROOT, filenames.en), "utf8").match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? `${BASE}file.jpe`;
+  const image = readFileSync(join(ROOT, filenames.en), "utf8").match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? `${BASE}assets/${socialImages[filenames.en] ?? "author-engineering-og.jpg"}`;
   const hreflangs = ["ar", "en", "fr", "pt"].map((code) => `<link rel="alternate" hreflang="${code}" href="${BASE + filenames[code]}">`).join("");
   const authorLabels = lang === "fr"
     ? `<aside class="author-authority-card" aria-label="Autrice et réviseuse technique"><div class="author-byline"><span class="author-monogram" aria-hidden="true">MA</span><div><span class="technology-card-index">AUTRICE ET RÉVISEUSE TECHNIQUE</span><p><strong>Autrice :</strong> <a href="author-fr.html">Mu'minah Alimat</a> <span class="author-role-inline">Fondatrice, autrice et réviseuse technique</span></p></div></div><dl class="author-review-metadata"><div><dt>Dernière révision</dt><dd>Non renseignée</dd></div><div><dt>Statut de la révision technique</dt><dd>Cette étude ne figure pas dans le registre de révision des guides techniques.</dd></div><div><dt>Sources consultées</dt><dd>Aucun registre de révision des sources n’est disponible ; les références sont indiquées dans l’étude.</dd></div></dl></aside>`
