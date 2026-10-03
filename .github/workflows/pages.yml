@@ -60,6 +60,9 @@ jobs:
       - name: Build page structured data (JSON-LD)
         run: node scripts/build-structured-data.mjs
 
+      - name: Add standalone day and night theme control to all pages
+        run: node scripts/build-theme-control.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

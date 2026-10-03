@@ -670,53 +670,6 @@ function initHomePortal() {
       });
     }
 
-function initThemeControl() {
-  let theme = "dark";
-  try {
-    theme = window.localStorage.getItem("autoatlas-theme") === "light" ? "light" : "dark";
-  } catch {
-    // Keep the control available if browser storage is blocked.
-  }
-  document.documentElement.dataset.theme = theme;
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const language = currentPage.endsWith("-en.html") ? "en" : currentPage.endsWith("-pt.html") ? "pt" : currentPage.endsWith("-fr.html") ? "fr" : "ar";
-  const labels = {
-    ar: { dark: "\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u062f\u0627\u0643\u0646", light: "\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u0641\u0627\u062a\u062d", switchTo: "\u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u0641\u0627\u062a\u062d" },
-    en: { dark: "Dark mode", light: "Light mode", switchTo: "Switch to light mode" },
-    pt: { dark: "Modo escuro", light: "Modo claro", switchTo: "Ativar modo claro" },
-    fr: { dark: "Mode sombre", light: "Mode clair", switchTo: "Activer le mode clair" }
-  }[language];
-
-  document.querySelectorAll(".site-header .container").forEach((container) => {
-    if (container.querySelector(".theme-toggle")) return;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "theme-toggle";
-    const renderButton = () => {
-      const icon = document.createElement("span");
-      icon.setAttribute("aria-hidden", "true");
-      icon.textContent = theme === "light" ? "\u2600" : "\u263e";
-      const text = document.createElement("span");
-      text.textContent = theme === "light" ? labels.light : labels.dark;
-      button.replaceChildren(icon, text);
-      button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-      button.setAttribute("aria-label", theme === "light" ? labels.dark : labels.switchTo);
-    };
-    renderButton();
-    button.addEventListener("click", () => {
-      theme = theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = theme;
-      try {
-        window.localStorage.setItem("autoatlas-theme", theme);
-      } catch {
-        // The selection still applies to the current page.
-      }
-      renderButton();
-    });
-    const target = container.querySelector(".nav-container, .header-top");
-    if (target) target.appendChild(button);
-  });
-}
 function initCookieConsent() {
   const banner = document.getElementById("cookie-consent");
   if (!banner) return;
@@ -1741,7 +1694,6 @@ window.setTimeout(initArticleSearch, 0);
 initHomePortal();
 initLocalizedFooter();
 initLazyBackgrounds();
-initThemeControl();
 initCookieConsent();
 
 // Engineering visuals shared by every localized technology guide.
