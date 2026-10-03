@@ -3151,6 +3151,40 @@ button.active {
   color: #0f172a;
 }
 
+.energy-impact-calculator {
+  --surface: var(--panel-strong);
+  --input-bg: var(--bg-soft);
+  --border: var(--line);
+  --output-accent: var(--primary);
+  margin-top: 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.6rem);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 94%, var(--accent)), var(--surface));
+}
+
+.energy-calculator-heading { max-width: 70ch; }
+.energy-calculator-heading h2 { margin: 0.35rem 0; }
+.energy-calculator-heading p, .energy-boundary, .energy-input-note { color: var(--muted); }
+.energy-input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 0.85rem; }
+.energy-input { display: grid; align-content: start; gap: 0.4rem; font-weight: 650; }
+.energy-input input { width: 100%; min-height: 44px; padding: 0.65rem 0.75rem; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg); color: var(--text); font: inherit; }
+.energy-input input:focus-visible { outline: 3px solid #48c8bd; outline-offset: 2px; }
+.energy-formula { margin: 1rem 0; padding: 0.8rem 1rem; border-inline-start: 4px solid var(--accent); border-radius: 8px; background: color-mix(in srgb, var(--input-bg) 70%, transparent); }
+.energy-output-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 0.75rem; }
+.energy-output-grid article { min-width: 0; padding: 0.9rem; border: 1px solid var(--border); border-radius: 14px; background: var(--input-bg); }
+.energy-output-grid h3 { margin: 0 0 0.5rem; font-size: 0.98rem; }
+.energy-output-grid output { display: block; color: var(--output-accent); font-size: 1.15rem; font-weight: 750; overflow-wrap: anywhere; }
+.energy-faq { display: grid; gap: 0.55rem; margin-top: 1.1rem; }
+.energy-faq h3 { margin: 0 0 0.2rem; }
+.energy-faq details { padding: 0.75rem 0.9rem; border: 1px solid var(--border); border-radius: 10px; background: color-mix(in srgb, var(--input-bg) 78%, transparent); }
+.energy-faq summary { cursor: pointer; font-weight: 700; }
+.energy-faq p { margin-bottom: 0; color: var(--muted); }
+.energy-boundary { margin-bottom: 0; font-size: 0.92rem; }
+
+:root[data-theme="light"] .energy-impact-calculator { --surface: #ffffff; --input-bg: #f3f8fc; --border: #c8d6e3; --output-accent: #087c70; color: var(--text); }
+
 .compare-list {
   margin: 0;
   padding-right: 1rem;

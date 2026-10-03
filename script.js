@@ -918,7 +918,7 @@ function articleAuthorityHtml(sourceCount) {
         : { author: "Author", reviewed: "Last reviewed: not recorded", status: "Technical review: outside the reviewed technology-guide set", sources: "Source review not recorded; references listed: " };
   for (const key of Object.keys(copy)) copy[key] = decodeLegacy(copy[key]);
   const profile = locale === "ar" ? "author.html" : "author-" + locale + ".html";
-  return '<aside class="article-author-meta"><p><strong>' + copy.author + ':</strong> <a href="' + profile + '">Mu'minah Alimat</a></p><p>' + copy.reviewed + '</p><p>' + copy.status + '</p><p>' + copy.sources + sourceCount + '</p></aside>';
+  return '<aside class="article-author-meta"><p><strong>' + copy.author + ':</strong> <a href="' + profile + '">Mu\'minah Alimat</a></p><p>' + copy.reviewed + '</p><p>' + copy.status + '</p><p>' + copy.sources + sourceCount + '</p></aside>';
 }
 // AUTO-GENERATED:AUTHOR-AUTHORITY:END
 
@@ -1594,6 +1594,79 @@ function initCompareFeature() {
   compareResetBtn.addEventListener("click", resetCompare);
 }
 
+function initEnergyImpactCalculator() {
+  if (document.body?.dataset.page !== "compare" || !compareResult) return;
+  const copy = {
+    ar: {
+      title: "حاسبة تكلفة الطاقة والانبعاثات التشغيلية", intro: "أدخل افتراضاتك لمقارنة تكلفة الاستخدام وانبعاثات التشغيل. لا تُحمّل الأداة تعرفة أو معامل انبعاثات ثابتًا؛ استخدم فاتورتك ومصدرًا محليًا موثوقًا.",
+      distance: "المسافة السنوية (كم)", evUse: "استهلاك الكهرباء (ك.و.س/100 كم)", efficiency: "كفاءة الشحن المنزلي (%)", powerPrice: "سعر الكهرباء (عملة/ك.و.س)", gridFactor: "انبعاثات الكهرباء (غ CO₂/ك.و.س)", fuelUse: "استهلاك الوقود (لتر/100 كم)", fuelPrice: "سعر الوقود (عملة/لتر)", fuelFactor: "انبعاثات الوقود (كغ CO₂/لتر)", evCost: "تكلفة كهرباء سنوية", evEmissions: "انبعاثات تشغيل السيارة الكهربائية", fuelCost: "تكلفة الوقود السنوية", fuelEmissions: "انبعاثات تشغيل سيارة الوقود", need: "أدخل قيمة صالحة للحساب", notProvided: "أدخل معاملًا موثقًا لعرض التقدير", formula: "الحساب: طاقة الجر السنوية = المسافة × الاستهلاك ÷ 100. كهرباء العداد = طاقة الجر ÷ كفاءة الشحن.", boundary: "نطاق الاستخدام: تقدير تشغيلي مبسط فقط؛ لا يشمل تصنيع المركبة أو البطارية، إنتاج الوقود، نقل الطاقة، الصيانة، أو اختلاف ظروف القيادة. النتائج حساسة للافتراضات وليست قياسًا فعليًا.", example: "قيم الاستهلاك الافتراضية أمثلة قابلة للتعديل وليست مواصفات لطراز معين. اترك أسعار الطاقة فارغة حتى تدخل تعرفة بلدك وفئتك." },
+    en: {
+      title: "Energy cost and operational emissions calculator", intro: "Enter your assumptions to compare use-phase cost and emissions. The tool does not assume a tariff or grid factor; use your bill and a credible local source.",
+      distance: "Annual distance (km)", evUse: "Electricity use (kWh/100 km)", efficiency: "Home charging efficiency (%)", powerPrice: "Electricity price (currency/kWh)", gridFactor: "Electricity emissions (g CO₂/kWh)", fuelUse: "Fuel use (L/100 km)", fuelPrice: "Fuel price (currency/L)", fuelFactor: "Fuel emissions (kg CO₂/L)", evCost: "Annual electricity cost", evEmissions: "EV operational emissions", fuelCost: "Annual fuel cost", fuelEmissions: "Combustion-vehicle operational emissions", need: "Enter a valid value to calculate", notProvided: "Enter a sourced factor to estimate", formula: "Method: annual traction energy = distance × consumption ÷ 100. Metered electricity = traction energy ÷ charging efficiency.", boundary: "Boundary: simplified use-phase estimate only. It excludes vehicle and battery manufacturing, fuel production, energy transport, maintenance, and driving-condition differences. Results depend on assumptions and are not measured data.", example: "Default consumption values are editable examples, not specifications for a particular model. Leave energy prices blank until you enter the tariff for your country and rate class." },
+    fr: {
+      title: "Calculateur de coût énergétique et d’émissions en usage", intro: "Saisissez vos hypothèses pour comparer le coût d’usage et les émissions. Aucun tarif ni facteur réseau fixe n’est présumé : utilisez votre facture et une source locale fiable.",
+      distance: "Distance annuelle (km)", evUse: "Consommation électrique (kWh/100 km)", efficiency: "Rendement de recharge à domicile (%)", powerPrice: "Prix de l’électricité (monnaie/kWh)", gridFactor: "Émissions de l’électricité (g CO₂/kWh)", fuelUse: "Consommation de carburant (L/100 km)", fuelPrice: "Prix du carburant (monnaie/L)", fuelFactor: "Émissions du carburant (kg CO₂/L)", evCost: "Coût annuel de l’électricité", evEmissions: "Émissions d’usage du véhicule électrique", fuelCost: "Coût annuel du carburant", fuelEmissions: "Émissions d’usage du véhicule thermique", need: "Saisissez une valeur valide", notProvided: "Saisissez un facteur sourcé pour estimer", formula: "Méthode : énergie annuelle de traction = distance × consommation ÷ 100. Électricité au compteur = énergie de traction ÷ rendement de recharge.", boundary: "Périmètre : estimation simplifiée en phase d’usage uniquement. Fabrication, batterie, production du carburant, transport d’énergie, entretien et conditions de conduite sont exclus. Le résultat dépend des hypothèses et n’est pas une mesure.", example: "Les consommations par défaut sont des exemples modifiables, pas les caractéristiques d’un modèle précis. Saisissez le tarif de votre pays et de votre catégorie avant d’estimer le coût." },
+    pt: {
+      title: "Calculadora de custo energético e emissões operacionais", intro: "Insira suas premissas para comparar custos de uso e emissões. A ferramenta não fixa tarifa nem fator da rede: use sua conta e uma fonte local confiável.",
+      distance: "Distância anual (km)", evUse: "Consumo elétrico (kWh/100 km)", efficiency: "Eficiência da recarga residencial (%)", powerPrice: "Preço da eletricidade (moeda/kWh)", gridFactor: "Emissões da eletricidade (g CO₂/kWh)", fuelUse: "Consumo de combustível (L/100 km)", fuelPrice: "Preço do combustível (moeda/L)", fuelFactor: "Emissões do combustível (kg CO₂/L)", evCost: "Custo anual de eletricidade", evEmissions: "Emissões operacionais do veículo elétrico", fuelCost: "Custo anual de combustível", fuelEmissions: "Emissões operacionais do veículo a combustão", need: "Insira um valor válido para calcular", notProvided: "Insira um fator com fonte para estimar", formula: "Método: energia anual de tração = distância × consumo ÷ 100. Eletricidade medida = energia de tração ÷ eficiência da recarga.", boundary: "Limite: estimativa simplificada da fase de uso. Exclui fabricação do veículo e da bateria, produção de combustível, transporte de energia, manutenção e variações de condução. Os resultados dependem das premissas e não são medições.", example: "Os consumos padrão são exemplos editáveis, não especificações de um modelo. Informe a tarifa do seu país e da sua categoria antes de estimar custos." }
+  }[locale] || null;
+  if (copy) {
+    copy.notProvided = locale === "ar" ? "أدخل تعرفة حالية أو معامل انبعاثات موثقًا" : locale === "fr" ? "Saisissez un tarif actuel ou un facteur d’émissions sourcé" : locale === "pt" ? "Informe tarifa atual ou fator de emissões com fonte" : "Enter a current tariff or sourced emissions factor";
+    copy.efficiency = locale === "ar" ? "كفاءة الشحن (%)" : locale === "fr" ? "Rendement de recharge (%)" : locale === "pt" ? "Eficiência da recarga (%)" : "Charging efficiency (%)";
+  }
+  if (!copy || document.getElementById("energy-impact-calculator")) return;
+
+  const section = document.createElement("section");
+  section.id = "energy-impact-calculator";
+  section.className = "energy-impact-calculator";
+  section.setAttribute("aria-labelledby", "energy-impact-title");
+  const fields = [
+    ["distance", "18000", "1", "1000000", "1"], ["evUse", "15", "0.1", "200", "0.1"], ["efficiency", "90", "1", "100", "1"],
+    ["powerPrice", "", "0", "1000", "0.001"], ["gridFactor", "", "0", "5000", "1"], ["fuelUse", "7", "0.1", "100", "0.1"],
+    ["fuelPrice", "", "0", "1000", "0.001"], ["fuelFactor", "", "0", "20", "0.01"]
+  ];
+  const faqCopy = {
+    ar: ["كيف أقارن الشحن المنزلي بالشحن العام؟", "شغّل التقدير لكل تعرفة على حدة، وأدخل كفاءة التحويل المناسبة للحالة. لا تشمل النتيجة رسوم الجلسة أو رسوم الطلب أو الاشتراكات ما لم تضفها إلى السعر يدويًا.", "من أين أحصل على معامل انبعاثات الكهرباء؟", "استخدم أحدث معامل منشور للبلد والسنة نفسيهما من جهة حكومية أو مشغل شبكة موثوق، وتحقق مما إذا كان يمثل متوسط الشبكة أم الكهرباء الهامشية.", "هل تحسب الأداة الإعفاءات والرسوم الحالية؟", "لا. تتغير الضرائب والحوافز حسب التاريخ والمركبة والسوق؛ تحقق من الجهة الحكومية والجمارك ومزود التعرفة قبل اتخاذ قرار."],
+    en: ["How do I compare home and public charging?", "Run one estimate per tariff and enter the efficiency that matches that case. Session fees, demand charges, and subscriptions are excluded unless you add them to the rate.", "Where should I get an electricity emissions factor?", "Use a recent factor for the same country and year from a government or credible grid operator, and check whether it is an average or marginal factor.", "Does this include current tax incentives or fees?", "No. Taxes and incentives change by date, vehicle, and market. Confirm current rules with official government, customs, and tariff sources."],
+    fr: ["Comment comparer recharge à domicile et recharge publique ?", "Effectuez une estimation pour chaque tarif et indiquez le rendement correspondant. Les frais de session, de puissance et d’abonnement sont exclus sauf si vous les ajoutez au tarif.", "Où trouver le facteur d’émissions de l’électricité ?", "Utilisez un facteur récent pour le même pays et la même année, publié par une autorité publique ou un gestionnaire de réseau fiable ; vérifiez s’il est moyen ou marginal.", "Les taxes et aides actuelles sont-elles incluses ?", "Non. Elles dépendent de la date, du véhicule et du marché. Vérifiez les règles en vigueur auprès des sources officielles, des douanes et du fournisseur."],
+    pt: ["Como comparar a recarga em casa e em postos públicos?", "Faça uma estimativa para cada tarifa e informe a eficiência correspondente. Taxas por sessão, demanda e assinatura ficam de fora, a menos que sejam incluídas manualmente no preço.", "Onde obter o fator de emissões da eletricidade?", "Use um fator recente do mesmo país e ano, publicado pelo governo ou por um operador de rede confiável, e confira se é médio ou marginal.", "Impostos e incentivos atuais estão incluídos?", "Não. Eles variam conforme data, veículo e mercado. Confirme as regras vigentes com fontes oficiais do governo, alfândega e tarifa."],
+  }[locale];
+  const faqMarkup = `<section class="energy-faq"><h3>${locale === "ar" ? "أسئلة شائعة" : locale === "fr" ? "Questions fréquentes" : locale === "pt" ? "Perguntas frequentes" : "Frequently asked questions"}</h3><details><summary>${faqCopy[0]}</summary><p>${faqCopy[1]}</p></details><details><summary>${faqCopy[2]}</summary><p>${faqCopy[3]}</p></details><details><summary>${faqCopy[4]}</summary><p>${faqCopy[5]}</p></details></section>`;
+  const inputMarkup = fields.map(([key, value, min, max, step]) => `<label class="energy-input"><span>${copy[key]}</span><input inputmode="decimal" type="number" data-energy-input="${key}" min="${min}" max="${max}" step="${step}" value="${value}" ${value ? "required" : ""}></label>`).join("");
+  section.innerHTML = `<div class="energy-calculator-heading"><span class="section-kicker">${locale === "ar" ? "أداة تقدير قابلة للتخصيص" : locale === "fr" ? "Outil d’estimation paramétrable" : locale === "pt" ? "Estimativa personalizável" : "Editable planning tool"}</span><h2 id="energy-impact-title">${copy.title}</h2><p>${copy.intro}</p></div><form class="energy-calculator-form" novalidate><div class="energy-input-grid">${inputMarkup}</div></form><p class="energy-formula">${copy.formula}</p><div class="energy-output-grid" aria-live="polite"><article><h3>${copy.evCost}</h3><output data-energy-output="evCost">—</output></article><article><h3>${copy.evEmissions}</h3><output data-energy-output="evEmissions">—</output></article><article><h3>${copy.fuelCost}</h3><output data-energy-output="fuelCost">—</output></article><article><h3>${copy.fuelEmissions}</h3><output data-energy-output="fuelEmissions">—</output></article></div><p class="energy-input-note">${copy.example}</p>${faqMarkup}<p class="energy-boundary">${copy.boundary}</p>`;
+  compareResult.closest(".compare-page-card")?.append(section);
+
+  const form = section.querySelector("form");
+  const read = (key) => {
+    const input = form.querySelector(`[data-energy-input="${key}"]`);
+    if (!input.value) return null;
+    const value = Number(input.value);
+    return Number.isFinite(value) && value >= Number(input.min) && value <= Number(input.max) ? value : null;
+  };
+  const print = (key, value, unit, decimals = 1) => {
+    const output = section.querySelector(`[data-energy-output="${key}"]`);
+    output.textContent = value === null ? copy.notProvided : `${new Intl.NumberFormat(locale, { maximumFractionDigits: decimals }).format(value)} ${unit}`;
+  };
+  const update = () => {
+    const distance = read("distance");
+    const evUse = read("evUse");
+    const efficiency = read("efficiency");
+    const fuelUse = read("fuelUse");
+    const evEnergy = distance !== null && evUse !== null && efficiency ? distance * evUse / 100 / (efficiency / 100) : null;
+    const fuelLitres = distance !== null && fuelUse !== null ? distance * fuelUse / 100 : null;
+    const powerPrice = read("powerPrice");
+    const gridFactor = read("gridFactor");
+    const fuelPrice = read("fuelPrice");
+    const fuelFactor = read("fuelFactor");
+    print("evCost", evEnergy !== null && powerPrice !== null ? evEnergy * powerPrice : null, locale === "ar" ? "سنوياً" : locale === "fr" ? "/ an" : locale === "pt" ? "/ ano" : "/ year", 2);
+    print("evEmissions", evEnergy !== null && gridFactor !== null ? evEnergy * gridFactor / 1000 : null, "kg CO₂/yr", 1);
+    print("fuelCost", fuelLitres !== null && fuelPrice !== null ? fuelLitres * fuelPrice : null, locale === "ar" ? "سنوياً" : locale === "fr" ? "/ an" : locale === "pt" ? "/ ano" : "/ year", 2);
+    print("fuelEmissions", fuelLitres !== null && fuelFactor !== null ? fuelLitres * fuelFactor : null, "kg CO₂/yr", 1);
+  };
+  form.addEventListener("input", update);
+  update();
+}
+
 async function sendMessage() {
   const message = chatInput.value.trim();
   if (!message) return;
@@ -1682,6 +1755,7 @@ initLanguageLinks();
 initSiteNavigation();
 initPersonalization();
 initCompareFeature();
+initEnergyImpactCalculator();
 initSmartVehicleSearch();
 initArticleSearch();
 initModelsPage();
