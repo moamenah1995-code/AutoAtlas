@@ -67,6 +67,13 @@ for (const page of pages) {
   };
   const resourceNote = "<p class='engineering-note'>" + resourceNotes[page.file] + "</p>";
   html = html.replace("</sup><sup><a href='#case-sources'>[2]</a></sup></p><h3>", "</sup><sup><a href='#case-sources'>[2]</a></sup></p>" + resourceNote + "<h3>");
+  const reviewBlocks = {
+    "solar-ev-jordan.html": "<dl class='author-review-metadata'><div><dt>Calculation and source audit</dt><dd>2 October 2026 · Editorial check completed for this update; no independent peer review is claimed.</dd></div></dl>",
+    "solar-ev-jordan-ar.html": "<dl class='author-review-metadata'><div><dt>تدقيق الحسابات والمصادر</dt><dd>2 تشرين الأول 2026 · أُنجز تدقيق تحريري لهذا التحديث؛ ولا ندّعي إجراء مراجعة علمية مستقلة.</dd></div></dl>",
+    "solar-ev-jordan-fr.html": "<dl class='author-review-metadata'><div><dt>Vérification des calculs et des sources</dt><dd>2 octobre 2026 · Vérification éditoriale effectuée pour cette mise à jour ; aucune évaluation scientifique indépendante n’est revendiquée.</dd></div></dl>",
+    "solar-ev-jordan-pt.html": "<dl class='author-review-metadata'><div><dt>Verificação dos cálculos e das fontes</dt><dd>2 de outubro de 2026 · Revisão editorial concluída para esta atualização; não se afirma revisão científica independente.</dd></div></dl>"
+  };
+  html = html.replace("</aside><h3>", "</aside>" + reviewBlocks[page.file] + "<h3>");
   const fuelComparisons = {
     "solar-ev-jordan.html": ["<h3>Cost and payback: corrected scenario</h3>", "<p>For comparison, a petrol car using the supplied 7 L/100 km assumption costs 73.5 fils/km at JD 1.050/L (90 octane) or 95.2 fils/km at JD 1.360/L (95 octane), Jordan’s October 2026 pump prices. This is fuel-only, assumes the same 7 L/100 km for either grade, and does not compare equivalent vehicles or total ownership cost; monthly prices change.<sup><a href='https://org.petra.gov.jo/Include/InnerPage.jsp?ID=90498&amp;lang=en&amp;name=en_news' target='_blank' rel='noopener noreferrer'>[4]</a></sup></p>"],
     "solar-ev-jordan-ar.html": ["<h3>التكلفة والاسترداد: تصحيح الحساب</h3>", "<p>للمقارنة، سيارة بنزين باستهلاك المسودة 7 لترات/100 كم تكلف 73.5 فلس/كم عند سعر 1.050 دينار/لتر (أوكتان 90)، أو 95.2 فلس/كم عند 1.360 دينار/لتر (أوكتان 95)، وفق أسعار الأردن لشهر تشرين الأول 2026. هذه كلفة الوقود فقط، وتفترض 7 لترات لكلا النوعين؛ ولا تقارن مركبات متماثلة أو كلفة الملكية الإجمالية، كما تتغير الأسعار شهرياً.<sup><a href='https://org.petra.gov.jo/Include/InnerPage.jsp?ID=90498&amp;lang=en&amp;name=en_news' target='_blank' rel='noopener noreferrer'>[4]</a></sup></p>"],
