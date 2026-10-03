@@ -39,6 +39,12 @@ jobs:
       - name: Build Jordan mobility and energy research pages
         run: node scripts/build-jordan-guides.mjs
 
+      - name: Build Arabic Jordan study editions
+        run: node scripts/build-jordan-guides-ar.mjs
+
+      - name: Build French and Portuguese Jordan study editions
+        run: node scripts/build-jordan-guides-fr-pt.mjs
+
       - name: Build author profiles and content authority metadata
         run: node scripts/build-author-authority.mjs
 
