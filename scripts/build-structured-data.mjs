@@ -111,6 +111,7 @@ function pageKind(filename) {
   if (/^compare(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "comparison";
   if (/^car-detail(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "vehicle-guide";
   if (/^(solar-ev-jordan|jordan-ev-charging-study|amman-public-transport-electrification|commercial-fleet-electrification-jordan|home-energy-storage-smart-charging)(?:-(?:ar|fr|pt))?\.html$/.test(filename)) return "research-article";
+  if (/^(family-suvs|electric-cars|luxury-cars|budget-cars|sports-cars|phev-cars)-2026(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "buying-guide";
   if (/^about(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "about";
   if (/^contact(?:-(?:en|fr|pt))?\.html$/.test(filename)) return "contact";
   return "webpage";
@@ -196,6 +197,7 @@ function createGraph({ filename, html, canonical, title, description, lang, kind
     comparison: "WebPage",
     "vehicle-guide": "WebPage",
     "research-article": "WebPage",
+    "buying-guide": "WebPage",
     about: "AboutPage",
     contact: "ContactPage",
     webpage: "WebPage",
@@ -217,13 +219,13 @@ function createGraph({ filename, html, canonical, title, description, lang, kind
   if (kind === "author") {
     page.mainEntity = { "@id": AUTHOR_ID };
     graph.push(personNode(lang));
-  } else if (kind === "technology-article" || kind === "research-article") {
+  } else if (kind === "technology-article" || kind === "research-article" || kind === "buying-guide") {
     const articleId = `${canonical}#article`;
     page.mainEntity = { "@id": articleId };
     page.author = { "@id": AUTHOR_ID };
     graph.push({
       "@id": articleId,
-      "@type": ["TechArticle", "Article"],
+      "@type": kind === "buying-guide" ? "Article" : ["TechArticle", "Article"],
       headline: findH1(html) || title,
       description,
       inLanguage: lang,

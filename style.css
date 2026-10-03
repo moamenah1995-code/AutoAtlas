@@ -2929,6 +2929,46 @@ button.active {
   line-height: 1.45;
 }
 
+/* Localized 2026 car-buying guides */
+.buying-guide-page > section,
+.buying-guide-page > .buying-guide-lead,
+.buying-guide-page > .did-you-know,
+.buying-guide-page > .author-authority-card { margin-block: 1.5rem; }
+.buying-guide-lead { max-width: 78ch; padding: 1rem 1.15rem; border-inline-start: 4px solid var(--primary); border-radius: 12px; background: var(--panel); line-height: 1.8; }
+.buying-guide-chart,
+.buying-guide-table,
+.buying-guide-method,
+.buying-guide-checklist,
+.buying-guide-index { padding: clamp(1rem, 2.5vw, 1.6rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); box-shadow: var(--shadow-soft); }
+.buying-guide-chart figure { margin: 0; }
+.buying-guide-chart svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--text); font: 600 14px/1.4 system-ui, sans-serif; }
+.buying-guide-chart svg rect { transition: opacity .18s ease; }
+.buying-guide-chart svg rect:hover { opacity: .78; }
+.buying-guide-chart figcaption { margin-top: 1rem; color: var(--muted); line-height: 1.75; }
+.buying-guide-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.buying-guide-card-grid > * { min-width: 0; }
+.buying-guide-checklist .content-card,
+.buying-guide-index-card { display: block; height: 100%; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--panel-strong); color: var(--text); text-decoration: none; }
+.buying-guide-checklist .content-card p { margin-bottom: 0; line-height: 1.7; }
+.buying-guide-index { margin: 1.5rem 0; }
+.buying-guide-index-card h3 { margin-block: .55rem; color: var(--text); }
+.buying-guide-index-card p { color: var(--muted); line-height: 1.7; }
+.buying-guide-index-card > span:last-child { color: var(--primary); font-weight: 700; }
+.buying-guide-index-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.buying-guide-index-card { transition: border-color .18s ease, transform .18s ease; }
+.buying-guide-table .technology-table-wrap { overflow-x: auto; }
+.buying-guide-table table { min-width: 760px; }
+.buying-guide-page .technology-related { margin-block: 1.5rem; }
+@media (max-width: 760px) {
+  .buying-guide-card-grid { grid-template-columns: 1fr; }
+  .buying-guide-chart,
+  .buying-guide-table,
+  .buying-guide-method,
+  .buying-guide-checklist,
+  .buying-guide-index { padding: 1rem; }
+  .buying-guide-chart svg { font-size: 12px; }
+}
+
 .articles-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

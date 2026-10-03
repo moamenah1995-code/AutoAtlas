@@ -51,6 +51,9 @@ jobs:
       - name: Add engineering case studies to the remaining Jordan guides
         run: node scripts/enhance-jordan-flagship-cases.mjs
 
+      - name: Build localized 2026 car-buying guides
+        run: node scripts/build-2026-car-buying-guides.mjs
+
       - name: Build author profiles and content authority metadata
         run: node scripts/build-author-authority.mjs
 
