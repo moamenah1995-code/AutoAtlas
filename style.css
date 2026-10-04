@@ -3182,8 +3182,32 @@ button.active {
 .energy-faq summary { cursor: pointer; font-weight: 700; }
 .energy-faq p { margin-bottom: 0; color: var(--muted); }
 .energy-boundary { margin-bottom: 0; font-size: 0.92rem; }
+.life-cycle-estimator { display: grid; gap: 0.85rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.life-cycle-estimator h3 { margin: 0.3rem 0; font-size: 1.25rem; }
+.life-cycle-estimator > .energy-input-note { margin: 0; }
+.lca-result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); gap: 0.65rem; }
+.lca-result-grid article, .lca-breakdown > div { min-width: 0; padding: 0.8rem; border: 1px solid var(--border); border-radius: 12px; background: var(--input-bg); }
+.lca-result-grid h4, .lca-breakdown h4 { margin: 0 0 0.4rem; font-size: 0.93rem; }
+.lca-result-grid output { color: var(--output-accent); font-weight: 750; overflow-wrap: anywhere; }
+.lca-breakdown { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+.lca-breakdown dl { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.35rem 0.7rem; margin: 0; font-size: 0.9rem; }
+.lca-breakdown dd { margin: 0; text-align: end; font-variant-numeric: tabular-nums; }
+.lca-chart { margin: 0; padding: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--input-bg); }
+.lca-chart figcaption { margin-bottom: 0.7rem; font-weight: 750; }
+.lca-bar-row { display: grid; grid-template-columns: 3rem minmax(0, 1fr) minmax(7rem, auto); align-items: center; gap: 0.65rem; margin: 0.55rem 0; }
+.lca-bar-track { height: 0.85rem; overflow: hidden; border-radius: 999px; background: var(--line); }
+.lca-bar-track span { display: block; width: 0; height: 100%; border-radius: inherit; transition: width 180ms ease; }
+.lca-bar-track [data-lca-bar="ev"] { background: #13a88a; }
+.lca-bar-track [data-lca-bar="ice"] { background: #ec8b35; }
+.lca-bar-row output { text-align: end; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
 
 :root[data-theme="light"] .energy-impact-calculator { --surface: #ffffff; --input-bg: #f3f8fc; --border: #c8d6e3; --output-accent: #087c70; color: var(--text); }
+
+@media (max-width: 600px) {
+  .lca-breakdown { grid-template-columns: 1fr; }
+  .lca-bar-row { grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .lca-bar-row output { grid-column: 2; text-align: start; }
+}
 
 .compare-list {
   margin: 0;
