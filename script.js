@@ -1110,7 +1110,7 @@ function initModelsPage() {
         : "Powertrain description only, not an environmental rating. Life-cycle emissions depend on manufacturing, electricity or fuel supply, and use.";
   catalog.innerHTML = models.map((item) => {
     const electrified = /electric|hybrid/i.test(item.powertrain);
-    const ecoBadge = electrified ? `<span class="eco-badge" tabindex="0" title="${ecoBadgeTip}" aria-label="${ecoBadgeLabel}. ${ecoBadgeTip}">🌿 ${ecoBadgeLabel}</span>` : "";
+    const ecoBadge = electrified ? `<span class="eco-badge" tabindex="0" data-tooltip="${ecoBadgeTip}" aria-label="${ecoBadgeLabel}. ${ecoBadgeTip}">🌿 ${ecoBadgeLabel}</span>` : "";
     return `<article class="vehicle-card research-model-card"><img src="${item.image}" alt="${item.brand} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${item.origin} · ${item.powertrain}</span><h2>${item.brand} ${item.model} ${ecoBadge}</h2><p>${item.body} · ${item.drive}</p><a class="image-source-link" href="${item.imageSourceUrl}" target="_blank" rel="noopener noreferrer">${copy.imageSource}</a><button class="primary-btn" type="button" data-model-index="${researchModelCatalog.indexOf(item)}">${copy.source}</button></div></article>`;
   }).join("");
 

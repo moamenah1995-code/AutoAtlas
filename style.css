@@ -2056,6 +2056,7 @@ main {
 }
 
 .eco-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   margin-inline-start: 0.45rem;
@@ -2069,6 +2070,39 @@ main {
   line-height: 1.6;
   vertical-align: middle;
   cursor: help;
+}
+
+.eco-badge::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  inset-inline-start: 50%;
+  bottom: calc(100% + 0.55rem);
+  z-index: 100;
+  width: max-content;
+  max-width: min(20rem, calc(100vw - 2rem));
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.5rem;
+  background: #1e293b;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: start;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 0.2rem);
+  transition: opacity 140ms ease, transform 140ms ease, visibility 140ms;
+}
+
+.eco-badge:hover::after,
+.eco-badge:focus::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 .eco-badge:focus-visible {
