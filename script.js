@@ -1627,10 +1627,17 @@ function initEnergyImpactCalculator() {
     copy.efficiency = locale === "ar" ? "كفاءة الشحن (%)" : locale === "fr" ? "Rendement de recharge (%)" : locale === "pt" ? "Eficiência da recarga (%)" : "Charging efficiency (%)";
   }
   if (!copy || document.getElementById("energy-impact-calculator")) return;
+  const advancedCopy = {
+    ar: { show: "🌱 إظهار التفاصيل المتقدمة والاستدامة", hide: "🔼 إخفاء التفاصيل المتقدمة" },
+    en: { show: "🌱 Show advanced and sustainability details", hide: "🔼 Hide advanced details" },
+    fr: { show: "🌱 Afficher les détails avancés et de durabilité", hide: "🔼 Masquer les détails avancés" },
+    pt: { show: "🌱 Mostrar detalhes avançados e de sustentabilidade", hide: "🔼 Ocultar detalhes avançados" }
+  }[locale];
 
   const section = document.createElement("section");
   section.id = "energy-impact-calculator";
   section.className = "energy-impact-calculator";
+  section.hidden = true;
   section.setAttribute("aria-labelledby", "energy-impact-title");
   const fields = [
     ["distance", "18000", "1", "1000000", "1"], ["evUse", "15", "0.1", "200", "0.1"], ["efficiency", "90", "1", "100", "1"],
@@ -1674,7 +1681,18 @@ function initEnergyImpactCalculator() {
   const lcaInputMarkup = lcaFields.map(([key, value, min, max, step]) => `<label class="energy-input"><span>${lca[key]}</span><input inputmode="decimal" type="number" data-lca-input="${key}" min="${min}" max="${max}" step="${step}" value="${value}" ${value !== "" ? "required" : ""}></label>`).join("");
   const lcaMarkup = `<section class="life-cycle-estimator" aria-labelledby="life-cycle-title"><div class="energy-calculator-heading"><h3 id="life-cycle-title">${lca.heading}</h3><p>${lca.intro}</p></div><div class="energy-input-grid">${lcaInputMarkup}</div><p class="energy-input-note">${lca.method}</p><p class="energy-input-note" data-lca-status aria-live="polite">${lca.incomplete}</p><div class="lca-result-grid" aria-live="polite"><article><h4>${lca.evTotal}</h4><output data-lca-output="evTotal">—</output></article><article><h4>${lca.evPerKm}</h4><output data-lca-output="evPerKm">—</output></article><article><h4>${lca.iceTotal}</h4><output data-lca-output="iceTotal">—</output></article><article><h4>${lca.icePerKm}</h4><output data-lca-output="icePerKm">—</output></article><article><h4>${lca.comparison}</h4><output data-lca-output="difference">—</output></article></div><div class="lca-breakdown"><div><h4>${lca.evTotal}</h4><dl><dt>${lca.production}</dt><dd data-lca-output="evProduction">—</dd><dt>${lca.energy}</dt><dd data-lca-output="evEnergy">—</dd><dt>${lca.maintenance}</dt><dd data-lca-output="evMaintenance">—</dd><dt>${lca.endLife}</dt><dd data-lca-output="evEnd">—</dd></dl></div><div><h4>${lca.iceTotal}</h4><dl><dt>${lca.production}</dt><dd data-lca-output="iceProduction">—</dd><dt>${lca.energy}</dt><dd data-lca-output="iceEnergy">—</dd><dt>${lca.maintenance}</dt><dd data-lca-output="iceMaintenance">—</dd><dt>${lca.endLife}</dt><dd data-lca-output="iceEnd">—</dd></dl></div></div><figure class="lca-chart"><figcaption>${lca.chart}</figcaption><div class="lca-bar-row"><span>EV</span><div class="lca-bar-track"><span data-lca-bar="ev"></span></div><output data-lca-output="evBarLabel">—</output></div><div class="lca-bar-row"><span>ICE</span><div class="lca-bar-track"><span data-lca-bar="ice"></span></div><output data-lca-output="iceBarLabel">—</output></div></figure><details class="phev-estimator"><summary>${phev.title}</summary><p class="energy-input-note">${phev.intro}</p><div class="energy-input-grid">${phevInputMarkup}</div><p class="energy-input-note" data-phev-status aria-live="polite">${phev.incomplete}</p><div class="lca-result-grid"><article><h4>${phev.total}</h4><output data-phev-output="total">—</output></article><article><h4>${phev.perKm}</h4><output data-phev-output="perKm">—</output></article></div><div class="lca-breakdown phev-breakdown"><div><dl><dt>${phev.productionPart}</dt><dd data-phev-output="production">—</dd><dt>${phev.electricPart}</dt><dd data-phev-output="electricity">—</dd><dt>${phev.fuelPart}</dt><dd data-phev-output="fuel">—</dd><dt>${phev.maintenancePart}</dt><dd data-phev-output="maintenance">—</dd><dt>${phev.endPart}</dt><dd data-phev-output="endLife">—</dd></dl></div></div><figure class="lca-chart"><div class="lca-bar-row"><span>PHEV</span><div class="lca-bar-track"><span data-phev-bar></span></div><output data-phev-output="barLabel">—</output></div></figure></details><p class="energy-input-note"><strong>${lca.sourceLabel}:</strong> <a href="https://www.iso.org/standard/37456.html" target="_blank" rel="noopener noreferrer">ISO 14040 — LCA principles and framework</a> · <a href="https://www.iea.org/data-and-statistics/data-tools/ev-life-cycle-assessment-calculator" target="_blank" rel="noopener noreferrer">IEA EV Life Cycle Assessment Calculator</a> · <a href="https://theicct.org/publication/a-global-comparison-of-the-life-cycle-greenhouse-gas-emissions-of-combustion-engine-and-electric-passenger-cars/" target="_blank" rel="noopener noreferrer">ICCT passenger-car life-cycle study</a></p></section>`;
   section.innerHTML = `<div class="energy-calculator-heading"><span class="section-kicker">${locale === "ar" ? "أداة تقدير قابلة للتخصيص" : locale === "fr" ? "Outil d’estimation paramétrable" : locale === "pt" ? "Estimativa personalizável" : "Editable planning tool"}</span><h2 id="energy-impact-title">${copy.title}</h2><p>${copy.intro}</p></div><form class="energy-calculator-form" novalidate><div class="energy-input-grid">${inputMarkup}</div></form><p class="energy-formula">${copy.formula}</p><div class="energy-output-grid" aria-live="polite"><article><h3>${copy.evCost}</h3><output data-energy-output="evCost">—</output></article><article><h3>${copy.evEmissions}</h3><output data-energy-output="evEmissions">—</output></article><article><h3>${copy.fuelCost}</h3><output data-energy-output="fuelCost">—</output></article><article><h3>${copy.fuelEmissions}</h3><output data-energy-output="fuelEmissions">—</output></article></div><p class="energy-input-note">${copy.example}</p>${faqMarkup}${lcaMarkup}<p class="energy-boundary">${copy.boundary}</p>`;
-  compareResult.closest(".compare-page-card")?.append(section);
+  const advancedToggle = document.createElement("button");
+  advancedToggle.className = "advanced-sustainability-toggle";
+  advancedToggle.type = "button";
+  advancedToggle.textContent = advancedCopy.show;
+  advancedToggle.setAttribute("aria-controls", section.id);
+  advancedToggle.setAttribute("aria-expanded", "false");
+  advancedToggle.addEventListener("click", () => {
+    section.hidden = !section.hidden;
+    advancedToggle.setAttribute("aria-expanded", String(!section.hidden));
+    advancedToggle.textContent = section.hidden ? advancedCopy.show : advancedCopy.hide;
+  });
+  compareResult.closest(".compare-page-card")?.append(advancedToggle, section);
 
   const form = section.querySelector("form");
   const read = (key) => {
