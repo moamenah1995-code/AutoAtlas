@@ -1100,7 +1100,19 @@ function initModelsPage() {
 
   const requestedBrand = new URLSearchParams(window.location.search).get("brand")?.toLowerCase();
   const models = requestedBrand ? researchModelCatalog.filter((item) => item.brand.toLowerCase() === requestedBrand) : researchModelCatalog;
-  catalog.innerHTML = models.map((item) => `<article class="vehicle-card research-model-card"><img src="${item.image}" alt="${item.brand} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${item.origin} · ${item.powertrain}</span><h2>${item.brand} ${item.model}</h2><p>${item.body} · ${item.drive}</p><a class="image-source-link" href="${item.imageSourceUrl}" target="_blank" rel="noopener noreferrer">${copy.imageSource}</a><button class="primary-btn" type="button" data-model-index="${researchModelCatalog.indexOf(item)}">${copy.source}</button></div></article>`).join("");
+  const ecoBadgeLabel = locale === "ar" ? "مركبة مكهربة" : locale === "fr" ? "Véhicule électrifié" : locale === "pt" ? "Veículo eletrificado" : "Electrified vehicle";
+  const ecoBadgeTip = locale === "ar"
+    ? "وصف لمنظومة الدفع فقط، وليس تقييماً بيئياً. تعتمد انبعاثات دورة الحياة على التصنيع ومصدر الكهرباء أو الوقود والاستخدام."
+    : locale === "fr"
+      ? "Description de la motorisation, pas une note environnementale. Les émissions du cycle de vie dépendent de la fabrication, de l’électricité ou du carburant et de l’usage."
+      : locale === "pt"
+        ? "Descrição do sistema de propulsão, não uma classificação ambiental. As emissões do ciclo de vida dependem da fabricação, da eletricidade ou do combustível e do uso."
+        : "Powertrain description only, not an environmental rating. Life-cycle emissions depend on manufacturing, electricity or fuel supply, and use.";
+  catalog.innerHTML = models.map((item) => {
+    const electrified = /electric|hybrid/i.test(item.powertrain);
+    const ecoBadge = electrified ? `<span class="eco-badge" tabindex="0" title="${ecoBadgeTip}" aria-label="${ecoBadgeLabel}. ${ecoBadgeTip}">🌿 ${ecoBadgeLabel}</span>` : "";
+    return `<article class="vehicle-card research-model-card"><img src="${item.image}" alt="${item.brand} ${item.model}" loading="lazy" decoding="async"><div><span class="model-tag">${item.origin} · ${item.powertrain}</span><h2>${item.brand} ${item.model} ${ecoBadge}</h2><p>${item.body} · ${item.drive}</p><a class="image-source-link" href="${item.imageSourceUrl}" target="_blank" rel="noopener noreferrer">${copy.imageSource}</a><button class="primary-btn" type="button" data-model-index="${researchModelCatalog.indexOf(item)}">${copy.source}</button></div></article>`;
+  }).join("");
 
   if (!models.length) catalog.innerHTML = `<p class="muted-box">${copy.select}</p>`;
   const showModel = (item) => {
